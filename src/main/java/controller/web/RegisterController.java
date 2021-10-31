@@ -1,6 +1,7 @@
 package controller.web;
 
 import dto.AccountDTO;
+import entity.Account;
 import service.IAccountService;
 import util.FormUtil;
 import util.MessageUtil;
@@ -10,6 +11,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name = "RegisterController", value = "/view-register")
 public class RegisterController extends HttpServlet {

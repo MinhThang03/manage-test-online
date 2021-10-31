@@ -3,6 +3,8 @@ package service;
 import dto.AccountDTO;
 import entity.Account;
 
+import java.util.List;
+
 public interface IAccountService {
     boolean insertAccount(AccountDTO user);
     Account updateAccount(AccountDTO user);
@@ -12,4 +14,5 @@ public interface IAccountService {
     AccountDTO findByEmail(String email);
     boolean registerAccount(AccountDTO account);
     Integer countTotalStudent();
+
 }

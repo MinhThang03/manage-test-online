@@ -41,6 +41,7 @@ public class AbstractDAO<T> implements GenericDAO<T> {
     @Override
     public T update(T obj) {
         Session session = HibernateUtil.getSessionFactory().openSession();
+        session.getTransaction().begin();
         T result = null;
         try {
             session.merge(obj);
@@ -59,9 +60,9 @@ public class AbstractDAO<T> implements GenericDAO<T> {
     @Override
     public boolean delete(T obj) {
         Session session = HibernateUtil.getSessionFactory().openSession();
+        session.getTransaction().begin();
         try {
-            T temp = obj;
-            session.remove(temp);
+            session.remove(session.merge(obj));
             session.getTransaction().commit();
             return true;
         } catch (Exception e) {
@@ -79,7 +80,7 @@ public class AbstractDAO<T> implements GenericDAO<T> {
         Session session = HibernateUtil.getSessionFactory().openSession();
         List<T> result = null;
         try {
-            StringBuilder sqlquery = new StringBuilder("FROM");
+            StringBuilder sqlquery = new StringBuilder("FROM ");
             sqlquery.append(this.getNameClass());
             Query<T> query = session.createQuery(sqlquery.toString());
             result = query.list();

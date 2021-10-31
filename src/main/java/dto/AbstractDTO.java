@@ -7,6 +7,7 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Getter
 @Setter
 public class AbstractDTO<T> {
@@ -23,3 +24,6 @@ public class AbstractDTO<T> {
     private String message;
     private String type;
 }
+
+
+

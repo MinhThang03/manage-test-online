@@ -5,7 +5,7 @@ import dao.IAccountDAO;
 import dto.AccountDTO;
 import entity.Account;
 import service.IAccountService;
-
+import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
@@ -72,4 +72,7 @@ public class AccountService implements IAccountService {
     public Integer countTotalStudent() {
         return accountDAO.countTotalStudent();
     }
+
+
+
 }
