@@ -18,4 +18,7 @@ public class AccountDTO extends AbstractDTO<AccountDTO> {
     private Boolean active;
     private String comfirmPass;
     private String rolename;
+    private String urlAvatar;
+    private String oldPass;
+    private String newPass;
 }
