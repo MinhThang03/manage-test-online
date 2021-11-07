@@ -99,7 +99,7 @@
                 <div class="header-details">
                     <h6>Are you ready to Learn?</h6>
                     <h1>Learn With fun <br> on <span>any schedule</span></h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Varius blandit facilisis quam netus.</p>
+                    <p>Build skills, get high scores in exam with courses, test online on our website.</p>
                     <a class="get-btn btn-get" href="/view-login?action=login">Get Started</a>
                 </div>
             </div>
@@ -234,7 +234,7 @@
             <div class="col-md-5 d-flex align-items-center">
                 <div class="video-details">
                     <h2>Helping people grow their careers, every day!</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis sunt aspernatur explicabo deserunt error rem cumque quos autem quo temporibus eos fugiat reprehenderit, cum laboriosam?</p>
+                    <p>We can help you with a college exam with the best results with dozens of courses, tests with answers completely free on our website.</p>
                     <!-- <button class="get-btn">Start Learning</button>  -->
                 </div>
             </div>
@@ -280,7 +280,7 @@
 
                         <div class="user-info__body">
                             <div>
-                                <h4 class="user-info__body-name">Luna</h4>
+                                <h4 class="user-info__body-name">Tính</h4>
                             </div>
                             <ul class="user-info__body-rank">
                                 <li class="user-info__body-rank-star">
@@ -299,7 +299,77 @@
                                     <i class="fas fa-star"></i>
                                 </li>
                             </ul>
-                            <p class="user-info__body-comment">Great!</p>
+                            <p class="user-info__body-comment">The best website I've ever seen.</p>
+                            <h5 class="user-info__body-city">TP.HCM</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="top-review__user-item">
+                    <div class="user-info">
+                        <div class="user-info__avatar">
+                            <img src="<c:url value = "/home/assets/images/picture/student1.jpg"/>" alt="avarta">
+                        </div>
+
+                        <div class="user-info__body">
+                            <div>
+                                <h4 class="user-info__body-name">Tài</h4>
+                            </div>
+                            <ul class="user-info__body-rank">
+                                <li class="user-info__body-rank-star">
+                                    <i class="fas fa-star"></i>
+                                </li>
+                                <li class="user-info__body-rank-star">
+                                    <i class="fas fa-star"></i>
+                                </li>
+                                <li class="user-info__body-rank-star">
+                                    <i class="fas fa-star"></i>
+                                </li>
+                                <li class="user-info__body-rank-star">
+                                    <i class="fas fa-star"></i>
+                                </li>
+                                <li class="user-info__body-rank-star">
+                                    <i class="fas fa-star"></i>
+                                </li>
+                            </ul>
+                            <p class="user-info__body-comment">Good job!</p>
+                            <h5 class="user-info__body-city">Tây Ninh</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="top-review__user-item">
+                    <div class="user-info">
+                        <div class="user-info__avatar">
+                            <img src="<c:url value = "/home/assets/images/picture/student1.jpg"/>" alt="avarta">
+                        </div>
+
+                        <div class="user-info__body">
+                            <div>
+                                <h4 class="user-info__body-name">Thắng</h4>
+                            </div>
+                            <ul class="user-info__body-rank">
+                                <li class="user-info__body-rank-star">
+                                    <i class="fas fa-star"></i>
+                                </li>
+                                <li class="user-info__body-rank-star">
+                                    <i class="fas fa-star"></i>
+                                </li>
+                                <li class="user-info__body-rank-star">
+                                    <i class="fas fa-star"></i>
+                                </li>
+                                <li class="user-info__body-rank-star">
+                                    <i class="fas fa-star"></i>
+                                </li>
+                                <li class="user-info__body-rank-star">
+                                    <i class="fas fa-star"></i>
+                                </li>
+                            </ul>
+                            <p class="user-info__body-comment">This website is useful for me. It helped me to pass the college exam. Thanks!</p>
                             <h5 class="user-info__body-city">Đà Nẵng</h5>
                         </div>
                     </div>
@@ -315,7 +385,7 @@
 
                         <div class="user-info__body">
                             <div>
-                                <h4 class="user-info__body-name">Luna</h4>
+                                <h4 class="user-info__body-name">Đức</h4>
                             </div>
                             <ul class="user-info__body-rank">
                                 <li class="user-info__body-rank-star">
@@ -335,7 +405,7 @@
                                 </li>
                             </ul>
                             <p class="user-info__body-comment">Great!</p>
-                            <h5 class="user-info__body-city">Đà Nẵng</h5>
+                            <h5 class="user-info__body-city">TP.HCM</h5>
                         </div>
                     </div>
                 </div>
@@ -350,7 +420,7 @@
 
                         <div class="user-info__body">
                             <div>
-                                <h4 class="user-info__body-name">Luna</h4>
+                                <h4 class="user-info__body-name">Tiên</h4>
                             </div>
                             <ul class="user-info__body-rank">
                                 <li class="user-info__body-rank-star">
@@ -369,78 +439,8 @@
                                     <i class="fas fa-star"></i>
                                 </li>
                             </ul>
-                            <p class="user-info__body-comment">Great!</p>
-                            <h5 class="user-info__body-city">Đà Nẵng</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="item">
-                <div class="top-review__user-item">
-                    <div class="user-info">
-                        <div class="user-info__avatar">
-                            <img src="<c:url value = "/home/assets/images/picture/student1.jpg"/>" alt="avarta">
-                        </div>
-
-                        <div class="user-info__body">
-                            <div>
-                                <h4 class="user-info__body-name">Luna</h4>
-                            </div>
-                            <ul class="user-info__body-rank">
-                                <li class="user-info__body-rank-star">
-                                    <i class="fas fa-star"></i>
-                                </li>
-                                <li class="user-info__body-rank-star">
-                                    <i class="fas fa-star"></i>
-                                </li>
-                                <li class="user-info__body-rank-star">
-                                    <i class="fas fa-star"></i>
-                                </li>
-                                <li class="user-info__body-rank-star">
-                                    <i class="fas fa-star"></i>
-                                </li>
-                                <li class="user-info__body-rank-star">
-                                    <i class="fas fa-star"></i>
-                                </li>
-                            </ul>
-                            <p class="user-info__body-comment">Great!</p>
-                            <h5 class="user-info__body-city">Đà Nẵng</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="item">
-                <div class="top-review__user-item">
-                    <div class="user-info">
-                        <div class="user-info__avatar">
-                            <img src="<c:url value = "/home/assets/images/picture/student1.jpg"/>" alt="avarta">
-                        </div>
-
-                        <div class="user-info__body">
-                            <div>
-                                <h4 class="user-info__body-name">Luna</h4>
-                            </div>
-                            <ul class="user-info__body-rank">
-                                <li class="user-info__body-rank-star">
-                                    <i class="fas fa-star"></i>
-                                </li>
-                                <li class="user-info__body-rank-star">
-                                    <i class="fas fa-star"></i>
-                                </li>
-                                <li class="user-info__body-rank-star">
-                                    <i class="fas fa-star"></i>
-                                </li>
-                                <li class="user-info__body-rank-star">
-                                    <i class="fas fa-star"></i>
-                                </li>
-                                <li class="user-info__body-rank-star">
-                                    <i class="fas fa-star"></i>
-                                </li>
-                            </ul>
-                            <p class="user-info__body-comment">Great!</p>
-                            <h5 class="user-info__body-city">Đà Nẵng</h5>
+                            <p class="user-info__body-comment">This course really helped me a lot. Very nice!</p>
+                            <h5 class="user-info__body-city">Hà Nội</h5>
                         </div>
                     </div>
                 </div>
@@ -487,9 +487,9 @@
                         <ul class="list-unstyled">
                             <li>MSSV</li>
                             <li><a href="#">19110462</a></li>
-                            <li><a href="#">Web Design</a></li>
+                            <li><a href="#">19110349</a></li>
                             <li><a href="#">19110452</a></li>
-                            <li><a href="#">Marketing</a></li>
+                            <li><a href="#">19110478</a></li>
                         </ul>
                     </div>
                 </div>
