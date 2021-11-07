@@ -73,6 +73,14 @@ public class AccountService implements IAccountService {
         return accountDAO.countTotalStudent();
     }
 
-
+    @Override
+    public Boolean updatePassword(AccountDTO accountDTO) {
+        accountDTO.setPass(accountDTO.getNewPass());
+        if (updateAccount(accountDTO) != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 }

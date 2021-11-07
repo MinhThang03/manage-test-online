@@ -23,5 +23,7 @@ public class Exam {
     @JoinColumn(name = "course_id")
     private Course course;
 
+    @Column(name = "file_check")
+    private String fileCheck;
 
 }

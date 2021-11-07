@@ -29,10 +29,10 @@ public class AuthorizationFilter implements Filter {
                 if (model.getRolename().equals("admin")) {
                     filterChain.doFilter(servletRequest, servletResponse);
                 } else if (model.getRolename().equals("user")) {
-                    response.sendRedirect(request.getContextPath()+"/dang-nhap?action=login&message=not_permission&alert=danger");
+                    response.sendRedirect(request.getContextPath()+"/view-login?action=login&message=not_permission&alert=danger");
                 }
             } else {
-                response.sendRedirect(request.getContextPath()+"/dang-nhap?action=login&message=not_login&alert=danger");
+                response.sendRedirect(request.getContextPath()+"/view-login?action=login&message=not_login&alert=danger");
             }
         } else {
             filterChain.doFilter(servletRequest, servletResponse);

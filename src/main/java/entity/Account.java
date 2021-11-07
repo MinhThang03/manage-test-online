@@ -51,4 +51,7 @@ public class Account {
 
     @Column(name = "active")
     private Boolean active;
+
+    @Column(name = "avatar")
+    private String avatar;
 }

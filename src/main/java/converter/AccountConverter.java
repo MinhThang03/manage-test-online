@@ -26,6 +26,7 @@ public class AccountConverter {
         result.setUsername(entity.getUsername());
         result.setPhone(entity.getPhone());
         result.setRolename(entity.getRoleid().getRolename());
+        result.setUrlAvatar(entity.getAvatar());
         return result;
     }
 
@@ -43,6 +44,7 @@ public class AccountConverter {
         result.setPass(dto.getPass());
         result.setUsername(dto.getUsername());
         result.setPhone(dto.getPhone());
+        result.setAvatar(dto.getUrlAvatar());
 
         IRoleUserService roleUserService = new RoleUserService();
         RoleUserDTO roleUserDTO = roleUserService.findById(dto.getRoleid());

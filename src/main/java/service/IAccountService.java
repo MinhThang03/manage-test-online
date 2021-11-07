@@ -14,5 +14,6 @@ public interface IAccountService {
     AccountDTO findByEmail(String email);
     boolean registerAccount(AccountDTO account);
     Integer countTotalStudent();
+    Boolean updatePassword(AccountDTO accountDTO);
 
 }

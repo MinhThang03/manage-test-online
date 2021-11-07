@@ -16,10 +16,71 @@
     <link href="../assets/css/icons.min.css" rel="stylesheet" type="text/css">
     <link href="../assets/css/app.min.css" rel="stylesheet" type="text/css" id="light-style">
     <link href="../assets/css/app-dark.min.css" rel="stylesheet" type="text/css" id="dark-style">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bootstrap-4@5.0.7/bootstrap-4.min.css" type="text/css">
+
     <style>
+        table {
+            table-layout: fixed;
+        }
+
+        th, td {
+            text-align: center;
+            padding: 5px 10px;
+        }
+
+        thead {
+            background: #f9f9f9;
+            display: table;
+            width: 100%;
+            width: calc(100% - 18px);
+        }
+
+        tbody {
+            height: 260px;
+            overflow: auto;
+            display: block;
+            width: 100%;
+
+        }
+        tr {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+        }
         .active{
             display: block;
         }
+
+        @media only screen and (min-width: 920px) {
+            .btn-upfile{
+                right: 0;
+                top: 160px;
+                display: flex;
+                position: absolute;
+            }
+            .container-file{
+                transform: translate(50%, 200px);
+            }
+        }
+        @media only screen and (min-width: 750px) and (max-width: 919px){
+            .container-file{
+                transform: translate(50%, 120px);
+            }
+            .btn-upfile{
+/*                right: 0;
+                top: 160px;*/
+                display: flex;
+                /*position: absolute;*/
+            }
+        }
+        @media screen and (max-width: 749px) {
+
+            .container-file{
+                transform: translate(4%, 120px);
+                width: 450px;
+            }
+        }
+
     </style>
 
 </head>
@@ -57,7 +118,7 @@
             <ul class="side-nav">
 
                 <li class="side-nav-item menuitem-active">
-                    <a href="<c:url value = "./stats_admin.jsp"/>" class="side-nav-link">
+                    <a href="<c:url value = "/admin-home"/>" class="side-nav-link">
                         <%--                <a href="<c:url value = "apps-calendar.jsp"/>" class="side-nav-link">--%>
                         <i class="uil-graph-bar"></i>
                         <span> Stats </span>
@@ -74,7 +135,7 @@
                         <ul class="side-nav-second-level">
                             <li>
 
-                                <a href="<c:url value = "ManagerFile.jsp"/>">Courses</a>
+                                <a href="<c:url value = "/admin-manager-file"/>">Courses</a>
                             </li>
                             <li>
                                 <a href="<c:url value = "#"/>">Users</a>
@@ -85,7 +146,7 @@
                 </li>
 
                 <li class="side-nav-item">
-                    <a href="<c:url value = "profile-admin.jsp"/>" class="side-nav-link">
+                    <a href="<c:url value = "/admin-profile"/>" class="side-nav-link">
                         <i class="uil-user"></i>
                         <span> My account </span>
                     </a>
@@ -200,258 +261,232 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <!-- Left sidebar -->
-                                <div class="page-aside-left">
-
-                                    <div class="btn-group d-block mb-2">
-                                        <button type="button" class="btn btn-success dropdown-toggle w-100" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="mdi mdi-plus"></i> Create New </button>
-                                        <div class="dropdown-menu">
-                                            <button  class="dropdown-item Add-course"><i class="uil uil-scenery me-1"></i>Add Course</button>
-                                            <button  class="dropdown-item Add-file"><i class="mdi mdi-file-plus-outline me-1"></i>Add File Exam</button>
-                                        </div>
-                                    </div>
-
-                                </div>
                                 <!-- End Left sidebar -->
-
-                                <div class="page-aside-right">
-
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="app-search">
-                                            <form>
-                                                <div class="mb-2 position-relative">
-                                                    <input type="text" class="form-control" placeholder="Search files...">
-                                                    <span class="mdi mdi-magnify search-icon"></span>
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <div>
-                                            <nav aria-label="breadcrumb">
-                                                <ol class="breadcrumb mb-0">
-                                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                                    <li class="breadcrumb-item active" aria-current="page">Manager Courses</li>
-                                                </ol>
-                                            </nav>
-                                        </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="app-search">
+                                        <form>
+                                            <div class="mb-2 position-relative">
+                                                <input type="text" class="form-control" placeholder="Search files...">
+                                                <span class="mdi mdi-magnify search-icon"></span>
+                                            </div>
+                                        </form>
                                     </div>
-
-                                    <div class="mt-3">
-                                        <div class="page-title-box">
-                                            <h4 class="page-title">Courses</h4>
-                                        </div>
-                                        <table class="table table-striped table-centered mb-0">
-                                            <thead>
-                                            <tr>
-                                                <th>Course ID</th>
-                                                <th>Course Name</th>
-                                                <th>Description</th>
-                                                <th>Update</th>
-                                                <th>Admin Name</th>
-                                                <th>Action</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td class="table-user">
-                                                    <div class="row align-items-center">
-                                                        <div class="col-auto">
-                                                            <img src="../assets/images/users/avatar-9.jpg" alt="image" class="img-fluid avatar-sm">
-                                                            <span>Math</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>No Description</td>
-                                                <td>29-09-2021</td>
-                                                <td>Admin1</td>
-                                                <td class="table-action">
-                                                    <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
-                                                    <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td class="table-user">
-                                                    <div class="row align-items-center">
-                                                        <div class="col-auto">
-                                                            <img src="../assets/images/users/avatar-9.jpg" alt="image" class="img-fluid avatar-sm">
-                                                            <span>Math</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>No Description</td>
-                                                <td>29-09-2021</td>
-                                                <td>Admin1</td>
-                                                <td class="table-action">
-                                                    <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
-                                                    <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td class="table-user">
-                                                    <div class="row align-items-center">
-                                                        <div class="col-auto">
-                                                            <img src="../assets/images/users/avatar-9.jpg" alt="image" class="img-fluid avatar-sm">
-                                                            <span>Math</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>No Description</td>
-                                                <td>29-09-2021</td>
-                                                <td>Admin1</td>
-                                                <td class="table-action">
-                                                    <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
-                                                    <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td class="table-user">
-                                                    <div class="row align-items-center">
-                                                        <div class="col-auto">
-                                                            <img src="../assets/images/users/avatar-9.jpg" alt="image" class="img-fluid avatar-sm">
-                                                            <span>Math</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>No Description</td>
-                                                <td>29-09-2021</td>
-                                                <td>Admin1</td>
-                                                <td class="table-action">
-                                                    <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
-                                                    <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
-                                                </td>
-                                            </tr>
-
-                                            </tbody>
-                                        </table>
+                                    <div>
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb mb-0">
+                                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                                <li class="breadcrumb-item active" aria-current="page">Manager Courses</li>
+                                            </ol>
+                                        </nav>
                                     </div>
-                                    <div class="mt-3">
-                                        <div class="page-title-box">
-                                            <h4 class="page-title">File Exam</h4>
-                                        </div>
-                                        <table class="table table-striped table-centered mb-0">
-                                            <thead>
-                                            <tr>
-                                                <th>File ID</th>
-                                                <th>File Name</th>
-                                                <th>Course Name</th>
-                                                <th>Update</th>
-                                                <th>Admin Name</th>
-                                                <th>Action</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td class="table-user">
-                                                    <div class="row align-items-center">
-                                                        <div class="col-auto">
-                                                            <div class="avatar-sm">
-                                                                            <span class="avatar-title bg-light text-secondary rounded">
-                                                                                <i class="mdi mdi-file-table-outline font-18"></i>
-                                                                            </span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col ps-0">
-                                                            <a href="javascript:void(0);" class="text-muted fw-bold">Example.xlxs</a>
-                                                            <p class="mb-0 font-13">3.6 MB</p>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>Toán</td>
-                                                <td>29-09-2021</td>
-                                                <td>Admin1</td>
-                                                <td class="table-action">
-                                                    <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
-                                                    <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td class="table-user">
-                                                    <div class="row align-items-center">
-                                                        <div class="col-auto">
-                                                            <div class="avatar-sm">
-                                                                            <span class="avatar-title bg-light text-secondary rounded">
-                                                                                <i class="mdi mdi-file-table-outline font-18"></i>
-                                                                            </span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col ps-0">
-                                                            <a href="javascript:void(0);" class="text-muted fw-bold">Example.xlxs</a>
-                                                            <p class="mb-0 font-13">3.6 MB</p>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>Toán</td>
-                                                <td>29-09-2021</td>
-                                                <td>Admin1</td>
-                                                <td class="table-action">
-                                                    <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
-                                                    <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td class="table-user">
-                                                    <div class="row align-items-center">
-                                                        <div class="col-auto">
-                                                            <div class="avatar-sm">
-                                                                            <span class="avatar-title bg-light text-secondary rounded">
-                                                                                <i class="mdi mdi-file-table-outline font-18"></i>
-                                                                            </span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col ps-0">
-                                                            <a href="javascript:void(0);" class="text-muted fw-bold">Example.xlxs</a>
-                                                            <p class="mb-0 font-13">3.6 MB</p>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>Toán</td>
-                                                <td>29-09-2021</td>
-                                                <td>Admin1</td>
-                                                <td class="table-action">
-                                                    <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
-                                                    <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td class="table-user">
-                                                    <div class="row align-items-center">
-                                                        <div class="col-auto">
-                                                            <div class="avatar-sm">
-                                                                            <span class="avatar-title bg-light text-secondary rounded">
-                                                                                <i class="mdi mdi-file-table-outline font-18"></i>
-                                                                            </span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col ps-0">
-                                                            <a href="javascript:void(0);" class="text-muted fw-bold">Example.xlxs</a>
-                                                            <p class="mb-0 font-13">3.6 MB</p>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>Toán</td>
-                                                <td>29-09-2021</td>
-                                                <td>Admin1</td>
-                                                <td class="table-action">
-                                                    <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
-                                                    <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
-                                                </td>
-                                            </tr>
-
-                                            </tbody>
-                                        </table>
-
-                                    </div> <!-- end .mt-3-->
-
-
                                 </div>
-                                <!-- end inbox-rightbar-->
+
+                                <div class="mt-3">
+                                    <div class="page-title-box" style="display: flex; align-items: center">
+                                        <h4 class="page-title">Courses</h4>
+                                        <button  class="btn btn-success Add-course" style="margin-left: 8px"><i class="uil uil-scenery me-1"></i>Add Course</button>
+                                    </div>
+                                    <table class="table table-striped table-centered mb-0">
+                                        <thead>
+                                        <tr>
+                                            <th>Course ID</th>
+                                            <th>Course Name</th>
+                                            <th>Description</th>
+                                            <%--<th>Update</th>
+                                            <th>Admin Name</th>--%>
+                                            <th>Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <c:forEach items="${list}" var="item">
+                                            <tr>
+                                                <td>${item.id}</td>
+                                                <td class="table-user">
+                                                    <div class="row align-items-center" style="justify-content: center">
+                                                        <div class="col-auto">
+                                                            <img src="${item.courseImage}" alt=""  class="img-fluid avatar-sm">
+                                                            <span>${item.courseName}</span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>${item.description}</td>
+                                                <td class="table-action" style="display: flex;justify-content: center">
+                                                    <div class="rightbar-overlay " id ="update-course${item.id}" style=" background-color: rgba(0,0,0,0.05); opacity: 1;">
+                                                        <div class="course-upload col-md-4" style="transform: translate(100%, 100px); color: #6c757d; background-color: #FFF;padding: 40px 0; border-radius: 4px;">
+                                                            <form class="needs-validation col-md-6" novalidate style="transform: translate(50%, 0);" method="post" action="/admin-manager-file?action=updateCourse">
+                                                                <input type="hidden" name="id" value="${item.id}">
+                                                                <div class="mb-0">
+                                                                    <label class="form-label" for="validationCustom03" style="float:left;">Course Name</label>
+                                                                    <input type="text" class="form-control" id="validationCustom03" value="${item.courseName}" placeholder="Course Name" required name = "courseName">
+                                                                    <div class="valid-feedback">
+                                                                        Looks good!
+                                                                    </div>
+                                                                </div>
+                                                                <div class="mb-0">
+                                                                    <label class="form-label" for="validationCustom04" style="margin-top: 16px;float:left;">Description</label>
+                                                                    <input type="text" class="form-control" id="validationCustom04"value="${item.description}" placeholder="Description" required name="description">
+                                                                    <div class="valid-feedback">
+                                                                        Looks good!
+                                                                    </div>
+                                                                </div>
+                                                                <div style="margin-top: 16px; display: flex; align-items: flex-start;flex-direction: column">
+                                                                    <label class="form-label" for="validationCustom02">Course Image: </label>
+                                                                    <div id="update-image-grid${item.id}" >
+                                                                    </div>
+                                                                    <div style="display: flex; justify-content: center; align-items: center">
+                                                                        <button type="button" class="btn btn-success btn-sm update-swalDefaultSuccess"
+                                                                                onclick="upload('update-urlImage${item.id}')" id ="update-send${item.id}">Upload</button>
+                                                                        <input type="file" id="update-file-uploader${item.id}" onclick="savefiles('update-file-uploader${item.id}')" accept=".jpg, .jpeg, .png" style="margin: 16px 8px;">
+                                                                    </div>
+                                                                    <input type="hidden" id="update-urlImage${item.id}" name ="courseImage" value="${item.courseImage}">
+
+                                                                </div>
+                                                                <div class="mb-0" style="display: flex">
+                                                                    <button type="button" id = "update-cancel-course${item.id}" onclick="hiddenForm('#update-course${item.id}','#update-image-grid${item.id}')" class="btn btn-danger" style="margin-right: 4px;min-width: 100px">Cancel</button>
+                                                                    <button class="btn btn-success" type="submit" style="min-width: 100px;">Submit</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                    <button type="button" class="action-icon update-course${item.id}" style="border-radius: 50%; margin-right: 8px" onclick="addActive('#update-course${item.id}')"><i class="mdi mdi-pencil"></i></button>
+                                                    <form action="/admin-manager-file?action=deleteCourse" method="post">
+                                                        <input type="hidden" name="id" value="${item.id}">
+                                                        <input type="hidden" name="courseName" value="${item.courseName}">
+                                                        <input type="hidden" name="courseImage" value="${item.courseImage}">
+                                                        <input type="hidden" name="description" value="${item.description}">
+                                                        <button type="submit" class="action-icon" style="border-radius: 50%"><i class="mdi mdi-delete"></i></button>
+                                                    </form>
+
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="mt-3">
+                                    <div class="page-title-box" style="display:flex; align-items: center">
+                                        <h4 class="page-title">File Exam</h4>
+                                        <button  class="btn btn-success Add-exam" style="margin-left: 8px"><i class="mdi mdi-file-plus-outline me-1"></i>Add Exam</button>
+                                    </div>
+                                    <table class="table table-striped table-centered mb-0">
+                                        <thead>
+                                        <tr>
+                                            <th>File ID</th>
+                                            <th>Course Name</th>
+                                            <th>Exam Name</th>
+                                            <th>Action</th>
+                                            <th>File Check</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <c:forEach items="${requestScope.listExam}" var="exam">
+                                            <tr>
+                                                <td>${exam.id}</td>
+                                                <td>${exam.course.courseName}</td>
+                                                <td>
+                                                    ${exam.examName}
+                                                </td>
+
+                                                <td class="table-action" style="display: flex; justify-content: center">
+                                                    <div class="rightbar-overlay" id ="file${exam.id}" style=" background-color: rgba(0,0,0,0.05); opacity: 1;">
+                                                        <%--<div class="file-upload col-md-6 container-file">
+                                                            <!-- File Upload -->
+                                                            <form action="/QuestionController?action=insertFile" method="post" class="dropzone" id="myAwesomeDropzone" data-plugin="dropzone" data-previews-container="#file-previews"
+                                                                  data-upload-preview-template="#uploadPreviewTemplate">
+                                                                <div class="fallback">
+                                                                    <input name="file" type="file" multiple accept=".xlsx" required/>
+                                                                </div>
+    
+                                                                <div class="dz-message needsclick">
+                                                                    <i class="h1 text-muted dripicons-cloud-upload"></i>
+                                                                    <h3>Drop files here or click to upload.</h3>
+                                                                    <span class="text-muted font-13">(This is just a demo dropzone. Selected files are
+                                                                    <strong>not</strong> actually uploaded.)</span>
+                                                                </div>
+                                                                <input type="hidden" name="id" value="${exam.id}}">
+                                                                <input type="hidden" name="examName" value="${exam.examName}">
+                                                                <input type="hidden" name="courseID" value="${exam.course.id}">
+                                                                <input type="hidden" name="fileCheck" value="true">
+
+                                                                <div class="btn btn-upfile" >
+                                                                    <button type="button" id = "cancel-file" onclick="hiddenForm('#file${exam.id}','.file-previews${exam.id}')" class="btn btn-danger" style="margin: 0 10px">Cancel</button>
+                                                                    <button type="submit" class="btn btn-success">Upload</button>
+                                                                </div>
+
+                                                            </form>
+
+
+                                                            <!-- Preview -->
+                                                            <div data-bs-spy="scroll" class="scrollspy-example" style="height: 320px;">
+                                                                <div class="dropzone-previews mt-3 file-previews${exam.id}" id="file-previews"></div>
+                                                            </div>
+
+                                                            <!-- file preview template -->
+                                                            <div class="d-none" id="uploadPreviewTemplate">
+                                                                <div class="card mt-1 mb-0 shadow-none border">
+                                                                    <div class="p-2">
+                                                                        <div class="row align-items-center">
+                                                                            <div class="col-auto">
+                                                                                <img data-dz-thumbnail src="#" class="avatar-sm rounded bg-light" alt="">
+                                                                            </div>
+                                                                            <div class="col ps-0">
+                                                                                <a href="javascript:void(0);" class="text-muted fw-bold" data-dz-name></a>
+                                                                                <p class="mb-0" data-dz-size></p>
+                                                                            </div>
+                                                                            <div class="col-auto">
+                                                                                <!-- Button -->
+                                                                                <a href="" class="btn btn-link btn-lg text-muted" data-dz-remove>
+                                                                                    <i class="dripicons-cross"></i>
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>--%>
+                                                            <div class="course-upload col-md-4" style="transform: translate(100%, 100px); color: #6c757d; background-color: #FFF;padding: 40px 0; border-radius: 4px;">
+                                                                <form class="needs-validation col-md-6" novalidate enctype="multipart/form-data" style="transform: translate(50%, 0);" method="post" action="/QuestionController?action=insertFile">
+                                                                    <div style="margin-top: 16px; display: flex; align-items: flex-start;flex-direction: column">
+                                                                        <label class="form-label">Insert Exam: </label>
+                                                                        <div style="display: flex; justify-content: center; align-items: center">
+                                                                            <input type="file" name="file-exam" id="upload-file${exam.id}"  accept=".xlsx" style="margin: 16px 0;">
+                                                                        </div>
+                                                                    </div>
+                                                                    <input type="hidden" name="id" value="${exam.id}">
+                                                                    <input type="hidden" name="examName" value="${exam.examName}">
+                                                                    <input type="hidden" name="courseID" value="${exam.course.id}">
+                                                                    <input type="hidden" name="fileCheck" value="true">
+                                                                    <div class="mb-0" style="display: flex">
+                                                                        <button type="button" id = "cancel-file${exam.id}" onclick="hiddenForm('#file${exam.id}','#upload-file${exam.id}')" class="btn btn-danger" style="margin-right: 4px;min-width: 100px">Cancel</button>
+                                                                        <button class="btn btn-success" type="submit" style="min-width: 100px;">Submit</button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                    </div>
+                                                    <button type="button" class="action-icon insert-file" onclick="addActive('#file${exam.id}')"  style="border-radius: 50%; margin-right: 4px" ><i class="mdi mdi-plus"></i></button>
+                                                    <form action="/QuestionController?action=deleteFile" method="post">
+                                                        <input type="hidden" name="id" value="${exam.id}">
+                                                        <input type="hidden" name="examName" value="${exam.examName}">
+                                                        <input type="hidden" name="courseID" value="${exam.course.id}">
+                                                        <input type="hidden" name="fileCheck" value="${exam.fileCheck}">
+                                                        <button type="submit" class="action-icon" style="border-radius: 50%;margin-left: 4px"><i class="mdi mdi-delete"></i></button>
+                                                    </form>
+                                                </td>
+                                                <td>
+                                                    <c:if test="${exam.fileCheck.trim() == 'true'}">
+                                                        <i class="action-icon uil  uil-file-check"></i>
+                                                    </c:if>
+                                                    <c:if test="${exam.fileCheck.trim() == 'false'}">
+                                                        <i class="action-icon uil  uil-file-times"></i>
+                                                    </c:if>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+
+                                        </tbody>
+                                    </table>
+
+                                </div> <!-- end .mt-3-->
                             </div>
                             <!-- end card-body -->
                             <div class="clearfix"></div>
@@ -582,87 +617,35 @@
     </div>
 </div>
 
-<div class="rightbar-overlay" id ="file" style=" background-color: rgba(0,0,0,0.5); opacity: 1;">
-    <div class="file-upload col-md-6" style="transform: translate(50%, 120px);">
-        <!-- File Upload -->
-        <form action="/" method="post" class="dropzone" id="myAwesomeDropzone" data-plugin="dropzone" data-previews-container="#file-previews"
-              data-upload-preview-template="#uploadPreviewTemplate">
-            <div class="fallback">
-                <input name="file" type="file" multiple />
-            </div>
 
-            <div class="dz-message needsclick">
-                <i class="h1 text-muted dripicons-cloud-upload"></i>
-                <h3>Drop files here or click to upload.</h3>
-                <span class="text-muted font-13">(This is just a demo dropzone. Selected files are
-                            <strong>not</strong> actually uploaded.)</span>
-            </div>
-            <div class="btn" style="right: 0; top: 160px;; position: absolute;">
-                <select id = "courses" required style="border-radius: 5px; margin-top: 6px;">
-                    <option value="" selected disabled hidden>Choose a Subject</option>
-                    <option value="0">Math</option>
-                    <option value="1">Physics</option>
-                    <option value="2">Biology</option>
-                    <option value="3">Chemistry</option>
-                </select>
-                <button type="button" id = "cancel-file" class="btn btn-danger" style="margin: 0 10px">Cancel</button>
-                <button type="submit" class="btn btn-success">Upload</button>
-            </div>
-        </form>
-
-
-        <!-- Preview -->
-        <div data-bs-spy="scroll" class="scrollspy-example" style="height: 320px;">
-            <div class="dropzone-previews mt-3" id="file-previews"></div>
-        </div>
-
-        <!-- file preview template -->
-        <div class="d-none" id="uploadPreviewTemplate">
-            <div class="card mt-1 mb-0 shadow-none border">
-                <div class="p-2">
-                    <div class="row align-items-center">
-                        <div class="col-auto">
-                            <img data-dz-thumbnail src="#" class="avatar-sm rounded bg-light" alt="">
-                        </div>
-                        <div class="col ps-0">
-                            <a href="javascript:void(0);" class="text-muted fw-bold" data-dz-name></a>
-                            <p class="mb-0" data-dz-size></p>
-                        </div>
-                        <div class="col-auto">
-                            <!-- Button -->
-                            <a href="" class="btn btn-link btn-lg text-muted" data-dz-remove>
-                                <i class="dripicons-cross"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<!-- =====================course============================= -->
 <div class="rightbar-overlay " id ="course" style=" background-color: rgba(0,0,0,0.5); opacity: 1;">
     <div class="course-upload col-md-4" style="transform: translate(100%, 100px); color: #6c757d; background-color: #FFF;padding: 40px 0; border-radius: 4px;">
-        <form class="needs-validation col-md-6" novalidate style="transform: translate(50%, 0);">
+        <form class="needs-validation col-md-6" novalidate style="transform: translate(50%, 0);" method="post" action="/admin-manager-file?action=insertCourse">
             <div class="mb-0">
                 <label class="form-label" for="validationCustom01">Course Name</label>
-                <input type="text" class="form-control" id="validationCustom01" placeholder="First name" required>
+                <input type="text" class="form-control" id="validationCustom01" placeholder="Course Name" required name = "courseName">
                 <div class="valid-feedback">
                     Looks good!
                 </div>
             </div>
             <div class="mb-0">
                 <label class="form-label" for="validationCustom02" style="margin-top: 16px;">Description</label>
-                <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" required>
+                <input type="text" class="form-control" id="validationCustom02" placeholder="Description" required name="description">
                 <div class="valid-feedback">
                     Looks good!
                 </div>
             </div>
             <div style="margin-top: 16px; ">
                 <label class="form-label" for="validationCustom02">Course Image: </label>
-                <input type="file" id="file-uploader" accept=".jpg, .jpeg, .png" required>
-
-                <div id="image-grid" style="margin: 16px 0;">
+                <div id="image-grid" >
                 </div>
+                <div style="display: flex; justify-content: center; align-items: center">
+                    <button type="button" class="btn btn-success btn-sm swalDefaultSuccess" id ="send">Upload</button>
+                    <input type="file" id="file-uploader" accept=".jpg, .jpeg, .png" style="margin: 16px 8px;">
+                </div>
+                <input type="hidden" id="urlImage" name ="courseImage" value="">
+
             </div>
             <div class="mb-0">
                 <button type="button" id = "cancel-course" class="btn btn-danger" style="margin-right: 8px;min-width: 120px">Cancel</button>
@@ -671,32 +654,82 @@
         </form>
     </div>
 </div>
+
+<!-- =====================EXAM============================= -->
+<div class="rightbar-overlay " id ="exam" style=" background-color: rgba(0,0,0,0.5); opacity: 1;">
+    <div class="course-upload col-md-4" style="transform: translate(100%, 200px); color: #6c757d; background-color: #FFF;padding: 40px 0; border-radius: 4px;">
+        <form class="needs-validation col-md-6" novalidate style="transform: translate(50%, 0);" method="post" action="/admin-manager-file?action=insertExam">
+            <div class="mb-0">
+                <label class="form-label" for="validationCustom5">Exam Name</label>
+                <input type="text" class="form-control" id="validationCustom5" placeholder="Exam Name" required name = "examName">
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-0">
+                <select name="courseID" id = "" required style="border-radius: 3px; width: 100%; height: 36px;margin: 16px 0">
+                    <option value="" selected disabled hidden>Choose Course</option>
+                    <c:forEach items="${list}" var="item">
+                        <option value="${item.id}" style="border-radius: 3px; max-height: 38px">${item.courseName}</option>
+                    </c:forEach>
+                </select>
+            </div>
+            <input type="hidden" name="fileCheck" value="false">
+            <div class="mb-0">
+                <button type="button" id = "cancel-exam" class="btn btn-danger" style="margin-right: 8px;min-width: 120px">Cancel</button>
+                <button class="btn btn-success" type="submit" style="min-width: 120px;">Submit form</button>
+            </div>
+        </form>
+    </div>
+</div>
 <!-- /End-bar -->
-<script src="../assets/js/TuViet/active.js"></script>
+<script src="../assets/js/TuViet/handlerInForm.js"></script>
+<script src="../assets/js/TuViet/upFirebase.js"></script>
+<script src="../assets/js/TuViet/handler.js"></script>
+<script src="../assets/js/TuViet/loadImage.js"></script>
+<script src="../assets/js/TuViet/notification.js"></script>
+<script src="../assets/js/sweetalert/sweetalert2.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
     handle('.Add-course', '#course');
-    handle('.Add-file', '#file');
-    Cancel('#cancel-course', '#course','#image-grid')
-    Cancel('#cancel-file', '#file','#file-previews')
+    // handle('.insert-file', '#file');
+    handle('.Add-exam', '#exam');
+    Cancel('#cancel-course', '#course','#image-grid');
+    // Cancel('#cancel-file', '#file','#file-previews')
+    Cancel('#cancel-exam','#exam')
 </script>
 <script>
-    const fileUploader = document.getElementById('file-uploader');
-    const reader = new FileReader();
-    const imageGrid = document.getElementById('image-grid');
-
-    fileUploader.addEventListener('change', (event) => {
-        const files = event.target.files;
-        const file = files[0];
-
-        const img = document.createElement('img');
-        imageGrid.appendChild(img);
-        img.src = URL.createObjectURL(file);
-        img.alt = file.name;
-        img.style.maxHeight = "100px"
-    });
-
+    loadImage('file-uploader','image-grid');
+    //loadImage('update-file-uploader','update-image-grid')
+</script>
+<script>
+    thongBao('.swalDefaultSuccess');
+    thongBao('.update-swalDefaultSuccess');
 </script>
 
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-storage.js"></script>
+
+<!--    Firebase     -->
+<script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyCwkMP895Ak3eTpUQ8VmGHEW8xpvE62fIg",
+        authDomain: "project-web-e7691.firebaseapp.com",
+        projectId: "project-web-e7691",
+        storageBucket: "project-web-e7691.appspot.com",
+        messagingSenderId: "933906876365",
+        appId: "1:933906876365:web:eb658f73c17ab55676e684"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+</script>
+
+<script>
+    uploadFirebase('file-uploader', 'send','urlImage')
+   // uploadFirebase('update-file-uploader', 'update-send','update-urlImage')
+</script>
 <!-- bundle -->
 <script src="../assets/js/vendor.min.js"></script>
 <script src="../assets/js/app.min.js"></script>
