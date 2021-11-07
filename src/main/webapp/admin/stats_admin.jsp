@@ -86,7 +86,7 @@
                 </li>
 
                 <li class="side-nav-item">
-                    <a href="<c:url value = "/profile-admin"/>" class="side-nav-link">
+                    <a href="<c:url value = "/admin-profile"/>" class="side-nav-link">
                         <i class="uil-user"></i>
                         <span> My account </span>
                     </a>

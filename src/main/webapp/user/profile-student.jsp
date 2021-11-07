@@ -199,7 +199,7 @@
                                     <c:if test="${USERMODEL.getUrlAvatar() == null}">
                                         <img id="upload-img" src="<c:url value = "../assets/images/users/avatar-1.jpg"/>" alt="shreyu" class="img-thumbnail avatar-xl rounded-circle" style="width: 200px; height:200px"/>
                                     </c:if>
-                                    <h4>Shreyu N</h4>
+                                    <h4>${USERMODEL.getFullname()}</h4>
                                     <div id="div-upload" class="upload-image file btn btn-primary btn-sm mt-1">
                                         Upload
                                         <input class = "input-image" id = "fileupload" accept=".jpg, .jpeg, .png"  type="file">

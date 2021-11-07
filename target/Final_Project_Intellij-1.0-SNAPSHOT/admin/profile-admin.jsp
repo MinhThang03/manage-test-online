@@ -85,7 +85,7 @@
                 </li>
 
                 <li class="side-nav-item">
-                    <a href="<c:url value = "/profile-admin"/>" class="side-nav-link">
+                    <a href="<c:url value = "/admin-profile"/>" class="side-nav-link">
                         <i class="uil-user"></i>
                         <span> My account </span>
                     </a>
@@ -126,8 +126,14 @@
                     <li class="dropdown notification-list">
                         <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                     <span class="account-user-avatar">
-                                        <img src="../assets/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
-                                    </span><span>
+                                        <c:if test="${USERMODEL.getUrlAvatar() != null}">
+                                            <img src="${USERMODEL.getUrlAvatar()}" alt="user-image" class="rounded-circle">
+                                        </c:if>
+                                        <c:if test="${USERMODEL.getUrlAvatar() == null}">
+                                            <img src="<c:url value = "../assets/images/users/avatar-1.jpg"/>" alt="user-image" class="rounded-circle">
+                                        </c:if>
+                                    </span>
+                                <span>
                                         <span class="account-user-name">${USERMODEL.fullname}</span>
                                         <span class="account-position">Admin</span>
                                     </span>
@@ -139,7 +145,7 @@
                             </div>
 
                             <!-- item-->
-                            <a href="/profile-admin" class="dropdown-item notify-item">
+                            <a href="/admin-profile" class="dropdown-item notify-item">
                                 <i class="mdi mdi-account-circle me-1"></i>
                                 <span>My Account</span>
                             </a>
@@ -202,7 +208,7 @@
                     <div class="card card-profile">
                         <div class="card-body card-body-img">
                             <!-- Avatar Extra Large -->
-                            <form id="submit-avatar" action="/profile-admin" method="post" class="needs-validation" novalidate>
+                            <form id="submit-avatar" action="/admin-profile" method="post" class="needs-validation" novalidate>
                                 <div class="mt-3 text-center">
                                     <c:if test="${USERMODEL.getUrlAvatar() != null}">
                                         <img id="upload-img" src="${USERMODEL.getUrlAvatar()}" alt="shreyu" class="img-thumbnail avatar-xl rounded-circle" style="width: 200px; height:200px" />
@@ -210,7 +216,7 @@
                                     <c:if test="${USERMODEL.getUrlAvatar() == null}">
                                         <img id="upload-img" src="<c:url value = "../assets/images/users/avatar-1.jpg"/>" alt="shreyu" class="img-thumbnail avatar-xl rounded-circle" style="width: 200px; height:200px"/>
                                     </c:if>
-                                    <h4>Shreyu N</h4>
+                                    <h4>${USERMODEL.getFullname()}</h4>
                                     <div id="div-upload" class="upload-image file btn btn-primary btn-sm mt-1">
                                         Upload
                                         <input class = "input-image" id = "fileupload" accept=".jpg, .jpeg, .png"  type="file">
@@ -228,7 +234,7 @@
                 <div class="col-lg-9">
                     <div class="card card-profile">
                         <div class="card-body">
-                            <form action="/profile-admin" method="post" class="needs-validation" novalidate>
+                            <form action="/admin-profile" method="post" class="needs-validation" novalidate>
                                 <div class="mb-3">
                                     <label for="fullname" class="form-label">Name</label>
                                     <input name="fullname" id="fullname" type="text" class="form-control" placeholder="Full Name" value="${USERMODEL.getFullname()}" required>
@@ -302,7 +308,7 @@
                 </div>
             </div>
 
-            <form class="needs-validation" action="/profile-admin" method="post" novalidate>
+            <form class="needs-validation" action="/admin-profile" method="post" novalidate>
                 <div class="row">
                     <div class="col-lg-4"></div>
                     <div class="col-lg-4">
@@ -411,12 +417,12 @@
 <script>
     // Your web app's Firebase configuration
     var firebaseConfig = {
-        apiKey: "AIzaSyD5BoAhaPJEa8od2AeEuHQ_F5uSiVgkiZo",
-        authDomain: "web-project-f2d64.firebaseapp.com",
-        projectId: "web-project-f2d64",
-        storageBucket: "web-project-f2d64.appspot.com",
-        messagingSenderId: "678143380989",
-        appId: "1:678143380989:web:f6ca529183bfa7454f1d94"
+        apiKey: "AIzaSyCwkMP895Ak3eTpUQ8VmGHEW8xpvE62fIg",
+        authDomain: "project-web-e7691.firebaseapp.com",
+        projectId: "project-web-e7691",
+        storageBucket: "project-web-e7691.appspot.com",
+        messagingSenderId: "933906876365",
+        appId: "1:933906876365:web:eb658f73c17ab55676e684"
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
@@ -467,7 +473,7 @@
                 );
             }
         } else {
-            location.href = "<c:url value="/profile-admin?message=no_photo_selected&alert=error"/>";
+            location.href = "<c:url value="/admin-profile?message=no_photo_selected&alert=error"/>";
         }
     });
 

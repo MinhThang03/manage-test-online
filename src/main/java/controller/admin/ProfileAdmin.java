@@ -16,7 +16,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
-@WebServlet(urlPatterns = "/profile-admin")
+@WebServlet(urlPatterns = "/admin-profile")
 public class ProfileAdmin extends HttpServlet {
     @Inject
     private IAccountService accountService;
@@ -57,9 +57,9 @@ public class ProfileAdmin extends HttpServlet {
             String urlAvatar = req.getParameter("urlAvatar");
             accountDTO.setUrlAvatar(urlAvatar);
             if (accountService.updateAccount(accountDTO) != null) {
-                resp.sendRedirect(req.getContextPath()+"/profile-admin?message=changed_avatar_successfully&alert=success");
+                resp.sendRedirect(req.getContextPath()+"/admin-profile?message=changed_avatar_successfully&alert=success");
             } else {
-                resp.sendRedirect(req.getContextPath()+"/profile-admin?message=changed_avatar_failed&alert=error");
+                resp.sendRedirect(req.getContextPath()+"/admin-profile?message=changed_avatar_failed&alert=error");
             }
         } else if (action != null &&  action.equals("update-info")) {
             AccountDTO accountDTO = (AccountDTO) SessionUtil.getInstance().getValue(req, "USERMODEL");
@@ -71,9 +71,9 @@ public class ProfileAdmin extends HttpServlet {
             accountDTO.setPhone(req.getParameter("phone"));
             accountDTO.setEmail(req.getParameter("email"));
             if (accountService.updateAccount(accountDTO) != null) {
-                resp.sendRedirect(req.getContextPath()+"/profile-admin?message=changed_information_successfully&alert=success");
+                resp.sendRedirect(req.getContextPath()+"/admin-profile?message=changed_information_successfully&alert=success");
             } else {
-                resp.sendRedirect(req.getContextPath()+"/profile-admin?message=changed_information_failed&alert=error");
+                resp.sendRedirect(req.getContextPath()+"/admin-profile?message=changed_information_failed&alert=error");
             }
         } else if (action != null && action.equals("update-password")) {
             AccountDTO accountDTO = (AccountDTO) SessionUtil.getInstance().getValue(req, "USERMODEL");
@@ -83,15 +83,15 @@ public class ProfileAdmin extends HttpServlet {
             if (accountDTO.getPass().equals(accountDTO.getOldPass())) {
                 if (accountDTO.getComfirmPass().equals(accountDTO.getNewPass())) {
                     if (accountService.updatePassword(accountDTO) != null) {
-                        resp.sendRedirect(req.getContextPath()+"/profile-admin?message=changed_password_successfully&alert=success");
+                        resp.sendRedirect(req.getContextPath()+"/admin-profile?message=changed_password_successfully&alert=success");
                     } else {
-                        resp.sendRedirect(req.getContextPath()+"/profile-admin?message=changed_password_failed&alert=error");
+                        resp.sendRedirect(req.getContextPath()+"/admin-profile?message=changed_password_failed&alert=error");
                     }
                 } else {
-                    resp.sendRedirect(req.getContextPath()+"/profile-admin?message=incorrect_confirm_password&alert=error");
+                    resp.sendRedirect(req.getContextPath()+"/admin-profile?message=incorrect_confirm_password&alert=error");
                 }
             } else {
-                resp.sendRedirect(req.getContextPath()+"/profile-admin?message=incorrect_password&alert=error");
+                resp.sendRedirect(req.getContextPath()+"/admin-profile?message=incorrect_password&alert=error");
             }
         }
     }
