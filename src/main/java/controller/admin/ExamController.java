@@ -1,4 +1,4 @@
-package controller.web;
+package controller.admin;
 
 import dto.ExamDTO;
 import service.IExamService;

@@ -4,6 +4,7 @@ import dto.ExamDTO;
 import dto.QuestionDTO;
 import entity.Exam;
 import entity.Question;
+import paging.Pageble;
 
 import java.util.List;
 
@@ -14,5 +15,7 @@ public interface IQuestionService {
     QuestionDTO findById(Integer id);
     List<Question> getListQuestion();
     public String importExcelXLSX(String addressFile, ExamDTO examDTO);
-    List<Question> getListQuestionById(int examId);
+    List<Question> getListQuestionByExamId(int examId);
+    List<QuestionDTO> findAll(Pageble pageble, Integer examID);
+    int getTotalItem(Integer examid);
 }

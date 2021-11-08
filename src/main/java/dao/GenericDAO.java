@@ -1,5 +1,8 @@
 package dao;
 
+import entity.Question;
+import paging.Pageble;
+
 import java.util.List;
 
 public interface GenericDAO<T> {
@@ -8,4 +11,5 @@ public interface GenericDAO<T> {
     boolean delete (T obj);
     List<T> findAll();
     T findById(Integer Id);
+    List<T> findAll(Pageble pageble, Integer examID);
 }

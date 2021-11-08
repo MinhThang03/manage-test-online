@@ -1,4 +1,4 @@
-package controller.web;
+package controller.admin;
 
 import dto.ManagerCourseDTO;
 import lombok.ToString;

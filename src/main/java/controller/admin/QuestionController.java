@@ -1,4 +1,4 @@
-package controller.web;
+package controller.admin;
 
 import converter.QuestionConverter;
 import dto.ExamDTO;
@@ -75,7 +75,7 @@ public class QuestionController extends HttpServlet {
             if (action.equals("deleteFile")){
                 ExamDTO examDTO = FormUtil.toModel(ExamDTO.class, request);
                 int examId = examDTO.getId();
-                List<Question> list = questionService.getListQuestionById(examId);
+                List<Question> list = questionService.getListQuestionByExamId(examId);
 
                 int length = list.size();
                 int count = 0;
