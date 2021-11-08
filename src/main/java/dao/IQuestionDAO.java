@@ -11,6 +11,5 @@ import java.util.List;
 
 public interface IQuestionDAO extends GenericDAO<Question> {
     public List<Question> findAllQuestionsByExamID(Integer id);
-    List<Question> findAll(Pageble pageble, Integer examID);
     int getTotalItem(Integer id);
 }
