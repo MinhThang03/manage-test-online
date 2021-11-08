@@ -24,10 +24,9 @@ public class ViewQuesionController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         QuestionDTO questionDTO = FormUtil.toModel(QuestionDTO.class, request);
-        String view = "";
-
         Pageble pageble = new PageRequest(questionDTO.getPage(), questionDTO.getMaxPageItem(),
                 new Sorter(questionDTO.getSortName(), questionDTO.getSortBy()));
+
         questionDTO.setListResult(questionService.findAll(pageble, questionDTO.getExamID()));
         questionDTO.setTotalItem(questionService.getTotalItem(questionDTO.getExamID()));
         questionDTO.setTotalPage((int) Math.ceil((double) questionDTO.getTotalItem() / questionDTO.getMaxPageItem()));
@@ -40,6 +39,17 @@ public class ViewQuesionController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        QuestionDTO questionDTO = FormUtil.toModel(QuestionDTO.class, request);
+        Pageble pageble = new PageRequest(questionDTO.getPage(), questionDTO.getMaxPageItem(),
+                new Sorter(questionDTO.getSortName(), questionDTO.getSortBy()));
 
+        questionDTO.setListResult(questionService.findAll(pageble, questionDTO.getExamID()));
+        questionDTO.setTotalItem(questionService.getTotalItem(questionDTO.getExamID()));
+        questionDTO.setTotalPage((int) Math.ceil((double) questionDTO.getTotalItem() / questionDTO.getMaxPageItem()));
+
+        MessageUtil.showMessage(request);
+        request.setAttribute("question", questionDTO);
+        RequestDispatcher rd = request.getRequestDispatcher("/user/practise.jsp");
+        rd.forward(request, response);
     }
 }
