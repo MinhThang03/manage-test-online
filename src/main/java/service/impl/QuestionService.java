@@ -13,12 +13,14 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
+import paging.Pageble;
 import service.IQuestionService;
 import util.HibernateUtil;
 
 import javax.inject.Inject;
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 public class QuestionService implements IQuestionService {
@@ -113,20 +115,24 @@ public class QuestionService implements IQuestionService {
     }
 
     @Override
-    public List<Question> getListQuestionById(int examId){
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        List<Question> list = null;
-
-        try {
-            Query<Question> query = session.createQuery("FROM Question ques WHERE ques.exam.id = :examid");
-            query.setParameter("examid", examId);
-            list = query.getResultList();
-        }catch (Exception e){
-            System.out.println("loi");
-        }finally {
-            session.close();
-        }
-
+    public List<Question> getListQuestionByExamId(int examId) {
+        List<Question> list = questionDAO.findAllQuestionsByExamID(examId);
         return list;
+    }
+
+    @Override
+    public List<QuestionDTO> findAll(Pageble pageble, Integer examID) {
+        List<Question> list = questionDAO.findAll(pageble, examID);
+        List<QuestionDTO> questionDTOList = new ArrayList<>();
+        for (Question question: list) {
+            QuestionDTO questionDTO = questionConverter.toDto(question);
+            questionDTOList.add(questionDTO);
+        }
+        return  questionDTOList;
+    }
+
+    @Override
+    public int getTotalItem(Integer examID) {
+        return questionDAO.getTotalItem(examID);
     }
 }

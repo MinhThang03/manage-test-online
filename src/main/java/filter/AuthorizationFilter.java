@@ -34,9 +34,22 @@ public class AuthorizationFilter implements Filter {
             } else {
                 response.sendRedirect(request.getContextPath()+"/view-login?action=login&message=not_login&alert=danger");
             }
-        } else {
+        }else if (url.startsWith("/user")){
+            AccountDTO model = (AccountDTO) SessionUtil.getInstance().getValue(request, "USERMODEL");
+            if (model != null) {
+                if (model.getRolename().equals("user")) {
+                    filterChain.doFilter(servletRequest, servletResponse);
+                } else if (model.getRolename().equals("admin")) {
+                    response.sendRedirect(request.getContextPath()+"/view-login?action=login&message=not_permission&alert=danger");
+                }
+            } else {
+                response.sendRedirect(request.getContextPath()+"/view-login?action=login&message=not_login&alert=danger");
+            }
+        }
+        else {
             filterChain.doFilter(servletRequest, servletResponse);
         }
+
     }
 
     @Override
