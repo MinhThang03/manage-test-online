@@ -48,4 +48,24 @@ public class ManagerCourseService implements IManagerCourseService {
         List<Course> list = managerCourseDAO.findAll();
         return list;
     }
+
+    @Override
+    public List<Course> getListAddCourse(Integer userid) {
+        return managerCourseDAO.getListAddCourse(userid);
+    }
+
+    @Override
+    public List<Course> getListCourseUser(Integer userid) {
+        return managerCourseDAO.getListCourseUser(userid);
+    }
+
+    @Override
+    public int countExamOfCourse(Integer courseID) {
+        return managerCourseDAO.countExamOfCourse(courseID);
+    }
+
+    @Override
+    public int countExamFinishOfCourse(Integer userID, Integer courseID) {
+        return managerCourseDAO.countExamFinishOfCourse(userID, courseID);
+    }
 }

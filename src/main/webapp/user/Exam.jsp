@@ -46,7 +46,7 @@
     <div class="leftside-menu">
 
         <!-- LOGO -->
-        <a href="<c:out value="/"/> " class="logo text-center logo-light">
+        <a href="<c:out value="/user-home"/> " class="logo text-center logo-light">
                     <span class="logo-lg">
                         <img src="../assets/images/logo.png" alt="" height="16">
                     </span>
@@ -64,14 +64,14 @@
 
 
                 <li class="side-nav-item">
-                    <a href="<c:out value="./MyCourse.jsp"/>" class="side-nav-link">
+                    <a href="<c:out value="/user-home"/> " class="side-nav-link">
                         <i class="uil-book-reader"></i>
                         <span> My Courses </span>
                     </a>
                 </li>
 
                 <li class="side-nav-item">
-                    <a href="<c:out value="./AddCourse.jsp"/>" class="side-nav-link">
+                    <a href="<c:out value="/user-add-course"/> " class="side-nav-link">
                         <i class=" uil-parcel"></i>
                         <span>  Courses </span>
                     </a>
@@ -80,7 +80,7 @@
 
 
                 <li class="side-nav-item">
-                    <a href="<c:out value="./profile-student.jsp"/>" class="side-nav-link">
+                    <a href="<c:out value="/"/> " class="side-nav-link">
                         <i class=" uil-user"></i>
                         <span> My account</span>
                     </a>
@@ -190,7 +190,7 @@
 
                 <div class="row mb-2">
                     <div class="col-sm-4">
-                        <a href="<c:out value="MyCourse"/>" class="btn btn-danger btn-rounded mb-3"><i class="uil-book-reader"></i> My Courses</a>
+                        <a href="<c:out value="/user-home"/>" class="btn btn-danger btn-rounded mb-3"><i class="uil-book-reader"></i> My Courses</a>
                     </div>
 
                 </div>

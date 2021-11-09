@@ -178,19 +178,19 @@
                                         <h4>Câu ${item.getQuestionNo()}</h4><!--dat so thu tu cau o day-->
                                         <p class="fw-bold">${item.getQuestionName()}</p>
                                         <div class="form-check mb-2">
-                                            <input type="radio" name="${item.getId()}" class="form-check-input">
+                                            <input type="radio" name="${item.getId()}" class="form-check-input" value="A">
                                             <label class="form-check-label">${item.getResultA()}</label><!--Dap an cau a-->
                                         </div>
                                         <div class="form-check mb-2">
-                                            <input type="radio" name="${item.getId()}" class="form-check-input">
+                                            <input type="radio" name="${item.getId()}" class="form-check-input" value="B">
                                             <label class="form-check-label">${item.getResultB()}</label><!--Dap an cau b-->
                                         </div>
                                         <div class="form-check mb-2">
-                                            <input type="radio" name="${item.getId()}" class="form-check-input">
+                                            <input type="radio" name="${item.getId()}" class="form-check-input" value="C">
                                             <label class="form-check-label">${item.getResultC()}</label><!--Dap an cau c-->
                                         </div>
                                         <div class="form-check mb-2">
-                                            <input type="radio" name="${item.getId()}" class="form-check-input">
+                                            <input type="radio" name="${item.getId()}" class="form-check-input" value="D">
                                             <label class="form-check-label">${item.getResultD()}</label><!--Dap an cau d-->
                                         </div>
                                     </div> <!-- end card body-->

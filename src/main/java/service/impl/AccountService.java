@@ -2,6 +2,7 @@ package service.impl;
 
 import converter.AccountConverter;
 import dao.IAccountDAO;
+import dao.impl.AccountDAO;
 import dto.AccountDTO;
 import entity.Account;
 import service.IAccountService;
@@ -11,8 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 
 public class AccountService implements IAccountService {
 
-    @Inject
-    private IAccountDAO accountDAO;
+
+    private IAccountDAO accountDAO = new AccountDAO();
     private AccountConverter accountConverter = new AccountConverter();
 
     @Override
