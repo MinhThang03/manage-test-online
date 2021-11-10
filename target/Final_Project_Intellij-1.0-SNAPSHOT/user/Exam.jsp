@@ -30,16 +30,17 @@
     <link href="../assets/css/app.min.css" rel="stylesheet" type="text/css" id="light-style">
     <link href="../assets/css/app-dark.min.css" rel="stylesheet" type="text/css" id="dark-style">
     <style>
-        .car-hover:hover{
+        .car-hover:hover {
             transform: translateY(-4px) translateX(4px);
-            box-shadow: rgba(0,0,0,0.1);
+            box-shadow: rgba(0, 0, 0, 0.1);
         }
     </style>
 
 
 </head>
 
-<body class="loading" data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": false}'>
+<body class="loading"
+      data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": false}'>
 <!-- Begin page -->
 <div class="wrapper">
     <!-- ========== Left Sidebar Start ========== -->
@@ -78,7 +79,6 @@
                 </li>
 
 
-
                 <li class="side-nav-item">
                     <a href="<c:out value="/"/> " class="side-nav-link">
                         <i class=" uil-user"></i>
@@ -108,9 +108,11 @@
 
 
                     <li class="dropdown notification-list">
-                        <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#"
+                           role="button" aria-haspopup="false" aria-expanded="false">
                                     <span class="account-user-avatar">
-                                        <img src="../assets/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
+                                        <img src="../assets/images/users/avatar-1.jpg" alt="user-image"
+                                             class="rounded-circle">
                                     </span>
                             <span>
                                         <span class="account-user-name">Phan Thanh Tài</span>
@@ -162,7 +164,8 @@
                 <div class="app-search dropdown d-none d-lg-block">
                     <form>
                         <div class="input-group">
-                            <input type="text" class="form-control dropdown-toggle" placeholder="Search Courses..." id="top-search">
+                            <input type="text" class="form-control dropdown-toggle" placeholder="Search Courses..."
+                                   id="top-search">
                             <span class="mdi mdi-magnify search-icon"></span>
                             <button class="input-group-text btn-primary" type="submit">Search</button>
                         </div>
@@ -190,7 +193,8 @@
 
                 <div class="row mb-2">
                     <div class="col-sm-4">
-                        <a href="<c:out value="/user-home"/>" class="btn btn-danger btn-rounded mb-3"><i class="uil-book-reader"></i> My Courses</a>
+                        <a href="<c:out value="/user-home"/>" class="btn btn-danger btn-rounded mb-3"><i
+                                class="uil-book-reader"></i> My Courses</a>
                     </div>
 
                 </div>
@@ -201,255 +205,49 @@
                         <!-- project card -->
                         <div class="card d-block car-hover">
                             <div class="card-body">
+                                <c:forEach var="item" items="${exam.listResult}">
+                                    <!-- project title-->
+                                    <h4 class="mt-0 text-title">
+                                            ${item.examName}
+                                    </h4>
+                                    <c:if test="${empty item.score}">
+                                        <div class="badge  mb-3">Unfinished</div>
+                                    </c:if>
+                                    <c:if test="${not empty item.score}">
+                                        <div class="badge bg-success mb-3">Finished</div>
+                                    </c:if>
 
-                                <!-- project title-->
-                                <h4 class="mt-0 text-title">
-                                    THPT QG 2020-2021
-                                </h4>
-                                <div class="badge bg-success mb-3">Finished</div>
 
-
-
-                                <!-- project detail-->
-                                <p class="mb-1" style="display: flex; justify-content: space-between;">
+                                    <!-- project detail-->
+                                    <p class="mb-1" style="display: flex; justify-content: space-between;">
                                     <span class="pe-2 text-nowrap mb-2 d-inline-block">
                                         <i class="mdi mdi-format-list-checks text-muted"></i>
                                         <b>36/40</b> Correct
                                     </span>
-                                    <span class="text-nowrap mb-2 d-inline-block">
+                                        <span class="text-nowrap mb-2 d-inline-block">
                                         <i class="uil uil-heart-alt text-muted"></i>
-                                        <b>9.0</b> Points
+                                            <c:if test="${empty item.score}">
+                                                <b>0</b> Points
+                                            </c:if>
+                                            <c:if test="${not empty item.score}">
+                                                <b>${item.score}</b> Points
+                                            </c:if>
+
                                     </span>
-                                </p>
-                                <div style="display: flex; justify-content: space-between;">
-                                    <a  href="<c:out value="./practise.jsp"/>" type="button" class="btn btn-success" style="min-width: 110px;">Exam</a>
-                                    <button type="button" class="btn btn-secondary" style="min-width: 110px;">Review</button>
-                                </div>
+                                    </p>
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <a href="<c:out value="/user-view-question?examID=${item.id}&type=list&page=1&maxPageItem=5&sortName=questionNo&sortBy=asc"/>"
+                                           type="button" class="btn btn-success"
+                                           style="min-width: 110px;">Exam</a>
+                                        <button type="button" class="btn btn-secondary" style="min-width: 110px;">
+                                            Review
+                                        </button>
+                                    </div>
+                                </c:forEach>
                             </div> <!-- end card-body-->
                         </div> <!-- end card-->
                     </div> <!-- end col -->
 
-                    <div class="col-md-6 col-xxl-3">
-                        <!-- project card -->
-                        <div class="card d-block car-hover">
-                            <div class="card-body">
-
-                                <!-- project title-->
-                                <h4 class="mt-0 text-title">
-                                    THPT QG 2020-2021
-                                </h4>
-                                <div class="badge bg-secondary mb-3">Unfinished</div>
-
-                                <!-- project detail-->
-                                <p class="mb-1" style="display: flex; justify-content: space-between;">
-                                    <span class="pe-2 text-nowrap mb-2 d-inline-block">
-                                        <i class="mdi mdi-format-list-checks text-muted"></i>
-                                        <b>0/40</b> Correct
-                                    </span>
-                                    <span class="text-nowrap mb-2 d-inline-block">
-                                        <i class="uil uil-heart-alt text-muted"></i>
-                                        <b>0.0</b> Points
-                                    </span>
-                                </p>
-                                <div style="display: flex; justify-content: space-between;">
-                                    <button type="button" class="btn btn-success" style="min-width: 110px;">Exam</button>
-                                    <button type="button" class="btn btn-secondary" style="min-width: 110px;">Review</button>
-                                </div>
-                            </div> <!-- end card-body-->
-                        </div> <!-- end card-->
-                    </div> <!-- end col -->
-
-                    <div class="col-md-6 col-xxl-3">
-                        <!-- project card -->
-                        <div class="card d-block car-hover">
-                            <div class="card-body">
-
-                                <!-- project title-->
-                                <h4 class="mt-0 text-title">
-                                    THPT QG 2020-2021
-                                </h4>
-                                <div class="badge bg-success mb-3">Finished</div>
-
-
-
-                                <!-- project detail-->
-                                <p class="mb-1" style="display: flex; justify-content: space-between;">
-                                    <span class="pe-2 text-nowrap mb-2 d-inline-block">
-                                        <i class="mdi mdi-format-list-checks text-muted"></i>
-                                        <b>36/40</b> Correct
-                                    </span>
-                                    <span class="text-nowrap mb-2 d-inline-block">
-                                        <i class="uil uil-heart-alt text-muted"></i>
-                                        <b>9.0</b> Points
-                                    </span>
-                                </p>
-                                <div style="display: flex; justify-content: space-between;">
-                                    <button type="button" class="btn btn-success" style="min-width: 110px;">Exam</button>
-                                    <button type="button" class="btn btn-secondary" style="min-width: 110px;">Review</button>
-                                </div>
-                            </div> <!-- end card-body-->
-                        </div> <!-- end card-->
-                    </div> <!-- end col -->
-
-                    <div class="col-md-6 col-xxl-3">
-                        <!-- project card -->
-                        <div class="card d-block car-hover">
-                            <div class="card-body">
-
-                                <!-- project title-->
-                                <h4 class="mt-0 text-title">
-                                    THPT QG 2020-2021
-                                </h4>
-                                <div class="badge bg-secondary mb-3">Unfinished</div>
-
-
-
-                                <!-- project detail-->
-                                <p class="mb-1" style="display: flex; justify-content: space-between;">
-                                    <span class="pe-2 text-nowrap mb-2 d-inline-block">
-                                        <i class="mdi mdi-format-list-checks text-muted"></i>
-                                        <b>0/40</b> Correct
-                                    </span>
-                                    <span class="text-nowrap mb-2 d-inline-block">
-                                        <i class="uil uil-heart-alt text-muted"></i>
-                                        <b>0.0</b> Points
-                                    </span>
-                                </p>
-                                <div style="display: flex; justify-content: space-between;">
-                                    <button type="button" class="btn btn-success" style="min-width: 110px;">Exam</button>
-                                    <button type="button" class="btn btn-secondary" style="min-width: 110px;">Review</button>
-                                </div>
-                            </div> <!-- end card-body-->
-                        </div> <!-- end card-->
-                    </div> <!-- end col -->
-
-                    <div class="col-md-6 col-xxl-3">
-                        <!-- project card -->
-                        <div class="card d-block car-hover">
-                            <div class="card-body">
-
-                                <!-- project title-->
-                                <h4 class="mt-0 text-title">
-                                    THPT QG 2020-2021
-                                </h4>
-                                <div class="badge bg-success mb-3">Finished</div>
-
-
-
-                                <!-- project detail-->
-                                <p class="mb-1" style="display: flex; justify-content: space-between;">
-                                    <span class="pe-2 text-nowrap mb-2 d-inline-block">
-                                        <i class="mdi mdi-format-list-checks text-muted"></i>
-                                        <b>36/40</b> Correct
-                                    </span>
-                                    <span class="text-nowrap mb-2 d-inline-block">
-                                        <i class="uil uil-heart-alt text-muted"></i>
-                                        <b>9.0</b> Points
-                                    </span>
-                                </p>
-                                <div style="display: flex; justify-content: space-between;">
-                                    <button type="button" class="btn btn-success" style="min-width: 110px;">Exam</button>
-                                    <button type="button" class="btn btn-secondary" style="min-width: 110px;">Review</button>
-                                </div>
-                            </div> <!-- end card-body-->
-                        </div> <!-- end card-->
-                    </div> <!-- end col -->
-
-                    <div class="col-md-6 col-xxl-3">
-                        <!-- project card -->
-                        <div class="card d-block car-hover">
-                            <div class="card-body">
-
-                                <!-- project title-->
-                                <h4 class="mt-0 text-title">
-                                    THPT QG 2020-2021
-                                </h4>
-                                <div class="badge bg-secondary mb-3">Unfinished</div>
-
-
-
-                                <!-- project detail-->
-                                <p class="mb-1" style="display: flex; justify-content: space-between;">
-                                    <span class="pe-2 text-nowrap mb-2 d-inline-block">
-                                        <i class="mdi mdi-format-list-checks text-muted"></i>
-                                        <b>0/40</b> Correct
-                                    </span>
-                                    <span class="text-nowrap mb-2 d-inline-block">
-                                        <i class="uil uil-heart-alt text-muted"></i>
-                                        <b>0.0</b> Points
-                                    </span>
-                                </p>
-                                <div style="display: flex; justify-content: space-between;">
-                                    <button type="button" class="btn btn-success" style="min-width: 110px;">Exam</button>
-                                    <button type="button" class="btn btn-secondary" style="min-width: 110px;">Review</button>
-                                </div>
-                            </div> <!-- end card-body-->
-                        </div> <!-- end card-->
-                    </div> <!-- end col -->
-
-                    <div class="col-md-6 col-xxl-3">
-                        <!-- project card -->
-                        <div class="card d-block car-hover">
-                            <div class="card-body">
-
-                                <!-- project title-->
-                                <h4 class="mt-0 text-title">
-                                    THPT QG 2020-2021
-                                </h4>
-                                <div class="badge bg-success mb-3">Finished</div>
-
-
-
-                                <!-- project detail-->
-                                <p class="mb-1" style="display: flex; justify-content: space-between;">
-                                    <span class="pe-2 text-nowrap mb-2 d-inline-block">
-                                        <i class="mdi mdi-format-list-checks text-muted"></i>
-                                        <b>36/40</b> Correct
-                                    </span>
-                                    <span class="text-nowrap mb-2 d-inline-block">
-                                        <i class="uil uil-heart-alt text-muted"></i>
-                                        <b>9.0</b> Points
-                                    </span>
-                                </p>
-                                <div style="display: flex; justify-content: space-between;">
-                                    <button type="button" class="btn btn-success" style="min-width: 110px;">Exam</button>
-                                    <button type="button" class="btn btn-secondary" style="min-width: 110px;">Review</button>
-                                </div>
-                            </div> <!-- end card-body-->
-                        </div> <!-- end card-->
-                    </div> <!-- end col -->
-
-                    <div class="col-md-6 col-xxl-3">
-                        <!-- project card -->
-                        <div class="card d-block car-hover">
-                            <div class="card-body">
-
-                                <!-- project title-->
-                                <h4 class="mt-0 text-title">
-                                    THPT QG 2020-2021
-                                </h4>
-                                <div class="badge bg-secondary mb-3">Unfinished</div>
-
-
-
-                                <!-- project detail-->
-                                <p class="mb-1" style="display: flex; justify-content: space-between;">
-                                    <span class="pe-2 text-nowrap mb-2 d-inline-block">
-                                        <i class="mdi mdi-format-list-checks text-muted"></i>
-                                        <b>0/40</b> Correct
-                                    </span>
-                                    <span class="text-nowrap mb-2 d-inline-block">
-                                        <i class="uil uil-heart-alt text-muted"></i>
-                                        <b>0.0</b> Points
-                                    </span>
-                                </p>
-                                <div style="display: flex; justify-content: space-between;">
-                                    <button type="button" class="btn btn-success" style="min-width: 110px;">Exam</button>
-                                    <button type="button" class="btn btn-secondary" style="min-width: 110px;">Review</button>
-                                </div>
-                            </div> <!-- end card-body-->
-                        </div> <!-- end card-->
-                    </div> <!-- end col -->
 
                 </div>
 
@@ -465,7 +263,8 @@
                     <div class="col-md-6">
                         <script>
                             document.write(new Date().getFullYear())
-                        </script> © FIT - Ho Chi Minh University of Technology and Education
+                        </script>
+                        © FIT - Ho Chi Minh University of Technology and Education
                     </div>
                     <div class="col-md-6">
                         <div class="text-md-end footer-links d-none d-md-block">
@@ -497,18 +296,18 @@
 <script src="../assets/js/TuViet/disableBTN.js"></script>
 <script>
     handleDisable({
-        parent : ".card .card-body",
-        childStatus : ".badge",
+        parent: ".card .card-body",
+        childStatus: ".badge",
         statusName: {
-            UnFinished : 'Unfinished',
-            Finished : 'Finished'
+            UnFinished: 'Unfinished',
+            Finished: 'Finished'
         },
-        childBtn : ".btn-secondary",
-        childBtnClassName : {
-            Success : 'bg-success',
-            Secondary : 'bg-secondary',
+        childBtn: ".btn-secondary",
+        childBtnClassName: {
+            Success: 'bg-success',
+            Secondary: 'bg-secondary',
         },
-        childBtnSuccess : '.btn-success'
+        childBtnSuccess: '.btn-success'
     });
 </script>
 <!-- third party js -->

@@ -214,7 +214,7 @@
                             <!-- project card -->
                             <div class="card d-block car-hover">
                                 <!-- project-thumbnail -->
-                                <a href="<c:out value="/user-exam"/> ">
+                                <a href="<c:out value="/user-exam?courseId=${cs.id}"/> ">
                                     <c:if test="${cs.courseImage}">
                                         <img class="card-img-top" src="../assets/images/projects/project-1.jpg" alt="project image cap">
                                     </c:if>

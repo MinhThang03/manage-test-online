@@ -2,6 +2,7 @@ package service.impl;
 
 import converter.QuestionConverter;
 import dao.IQuestionDAO;
+import dao.impl.QuestionDAO;
 import dto.ExamDTO;
 import dto.QuestionDTO;
 import entity.Question;
@@ -18,6 +19,7 @@ import service.IQuestionService;
 import util.HibernateUtil;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
@@ -25,8 +27,7 @@ import java.util.List;
 
 public class QuestionService implements IQuestionService {
 
-    @Inject
-    private IQuestionDAO questionDAO;
+    private IQuestionDAO questionDAO = new QuestionDAO();
     private QuestionConverter questionConverter = new QuestionConverter();
     @Override
     public boolean insertQuestion(QuestionDTO question) {
@@ -62,6 +63,8 @@ public class QuestionService implements IQuestionService {
         List<Question> list = questionDAO.findAll();
         return list;
     }
+
+
 
     @Override
     public String importExcelXLSX(String addressFile, ExamDTO examDTO){
@@ -121,6 +124,17 @@ public class QuestionService implements IQuestionService {
     }
 
     @Override
+    public List<QuestionDTO> getListQuestionDTOByExamId(Integer examId) {
+        List<Question> list = questionDAO.findAllQuestionsByExamID(examId);
+        List<QuestionDTO> questionDTOList = new ArrayList<>();
+        for (Question question: list) {
+            QuestionDTO questionDTO = questionConverter.toDto(question);
+            questionDTOList.add(questionDTO);
+        }
+        return  questionDTOList;
+    }
+
+    @Override
     public List<QuestionDTO> findAll(Pageble pageble, Integer examID) {
         List<Question> list = questionDAO.findAll(pageble, examID);
         List<QuestionDTO> questionDTOList = new ArrayList<>();
@@ -134,5 +148,19 @@ public class QuestionService implements IQuestionService {
     @Override
     public int getTotalItem(Integer examID) {
         return questionDAO.getTotalItem(examID);
+    }
+
+    @Override
+    public List<QuestionDTO> setListAnswer(List<QuestionDTO> list, List<QuestionDTO> oldList, HttpServletRequest request) {
+        for (QuestionDTO question: list) {
+            for (QuestionDTO oldQuestion: oldList) {
+                if (question.getId() == oldQuestion.getId()) {
+                    String name = oldQuestion.getId().toString();
+                    String value = request.getParameter(name);
+                    question.setUserAnswer(value);
+                }
+            }
+        }
+        return  list;
     }
 }

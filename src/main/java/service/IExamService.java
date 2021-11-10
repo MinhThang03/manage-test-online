@@ -13,4 +13,7 @@ public interface IExamService {
     boolean deleteExam(ExamDTO exam);
     ExamDTO findById(Integer id);
     List<Exam> getListExam();
+    public List<ExamDTO> findAllQuestionsByCourseID(Integer courseId);
+    public void setScoreForListExam(ExamDTO examDTO, Integer userId);
+    public Integer getCourseIdByExamId(Integer examId);
 }

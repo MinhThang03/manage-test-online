@@ -172,30 +172,68 @@
 
                     <div class="row">
                         <c:forEach var="item" items="${question.listResult}">
+                            <c:forEach var="questionItem" items="${LISTQUESTION}">
+                                <c:if test="${questionItem.id == item.id}">
+                                    <c:set scope="request" var="userAnswer" value="${questionItem.userAnswer}"/>
+                                </c:if>
+                            </c:forEach>
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
                                         <h4>Câu ${item.getQuestionNo()}</h4><!--dat so thu tu cau o day-->
                                         <p class="fw-bold">${item.getQuestionName()}</p>
                                         <div class="form-check mb-2">
-                                            <input type="radio" name="${item.getId()}" class="form-check-input" value="A">
-                                            <label class="form-check-label">${item.getResultA()}</label><!--Dap an cau a-->
+                                            <c:if test="${userAnswer == 'A'}">
+                                                <input type="radio" name="${item.getId()}" class="form-check-input"
+                                                       value="A" checked="checked">
+                                            </c:if>
+                                            <c:if test="${userAnswer != 'A'}">
+                                                <input type="radio" name="${item.getId()}" class="form-check-input"
+                                                       value="A">
+                                            </c:if>
+                                            <label class="form-check-label">${item.getResultA()}</label>
+                                            <!--Dap an cau a-->
                                         </div>
                                         <div class="form-check mb-2">
-                                            <input type="radio" name="${item.getId()}" class="form-check-input" value="B">
-                                            <label class="form-check-label">${item.getResultB()}</label><!--Dap an cau b-->
+                                            <c:if test="${userAnswer == 'B'}">
+                                                <input type="radio" name="${item.getId()}" class="form-check-input"
+                                                       value="B" checked="checked">
+                                            </c:if>
+                                            <c:if test="${userAnswer != 'B'}">
+                                                <input type="radio" name="${item.getId()}" class="form-check-input"
+                                                       value="B">
+                                            </c:if>
+                                            <label class="form-check-label">${item.getResultB()}</label>
+                                            <!--Dap an cau b-->
                                         </div>
                                         <div class="form-check mb-2">
-                                            <input type="radio" name="${item.getId()}" class="form-check-input" value="C">
-                                            <label class="form-check-label">${item.getResultC()}</label><!--Dap an cau c-->
+                                            <c:if test="${userAnswer == 'C'}">
+                                                <input type="radio" name="${item.getId()}" class="form-check-input"
+                                                       value="C" checked="checked">
+                                            </c:if>
+                                            <c:if test="${userAnswer != 'C'}">
+                                                <input type="radio" name="${item.getId()}" class="form-check-input"
+                                                       value="C">
+                                            </c:if>
+                                            <label class="form-check-label">${item.getResultC()}</label>
+                                            <!--Dap an cau c-->
                                         </div>
                                         <div class="form-check mb-2">
-                                            <input type="radio" name="${item.getId()}" class="form-check-input" value="D">
-                                            <label class="form-check-label">${item.getResultD()}</label><!--Dap an cau d-->
+                                            <c:if test="${userAnswer == 'D'}">
+                                                <input type="radio" name="${item.getId()}" class="form-check-input"
+                                                       value="D" checked="checked">
+                                            </c:if>
+                                            <c:if test="${userAnswer != 'D'}">
+                                                <input type="radio" name="${item.getId()}" class="form-check-input"
+                                                       value="D">
+                                            </c:if>
+                                            <label class="form-check-label">${item.getResultD()}</label>
+                                            <!--Dap an cau d-->
                                         </div>
                                     </div> <!-- end card body-->
                                 </div> <!-- end card -->
                             </div>
+                            <c:remove scope="request" var="userAnswer"/>
                             <!-- end col-->
                         </c:forEach>
                     </div>
@@ -221,8 +259,14 @@
                             <input type="hidden" value="" id="maxPageItem" name="maxPageItem"/>
                             <input type="hidden" value="" id="sortName" name="sortName"/>
                             <input type="hidden" value="" id="sortBy" name="sortBy"/>
-                            <input type="hidden" value="" id="type" name="type"/>
                             <input type="hidden" value="${question.getExamID()}" id="examID" name="examID"/>
+
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-end">
+                        <div class="col-sm-4 d-flex justify-content-end float-right">
+                            <input type="hidden" value="submit" id="type" name="type"/>
+                            <button type="submit" class="btn btn-danger btn-rounded mb-3 ">Submit</button>
                         </div>
                     </div>
                 </form>

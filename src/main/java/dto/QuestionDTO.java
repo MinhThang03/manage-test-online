@@ -14,4 +14,5 @@ public class QuestionDTO extends AbstractDTO<QuestionDTO> {
     private String resultC;
     private String resultD;
     private String answer;
+    private String userAnswer;
 }
