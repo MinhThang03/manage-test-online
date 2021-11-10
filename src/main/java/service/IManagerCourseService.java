@@ -16,4 +16,7 @@ public interface IManagerCourseService {
     List<Course> getListCourseUser(Integer userid);
     int countExamOfCourse(Integer courseID);
     int countExamFinishOfCourse(Integer userID, Integer courseID);
+    Integer countTotalCourse();
+    void setListCountRegister(List<ManagerCourseDTO> list);
+    List<ManagerCourseDTO> findAll();
 }

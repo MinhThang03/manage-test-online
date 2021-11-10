@@ -22,10 +22,12 @@
     <link href="<c:url value = "../assets/css/icons.min.css"/>" rel="stylesheet" type="text/css">
     <link href="<c:url value = "../assets/css/app.min.css"/>" rel="stylesheet" type="text/css" id="light-style">
     <link href="<c:url value = "../assets/css/app-dark.min.css"/>" rel="stylesheet" type="text/css" id="dark-style">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
 
-<body class="loading" data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
+<body class="loading"
+      data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
 <!-- Begin page -->
 <div class="wrapper">
     <!-- ========== Left Sidebar Start ========== -->
@@ -66,7 +68,8 @@
                 </li>
 
                 <li class="side-nav-item">
-                    <a data-bs-toggle="collapse" href="#sidebarEcommerce" aria-expanded="false" aria-controls="sidebarEcommerce" class="side-nav-link">
+                    <a data-bs-toggle="collapse" href="#sidebarEcommerce" aria-expanded="false"
+                       aria-controls="sidebarEcommerce" class="side-nav-link">
                         <i class="uil-layer-group"></i>
                         <span> Manage </span>
                         <span class="menu-arrow"></span>
@@ -114,21 +117,25 @@
             <div class="navbar-custom">
                 <ul class="list-unstyled topbar-menu float-end mb-0">
                     <li class="dropdown notification-list d-lg-none">
-                        <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button"
+                           aria-haspopup="false" aria-expanded="false">
                             <i class="dripicons-search noti-icon"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-animated dropdown-lg p-0">
                             <form class="p-3">
-                                <input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
+                                <input type="text" class="form-control" placeholder="Search ..."
+                                       aria-label="Recipient's username">
                             </form>
                         </div>
                     </li>
 
 
                     <li class="dropdown notification-list">
-                        <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#"
+                           role="button" aria-haspopup="false" aria-expanded="false">
                                     <span class="account-user-avatar">
-                                        <img src="../assets/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
+                                        <img src="../assets/images/users/avatar-1.jpg" alt="user-image"
+                                             class="rounded-circle">
                                     </span><span>
                                         <span class="account-user-name">${USERMODEL.fullname}</span>
                                         <span class="account-position">Admin</span>
@@ -162,7 +169,8 @@
                 <div class="app-search dropdown d-none d-lg-block">
                     <form>
                         <div class="input-group">
-                            <input type="text" class="form-control dropdown-toggle" placeholder="Search..." id="top-search">
+                            <input type="text" class="form-control dropdown-toggle" placeholder="Search..."
+                                   id="top-search">
                             <span class="mdi mdi-magnify search-icon"></span>
                             <button class="input-group-text btn-primary" type="submit">Search</button>
                         </div>
@@ -200,7 +208,7 @@
                                         <div class="card shadow-none m-0">
                                             <div class="card-body text-center">
                                                 <i class="dripicons-briefcase text-muted" style="font-size: 24px;"></i>
-                                                <h3><span>29</span></h3>
+                                                <h3><span>${totalCourse}</span></h3>
                                                 <p class="text-muted font-15 mb-0">Total Courses</p>
                                             </div>
                                         </div>
@@ -210,7 +218,7 @@
                                         <div class="card shadow-none m-0 border-start">
                                             <div class="card-body text-center">
                                                 <i class="dripicons-checklist text-muted" style="font-size: 24px;"></i>
-                                                <h3><span>715</span></h3>
+                                                <h3><span>${totalExam}</span></h3>
                                                 <p class="text-muted font-15 mb-0">Total Exams</p>
                                             </div>
                                         </div>
@@ -220,7 +228,7 @@
                                         <div class="card shadow-none m-0 border-start">
                                             <div class="card-body text-center">
                                                 <i class="dripicons-article text-muted" style="font-size: 24px;"></i>
-                                                <h3><span>${totalStudents}</span></h3>
+                                                <h3><span>${totalQuestion}</span></h3>
                                                 <p class="text-muted font-15 mb-0">Total Questions</p>
                                             </div>
                                         </div>
@@ -237,7 +245,6 @@
                                     </div>
 
 
-
                                 </div> <!-- end row -->
                             </div>
                         </div> <!-- end card-box-->
@@ -249,11 +256,12 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="header-title mb-4">Tasks Overview</h4>
+                                <h4 class="header-title mb-4">Stats</h4>
 
                                 <div dir="ltr">
-                                    <div class="mt-3 chartjs-chart" style="height: 320px;">
-                                        <canvas id="task-area-chart" data-bgcolor="#727cf5" data-bordercolor="#727cf5"></canvas>
+                                    <div class="mt-3 chartjs-chart" >
+                                        <%--                                        <canvas id="task-area-chart" data-bgcolor="#727cf5" data-bordercolor="#727cf5"></canvas>--%>
+                                        <canvas id="chart-result" > </canvas>
                                     </div>
                                 </div>
 
@@ -274,7 +282,8 @@
                     <div class="col-md-6">
                         <script>
                             document.write(new Date().getFullYear())
-                        </script> © FIT - Ho Chi Minh University of Technology and Education
+                        </script>
+                        © FIT - Ho Chi Minh University of Technology and Education
                     </div>
                     <div class="col-md-6">
                         <div class="text-md-end footer-links d-none d-md-block">
@@ -315,6 +324,64 @@
 <!-- demo app -->
 <script src="<c:url value = "../assets/js/pages/demo.dashboard-projects.js"/>"></script>
 <!-- end demo js-->
+
+<script>
+    function generateColor() {
+        let r = parseInt(Math.random()*255).toString()
+        let g = parseInt(Math.random()*255).toString()
+        let b = parseInt(Math.random()*255).toString()
+        return 'rgba(' + r +',' + g + ',' + b
+    }
+
+    function statsChart(id, labels = [], info = []){
+        const backgroundcolors = []
+        const bordercolors = []
+        for (let i = 0; i < info.length; i++){
+            let tempcolor = generateColor()
+            backgroundcolors.push(tempcolor + ', 0.2)')
+            bordercolors.push(tempcolor + ')')
+            console.log(tempcolor + ', 0.2)')
+        }
+
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'THỐNG KÊ SỐ LƯỢNG HỌC SINH ĐĂNG KÍ THEO MÔN',
+                data: info,
+                backgroundColor: backgroundcolors,
+                borderColor: bordercolors,
+                borderWidth: 1
+            }]
+        };
+
+        const config = {
+            type: 'bar',
+            data: data,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            },
+        };
+
+        let ctx = document.getElementById(id).getContext("2d")
+        new Chart(ctx, config)
+    }
+</script>
+
+<script>
+    let courselabels =[], courseInfo = [];
+    <c:forEach items="${course.listResult}" var="item">
+        courselabels.push("${item.courseName.toString()}")
+        courseInfo.push(${item.countRegister})
+    </c:forEach>
+
+    window.onload = function () {
+        statsChart("chart-result", courselabels, courseInfo)
+    }
+</script>
 
 </body>
 </html>

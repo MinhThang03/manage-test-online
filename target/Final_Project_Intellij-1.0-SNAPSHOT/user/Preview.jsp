@@ -290,12 +290,6 @@
 
                         </div>
                     </div>
-                    <div class="row d-flex justify-content-end">
-                        <div class="col-sm-4 d-flex justify-content-end float-right">
-
-                            <button type="submit" class="btn btn-danger btn-rounded mb-3 ">Submit</button>
-                        </div>
-                    </div>
                 </form>
 
 

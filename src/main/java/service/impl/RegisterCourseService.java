@@ -35,4 +35,9 @@ public class RegisterCourseService implements IRegisterCourseService {
         }
         return false;
     }
+
+    @Override
+    public Integer countRegisterByCourseId(Integer courseId) {
+        return registerCourseDAO.findRegisterByCourseId(courseId).size();
+    }
 }

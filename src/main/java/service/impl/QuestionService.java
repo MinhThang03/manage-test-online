@@ -177,4 +177,9 @@ public class QuestionService implements IQuestionService {
         }
         return  questionDTO;
     }
+
+    @Override
+    public Integer countTotalQuestion() {
+        return questionDAO.findAll().size();
+    }
 }

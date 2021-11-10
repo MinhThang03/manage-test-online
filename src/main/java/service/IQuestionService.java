@@ -24,4 +24,5 @@ public interface IQuestionService {
     int getTotalItem(Integer examid);
     List<QuestionDTO>setListAnswer(List<QuestionDTO> list, List<QuestionDTO> oldList, HttpServletRequest request);
     QuestionDTO setListPreview(QuestionDTO questionDTO, List<PreviewDTO> listPreview);
+    Integer countTotalQuestion();
 }

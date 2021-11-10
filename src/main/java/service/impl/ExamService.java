@@ -83,12 +83,12 @@ public class ExamService implements IExamService {
 
             if (score != null){
                 exam.setScore(score.getExamScore());
-                Double tySo = 10 / totalQuestion * 1.0;
-                Double correctQuestion = score.getExamScore() * 1.0 / tySo;
-                exam.setCountCorrectQuestion(correctQuestion);
+                double tySo = 10 /  (double)totalQuestion ;
+                double correctQuestion = score.getExamScore()  / tySo;
+                exam.setCountCorrectQuestion((int)correctQuestion);
             }
             else {
-                exam.setCountCorrectQuestion(0.0);
+                exam.setCountCorrectQuestion(0);
             }
         }
     }
@@ -106,5 +106,10 @@ public class ExamService implements IExamService {
     public Integer getTotalQuestion(Integer examId) {
         List<Question> list = iQuestionDAO.findAllQuestionsByExamID(examId);
         return list.size();
+    }
+
+    @Override
+    public Integer countTotalExam() {
+        return examDAO.findAll().size();
     }
 }
