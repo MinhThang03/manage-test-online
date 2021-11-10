@@ -4,6 +4,7 @@ import converter.QuestionConverter;
 import dao.IQuestionDAO;
 import dao.impl.QuestionDAO;
 import dto.ExamDTO;
+import dto.PreviewDTO;
 import dto.QuestionDTO;
 import entity.Question;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -147,7 +148,8 @@ public class QuestionService implements IQuestionService {
 
     @Override
     public int getTotalItem(Integer examID) {
-        return questionDAO.getTotalItem(examID);
+        List<Question> lists =  questionDAO.findAllQuestionsByExamID(examID);
+        return  lists.size();
     }
 
     @Override
@@ -162,5 +164,17 @@ public class QuestionService implements IQuestionService {
             }
         }
         return  list;
+    }
+
+    @Override
+    public QuestionDTO setListPreview(QuestionDTO questionDTO, List<PreviewDTO> listPreview) {
+        for (QuestionDTO questionDTOPreview: questionDTO.getListResult()) {
+            for (PreviewDTO previewDTO: listPreview) {
+                if (questionDTOPreview.getId() == previewDTO.getQuestionId()){
+                    questionDTOPreview.setUserAnswer(previewDTO.getAnswer());
+                }
+            }
+        }
+        return  questionDTO;
     }
 }

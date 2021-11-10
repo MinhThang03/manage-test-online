@@ -42,4 +42,13 @@ public class ScoreService implements IScoreService {
     public ScoreDTO findByExamIdAndUserId(Integer examId, Integer userId) {
         return scoreConveter.toDto(scoreDAO.findByExamIdAndUserId(examId,userId));
     }
+
+    @Override
+    public boolean deleteScore(ScoreDTO scoreDTO) {
+        Score score = scoreConveter.toEntity(scoreDTO);
+        if (scoreDAO.delete(score)){
+            return true;
+        }
+        return false;
+    }
 }

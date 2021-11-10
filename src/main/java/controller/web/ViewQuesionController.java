@@ -1,6 +1,7 @@
 package controller.web;
 
 import dto.AccountDTO;
+import dto.PreviewDTO;
 import dto.QuestionDTO;
 import dto.ScoreDTO;
 import entity.Question;
@@ -40,43 +41,63 @@ public class ViewQuesionController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (SessionUtil.getInstance().getValue(request,"LISTQUESTION") != null) {
+        if (SessionUtil.getInstance().getValue(request, "LISTQUESTION") != null) {
             SessionUtil.getInstance().removeValue(request, "LISTQUESTION");
             SessionUtil.getInstance().removeValue(request, "LISTCURRENTQUESTION");
         }
         QuestionDTO questionDTO = FormUtil.toModel(QuestionDTO.class, request);
+
         Pageble pageble = new PageRequest(questionDTO.getPage(), questionDTO.getMaxPageItem(),
                 new Sorter(questionDTO.getSortName(), questionDTO.getSortBy()));
 
         List<QuestionDTO> questionDTOCurrentList = questionService.findAll(pageble, questionDTO.getExamID());
+
         questionDTO.setListResult(questionDTOCurrentList);
         questionDTO.setTotalItem(questionService.getTotalItem(questionDTO.getExamID()));
         questionDTO.setTotalPage((int) Math.ceil((double) questionDTO.getTotalItem() / questionDTO.getMaxPageItem()));
+        Integer userId = ((AccountDTO) SessionUtil.getInstance().getValue(request, "USERMODEL")).getId();
 
-        List<QuestionDTO> questionDTOList = questionService.getListQuestionDTOByExamId(questionDTO.getExamID());
-        SessionUtil.getInstance().putValue(request,"LISTQUESTION",questionDTOList);
-        SessionUtil.getInstance().putValue(request,"LISTCURRENTQUESTION",questionDTOCurrentList);
+        if (questionDTO.getType().equals("preview")) {
 
-        MessageUtil.showMessage(request);
-        request.setAttribute("question", questionDTO);
-        RequestDispatcher rd = request.getRequestDispatcher("/user/practise.jsp");
-        rd.forward(request, response);
+            List<PreviewDTO> previewDTOS = iPreviewService.findByUserId(userId);
+            questionService.setListPreview(questionDTO, previewDTOS);
+            request.setAttribute("question", questionDTO);
+            RequestDispatcher rd = request.getRequestDispatcher("/user/Preview.jsp");
+            rd.forward(request, response);
+        } else {
+
+            ScoreDTO scoreDTO = iScoreService.findByExamIdAndUserId(questionDTO.getExamID(),userId);
+
+            if (scoreDTO != null){
+                if (iScoreService.deleteScore(scoreDTO) && iPreviewService.deleteListPreviewByExamIdAndUserId(questionDTO.getExamID(),userId)){
+
+                }
+            }
+
+            List<QuestionDTO> questionDTOList = questionService.getListQuestionDTOByExamId(questionDTO.getExamID());
+            SessionUtil.getInstance().putValue(request, "LISTQUESTION", questionDTOList);
+            SessionUtil.getInstance().putValue(request, "LISTCURRENTQUESTION", questionDTOCurrentList);
+            request.setAttribute("question", questionDTO);
+            RequestDispatcher rd = request.getRequestDispatcher("/user/practise.jsp");
+            rd.forward(request, response);
+        }
+
+//        MessageUtil.showMessage(request);
+
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<QuestionDTO> questionDTOList = (List<QuestionDTO>)SessionUtil.getInstance().getValue(request,"LISTQUESTION");
-        List<QuestionDTO> questionDTOOldList = (List<QuestionDTO>)SessionUtil.getInstance().getValue(request,"LISTCURRENTQUESTION");
+        List<QuestionDTO> questionDTOList = (List<QuestionDTO>) SessionUtil.getInstance().getValue(request, "LISTQUESTION");
+        List<QuestionDTO> questionDTOOldList = (List<QuestionDTO>) SessionUtil.getInstance().getValue(request, "LISTCURRENTQUESTION");
 
-//        List<String> parameterNames = new ArrayList<String>(request.getParameterMap().keySet());
-        questionDTOList = questionService.setListAnswer(questionDTOList,questionDTOOldList,request);
+        questionDTOList = questionService.setListAnswer(questionDTOList, questionDTOOldList, request);
         QuestionDTO questionDTO = FormUtil.toModel(QuestionDTO.class, request);
+        String submit = request.getParameter("submittype");
 
-
-        if (questionDTO.getType().equals("submit"))
-        {
+        if (submit.equals("")) {
             double score = iScoreService.calculateScore(questionDTOList);
-            Integer userId = ((AccountDTO) SessionUtil.getInstance().getValue(request,"USERMODEL")).getId();
+            Integer userId = ((AccountDTO) SessionUtil.getInstance().getValue(request, "USERMODEL")).getId();
             Integer examId = questionDTO.getExamID();
 
             ScoreDTO scoreDTO = new ScoreDTO();
@@ -84,15 +105,17 @@ public class ViewQuesionController extends HttpServlet {
             scoreDTO.setExamId(examId);
             scoreDTO.setExamScore(score);
 
-            if (iScoreService.insertScore(scoreDTO) && iPreviewService.insertListPreviewWithQuestion(questionDTOList,userId))
-            {
-                Integer courseId = iExamService.getCourseIdByExamId(examId);
-                SessionUtil.getInstance().removeValue(request,"LISTQUESTION");
-                SessionUtil.getInstance().removeValue(request,"LISTCURRENTQUESTION");
-                response.sendRedirect(request.getContextPath()+"/user-exam?courseId="+courseId.toString() );
+            if (iScoreService.insertScore(scoreDTO)) {
+                if (iPreviewService.insertListPreviewWithQuestion(questionDTOList, userId)) {
+                    Integer courseId = iExamService.getCourseIdByExamId(examId);
+                    SessionUtil.getInstance().removeValue(request, "LISTQUESTION");
+                    SessionUtil.getInstance().removeValue(request, "LISTCURRENTQUESTION");
+                    String url = "/user-exam?courseId=" + courseId.toString();
+                    response.sendRedirect(request.getContextPath() + url);
+                }
+
             }
-        }
-        else  {
+        } else {
             Pageble pageble = new PageRequest(questionDTO.getPage(), questionDTO.getMaxPageItem(),
                     new Sorter(questionDTO.getSortName(), questionDTO.getSortBy()));
 
@@ -101,8 +124,8 @@ public class ViewQuesionController extends HttpServlet {
             questionDTO.setTotalItem(questionService.getTotalItem(questionDTO.getExamID()));
             questionDTO.setTotalPage((int) Math.ceil((double) questionDTO.getTotalItem() / questionDTO.getMaxPageItem()));
 
-            SessionUtil.getInstance().putValue(request,"LISTCURRENTQUESTION",questionDTOCurrentList);
-            SessionUtil.getInstance().putValue(request,"LISTQUESTION",questionDTOList);
+            SessionUtil.getInstance().putValue(request, "LISTCURRENTQUESTION", questionDTOCurrentList);
+            SessionUtil.getInstance().putValue(request, "LISTQUESTION", questionDTOList);
 
             request.setAttribute("question", questionDTO);
             RequestDispatcher rd = request.getRequestDispatcher("/user/practise.jsp");

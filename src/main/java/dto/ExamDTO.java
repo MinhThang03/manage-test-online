@@ -10,4 +10,6 @@ public class ExamDTO extends AbstractDTO<ExamDTO> {
     private Integer courseID;
     private String fileCheck;
     private Double score;
+    private Double countCorrectQuestion;
+    private Integer totalQuestion;
 }

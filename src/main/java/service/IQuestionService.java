@@ -1,6 +1,7 @@
 package service;
 
 import dto.ExamDTO;
+import dto.PreviewDTO;
 import dto.QuestionDTO;
 import entity.Exam;
 import entity.Question;
@@ -22,4 +23,5 @@ public interface IQuestionService {
     List<QuestionDTO> findAll(Pageble pageble, Integer examID);
     int getTotalItem(Integer examid);
     List<QuestionDTO>setListAnswer(List<QuestionDTO> list, List<QuestionDTO> oldList, HttpServletRequest request);
+    QuestionDTO setListPreview(QuestionDTO questionDTO, List<PreviewDTO> listPreview);
 }

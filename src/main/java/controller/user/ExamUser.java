@@ -35,6 +35,7 @@ public class ExamUser extends HttpServlet {
         examDTO.setListResult(examDTOS);
         Integer userId = ((AccountDTO) SessionUtil.getInstance().getValue(request,"USERMODEL")).getId();
         iExamService.setScoreForListExam(examDTO,userId);
+
         request.setAttribute("exam", examDTO);
         RequestDispatcher rd = request.getRequestDispatcher("/user/Exam.jsp");
         rd.forward(request,response);

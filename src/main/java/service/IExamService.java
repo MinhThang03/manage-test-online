@@ -16,4 +16,5 @@ public interface IExamService {
     public List<ExamDTO> findAllQuestionsByCourseID(Integer courseId);
     public void setScoreForListExam(ExamDTO examDTO, Integer userId);
     public Integer getCourseIdByExamId(Integer examId);
+    public Integer getTotalQuestion(Integer examId);
 }

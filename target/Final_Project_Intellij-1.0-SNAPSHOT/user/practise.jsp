@@ -151,6 +151,8 @@
 
             <!-- Start Content-->
             <div class="container-fluid">
+
+
                 <form action="<c:url value='/user-view-question'/>" id="formSubmit" method="post">
                     <!-- start page title -->
                     <div class="row">
@@ -158,9 +160,10 @@
                             <div class="page-title-box">
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
-                                        <li class="breadcrumb-item "><a href="javascript: void(0);">My courses</a></li>
+                                        <li class="breadcrumb-item "><a href="javascript: void(0);">My courses</a>
+                                        </li>
                                         <li class="breadcrumb-item "><a href="javascript: void(0);">Exam</a></li>
-                                        <li class="breadcrumb-item  active">Practice</li>
+                                        <li class="breadcrumb-item active">Practice</li>
                                     </ol>
                                 </div>
                                 <h4 class="page-title">Practice</h4>
@@ -171,84 +174,93 @@
 
 
                     <div class="row">
+
                         <c:forEach var="item" items="${question.listResult}">
+
                             <c:forEach var="questionItem" items="${LISTQUESTION}">
                                 <c:if test="${questionItem.id == item.id}">
                                     <c:set scope="request" var="userAnswer" value="${questionItem.userAnswer}"/>
                                 </c:if>
                             </c:forEach>
+
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
                                         <h4>Câu ${item.getQuestionNo()}</h4><!--dat so thu tu cau o day-->
                                         <p class="fw-bold">${item.getQuestionName()}</p>
                                         <div class="form-check mb-2">
-                                            <c:if test="${userAnswer == 'A'}">
+                                            <c:if test="${question.type == 'practise'}">
+
                                                 <input type="radio" name="${item.getId()}" class="form-check-input"
-                                                       value="A" checked="checked">
+                                                       value="A"
+                                                       <c:if test="${userAnswer == 'A'}">checked="checked"</c:if>>
+
                                             </c:if>
-                                            <c:if test="${userAnswer != 'A'}">
+
+                                            <c:if test="${question.type == 'preview'}">
                                                 <input type="radio" name="${item.getId()}" class="form-check-input"
-                                                       value="A">
+                                                       value="A" disabled="disabled" <c:if
+                                                        test="${not empty item.userAnswer and item.userAnswer == 'A'}">
+                                                       checked=checked
+                                                </c:if>>
                                             </c:if>
+
                                             <label class="form-check-label">${item.getResultA()}</label>
                                             <!--Dap an cau a-->
                                         </div>
                                         <div class="form-check mb-2">
-                                            <c:if test="${userAnswer == 'B'}">
-                                                <input type="radio" name="${item.getId()}" class="form-check-input"
-                                                       value="B" checked="checked">
-                                            </c:if>
-                                            <c:if test="${userAnswer != 'B'}">
-                                                <input type="radio" name="${item.getId()}" class="form-check-input"
-                                                       value="B">
-                                            </c:if>
+
+
+                                            <input type="radio" name="${item.getId()}" class="form-check-input"
+                                                   value="B"
+                                                   <c:if test="${userAnswer == 'B'}">checked="checked"</c:if>>
+
+
                                             <label class="form-check-label">${item.getResultB()}</label>
                                             <!--Dap an cau b-->
                                         </div>
                                         <div class="form-check mb-2">
-                                            <c:if test="${userAnswer == 'C'}">
-                                                <input type="radio" name="${item.getId()}" class="form-check-input"
-                                                       value="C" checked="checked">
-                                            </c:if>
-                                            <c:if test="${userAnswer != 'C'}">
-                                                <input type="radio" name="${item.getId()}" class="form-check-input"
-                                                       value="C">
-                                            </c:if>
+
+
+                                            <input type="radio" name="${item.getId()}" class="form-check-input"
+                                                   value="C"
+                                                   <c:if test="${userAnswer == 'C'}">checked="checked"</c:if>>
+
+
                                             <label class="form-check-label">${item.getResultC()}</label>
                                             <!--Dap an cau c-->
                                         </div>
                                         <div class="form-check mb-2">
-                                            <c:if test="${userAnswer == 'D'}">
-                                                <input type="radio" name="${item.getId()}" class="form-check-input"
-                                                       value="D" checked="checked">
-                                            </c:if>
-                                            <c:if test="${userAnswer != 'D'}">
-                                                <input type="radio" name="${item.getId()}" class="form-check-input"
-                                                       value="D">
-                                            </c:if>
+
+                                            <input type="radio" name="${item.getId()}" class="form-check-input"
+                                                   value="D"
+                                                   <c:if test="${userAnswer == 'D'}">checked="checked"</c:if>>
+
                                             <label class="form-check-label">${item.getResultD()}</label>
                                             <!--Dap an cau d-->
                                         </div>
                                     </div> <!-- end card body-->
                                 </div> <!-- end card -->
                             </div>
-                            <c:remove scope="request" var="userAnswer"/>
+                            <c:if test="${question.type == 'practise'}">
+                                <c:remove scope="request" var="userAnswer"/>
+                            </c:if>
                             <!-- end col-->
                         </c:forEach>
+
                     </div>
 
 
                     <!-- Colors -->
 
                     <!-- <div class="form-check form-radio-success mb-2">
-                        <input type="radio" id="customRadiocolor2" name="customRadiocolor2" class="form-check-input" checked>
-                        <label class="form-check-label" for="customRadiocolor2">Success Radio</label>
+                    <input type="radio" id="customRadiocolor2" name="customRadiocolor2" class="form-check-input" checked>
+                    <label class="form-check-label" for="customRadiocolor2">Success Radio</label>
                     </div>
 
                     <div class="form-check form-radio-danger mb-2">
-                        <input type="radio" id="customRadiocolor5" name="customRadiocolor5" class="form-check-input" checked>
-                        <label class="form-check-label" for="customRadiocolor5">Danger Radio</label>
+                    <input type="radio" id="customRadiocolor5" name="customRadiocolor5" class="form-check-input" checked>
+                    <label class="form-check-label" for="customRadiocolor5">Danger Radio</label>
                     </div> -->
 
                     <div class="row ">
@@ -259,13 +271,15 @@
                             <input type="hidden" value="" id="maxPageItem" name="maxPageItem"/>
                             <input type="hidden" value="" id="sortName" name="sortName"/>
                             <input type="hidden" value="" id="sortBy" name="sortBy"/>
+                            <input type="hidden" value="" id="submittype" name="submittype"/>
                             <input type="hidden" value="${question.getExamID()}" id="examID" name="examID"/>
+                            <input type="hidden" value="${question.type}" name="type"/>
 
                         </div>
                     </div>
                     <div class="row d-flex justify-content-end">
                         <div class="col-sm-4 d-flex justify-content-end float-right">
-                            <input type="hidden" value="submit" id="type" name="type"/>
+
                             <button type="submit" class="btn btn-danger btn-rounded mb-3 ">Submit</button>
                         </div>
                     </div>
@@ -359,7 +373,8 @@
                     $('#page').val(page);
                     $('#sortName').val('questionNo');
                     $('#sortBy').val('asc');
-                    $('#type').val('list');
+                    // $('#type').val('list');
+                    $('#submittype').val('practise');
                     $('#formSubmit').submit();
                 }
             }

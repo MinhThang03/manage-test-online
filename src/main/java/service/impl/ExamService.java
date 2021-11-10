@@ -2,13 +2,16 @@ package service.impl;
 
 import converter.ExamConverter;
 import dao.IExamDAO;
+import dao.IQuestionDAO;
 import dao.impl.ExamDAO;
+import dao.impl.QuestionDAO;
 import dto.AccountDTO;
 import dto.ExamDTO;
 import dto.QuestionDTO;
 import dto.ScoreDTO;
 import entity.Course;
 import entity.Exam;
+import entity.Question;
 import service.IExamService;
 import service.IScoreService;
 
@@ -20,6 +23,7 @@ public class ExamService implements IExamService {
 
     private IExamDAO examDAO = new ExamDAO();
     private ExamConverter examConverter = new ExamConverter();
+    private IQuestionDAO iQuestionDAO = new QuestionDAO();
 
 
     @Override
@@ -73,8 +77,18 @@ public class ExamService implements IExamService {
         IScoreService iScoreService = new ScoreService();
         for (ExamDTO exam: examDTO.getListResult()) {
             ScoreDTO score = iScoreService.findByExamIdAndUserId(exam.getId(),userId);
+
+            Integer totalQuestion = this.getTotalQuestion(exam.getId());
+            exam.setTotalQuestion(totalQuestion);
+
             if (score != null){
                 exam.setScore(score.getExamScore());
+                Double tySo = 10 / totalQuestion * 1.0;
+                Double correctQuestion = score.getExamScore() * 1.0 / tySo;
+                exam.setCountCorrectQuestion(correctQuestion);
+            }
+            else {
+                exam.setCountCorrectQuestion(0.0);
             }
         }
     }
@@ -86,5 +100,11 @@ public class ExamService implements IExamService {
             return exam.getCourse().getId();
         }
         return null;
+    }
+
+    @Override
+    public Integer getTotalQuestion(Integer examId) {
+        List<Question> list = iQuestionDAO.findAllQuestionsByExamID(examId);
+        return list.size();
     }
 }

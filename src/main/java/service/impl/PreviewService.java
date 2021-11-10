@@ -7,12 +7,15 @@ import dto.PreviewDTO;
 import dto.QuestionDTO;
 import entity.Preview;
 import service.IPreviewService;
+import service.IQuestionService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PreviewService implements IPreviewService {
     private IPreviewDAO iPreviewDAO = new PreviewDAO();
     private PreviewConverter previewConverter = new PreviewConverter();
+
 
     @Override
     public boolean insertPreview(PreviewDTO previewDTO) {
@@ -38,6 +41,37 @@ public class PreviewService implements IPreviewService {
                 }
             }
         }
-        return false;
+        return true;
+    }
+
+    @Override
+    public List<PreviewDTO> findByUserId(Integer userid) {
+        List<Preview> list = iPreviewDAO.findByUserId(userid);
+        List<PreviewDTO> previewDTOS = new ArrayList<>();
+        for (Preview preview: list
+             ) {
+            PreviewDTO previewDTO = previewConverter.toDto(preview);
+            previewDTOS.add(previewDTO);
+        }
+        return previewDTOS;
+    }
+
+    @Override
+    public boolean deleteListPreviewByExamIdAndUserId(Integer examId, Integer userId) {
+        List<PreviewDTO> previewDTOS = this.findByUserId(userId);
+        IQuestionService questionService = new QuestionService();
+        List<QuestionDTO> questionDTOList = questionService.getListQuestionDTOByExamId(examId);
+        for (PreviewDTO previewDTO : previewDTOS){
+            for (QuestionDTO questionDTO: questionDTOList) {
+                if (previewDTO.getQuestionId() == questionDTO.getId()){
+                    Preview preview = previewConverter.toEntity(previewDTO);
+                    if(!iPreviewDAO.delete(preview)){
+                        return false;
+                    };
+                }
+            }
+        }
+
+        return true;
     }
 }

@@ -31,11 +31,4 @@ public class QuestionDAO extends AbstractDAO<Question> implements IQuestionDAO {
         return result;
     }
 
-
-
-    @Override
-    public int getTotalItem(Integer id) {
-        List<Question> lists = this.findAllQuestionsByExamID(id);
-        return lists.size();
-    }
 }

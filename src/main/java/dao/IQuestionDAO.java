@@ -11,5 +11,4 @@ import java.util.List;
 
 public interface IQuestionDAO extends GenericDAO<Question> {
     public List<Question> findAllQuestionsByExamID(Integer id);
-    int getTotalItem(Integer id);
 }

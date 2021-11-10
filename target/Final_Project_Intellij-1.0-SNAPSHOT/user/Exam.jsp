@@ -211,7 +211,7 @@
                                             ${item.examName}
                                     </h4>
                                     <c:if test="${empty item.score}">
-                                        <div class="badge  mb-3">Unfinished</div>
+                                        <div class="badge bg-secondary  mb-3">Unfinished</div>
                                     </c:if>
                                     <c:if test="${not empty item.score}">
                                         <div class="badge bg-success mb-3">Finished</div>
@@ -222,7 +222,7 @@
                                     <p class="mb-1" style="display: flex; justify-content: space-between;">
                                     <span class="pe-2 text-nowrap mb-2 d-inline-block">
                                         <i class="mdi mdi-format-list-checks text-muted"></i>
-                                        <b>36/40</b> Correct
+                                        <b>${item.countCorrectQuestion}/${item.totalQuestion}</b> Correct
                                     </span>
                                         <span class="text-nowrap mb-2 d-inline-block">
                                         <i class="uil uil-heart-alt text-muted"></i>
@@ -236,12 +236,21 @@
                                     </span>
                                     </p>
                                     <div style="display: flex; justify-content: space-between;">
-                                        <a href="<c:out value="/user-view-question?examID=${item.id}&type=list&page=1&maxPageItem=5&sortName=questionNo&sortBy=asc"/>"
+                                        <a href="<c:out value="/user-view-question?examID=${item.id}&type=practise&page=1&maxPageItem=5&sortName=questionNo&sortBy=asc"/>"
                                            type="button" class="btn btn-success"
                                            style="min-width: 110px;">Exam</a>
-                                        <button type="button" class="btn btn-secondary" style="min-width: 110px;">
-                                            Review
-                                        </button>
+                                        <c:if test="${empty item.score}">
+                                            <a type="button" class="btn btn-secondary" style="min-width: 110px;"
+                                               disabled>
+                                                Review
+                                            </a>
+                                        </c:if>
+                                        <c:if test="${not empty item.score}">
+                                            <a type="button" class="btn btn-secondary" style="min-width: 110px;"
+                                               href="<c:out value="/user-view-question?examID=${item.id}&type=preview&page=1&maxPageItem=5&sortName=questionNo&sortBy=asc"/>">
+                                               Review
+                                            </a>
+                                        </c:if>
                                     </div>
                                 </c:forEach>
                             </div> <!-- end card-body-->
@@ -257,7 +266,7 @@
         </div> <!-- content -->
 
         <!-- Footer Start -->
-        <footer class="footer">
+        <footer class=" footer">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-6">
@@ -294,22 +303,22 @@
 <script src="../assets/js/vendor.min.js"></script>
 <script src="../assets/js/app.min.js"></script>
 <script src="../assets/js/TuViet/disableBTN.js"></script>
-<script>
-    handleDisable({
-        parent: ".card .card-body",
-        childStatus: ".badge",
-        statusName: {
-            UnFinished: 'Unfinished',
-            Finished: 'Finished'
-        },
-        childBtn: ".btn-secondary",
-        childBtnClassName: {
-            Success: 'bg-success',
-            Secondary: 'bg-secondary',
-        },
-        childBtnSuccess: '.btn-success'
-    });
-</script>
+<%--<script>--%>
+<%--    handleDisable({--%>
+<%--        parent: ".card .card-body",--%>
+<%--        childStatus: ".badge",--%>
+<%--        statusName: {--%>
+<%--            UnFinished: 'Unfinished',--%>
+<%--            Finished: 'Finished'--%>
+<%--        },--%>
+<%--        childBtn: ".btn-secondary",--%>
+<%--        childBtnClassName: {--%>
+<%--            Success: 'bg-success',--%>
+<%--            Secondary: 'bg-secondary',--%>
+<%--        },--%>
+<%--        childBtnSuccess: '.btn-success'--%>
+<%--    });--%>
+<%--</script>--%>
 <!-- third party js -->
 <script src="../assets/js/vendor/apexcharts.min.js"></script>
 <script src="../assets/js/vendor/jquery-jvectormap-1.2.2.min.js"></script>
