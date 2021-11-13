@@ -2,7 +2,9 @@ package service.impl;
 
 import converter.QuestionConverter;
 import dao.IQuestionDAO;
+import dao.impl.QuestionDAO;
 import dto.ExamDTO;
+import dto.PreviewDTO;
 import dto.QuestionDTO;
 import entity.Question;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -13,18 +15,20 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
+import paging.Pageble;
 import service.IQuestionService;
 import util.HibernateUtil;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 public class QuestionService implements IQuestionService {
 
-    @Inject
-    private IQuestionDAO questionDAO;
+    private IQuestionDAO questionDAO = new QuestionDAO();
     private QuestionConverter questionConverter = new QuestionConverter();
     @Override
     public boolean insertQuestion(QuestionDTO question) {
@@ -60,6 +64,8 @@ public class QuestionService implements IQuestionService {
         List<Question> list = questionDAO.findAll();
         return list;
     }
+
+
 
     @Override
     public String importExcelXLSX(String addressFile, ExamDTO examDTO){
@@ -113,20 +119,67 @@ public class QuestionService implements IQuestionService {
     }
 
     @Override
-    public List<Question> getListQuestionById(int examId){
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        List<Question> list = null;
-
-        try {
-            Query<Question> query = session.createQuery("FROM Question ques WHERE ques.exam.id = :examid");
-            query.setParameter("examid", examId);
-            list = query.getResultList();
-        }catch (Exception e){
-            System.out.println("loi");
-        }finally {
-            session.close();
-        }
-
+    public List<Question> getListQuestionByExamId(int examId) {
+        List<Question> list = questionDAO.findAllQuestionsByExamID(examId);
         return list;
+    }
+
+    @Override
+    public List<QuestionDTO> getListQuestionDTOByExamId(Integer examId) {
+        List<Question> list = questionDAO.findAllQuestionsByExamID(examId);
+        List<QuestionDTO> questionDTOList = new ArrayList<>();
+        for (Question question: list) {
+            QuestionDTO questionDTO = questionConverter.toDto(question);
+            questionDTOList.add(questionDTO);
+        }
+        return  questionDTOList;
+    }
+
+    @Override
+    public List<QuestionDTO> findAll(Pageble pageble, Integer examID) {
+        List<Question> list = questionDAO.findAll(pageble, examID);
+        List<QuestionDTO> questionDTOList = new ArrayList<>();
+        for (Question question: list) {
+            QuestionDTO questionDTO = questionConverter.toDto(question);
+            questionDTOList.add(questionDTO);
+        }
+        return  questionDTOList;
+    }
+
+    @Override
+    public int getTotalItem(Integer examID) {
+        List<Question> lists =  questionDAO.findAllQuestionsByExamID(examID);
+        return  lists.size();
+    }
+
+    @Override
+    public List<QuestionDTO> setListAnswer(List<QuestionDTO> list, List<QuestionDTO> oldList, HttpServletRequest request) {
+        for (QuestionDTO question: list) {
+            for (QuestionDTO oldQuestion: oldList) {
+                if (question.getId() == oldQuestion.getId()) {
+                    String name = oldQuestion.getId().toString();
+                    String value = request.getParameter(name);
+                    question.setUserAnswer(value);
+                }
+            }
+        }
+        return  list;
+    }
+
+    @Override
+    public QuestionDTO setListPreview(QuestionDTO questionDTO, List<PreviewDTO> listPreview) {
+        for (QuestionDTO questionDTOPreview: questionDTO.getListResult()) {
+            for (PreviewDTO previewDTO: listPreview) {
+                if (questionDTOPreview.getId() == previewDTO.getQuestionId()){
+                    questionDTOPreview.setUserAnswer(previewDTO.getAnswer());
+                }
+            }
+        }
+        return  questionDTO;
+    }
+
+    @Override
+    public Integer countTotalQuestion() {
+        return questionDAO.findAll().size();
     }
 }

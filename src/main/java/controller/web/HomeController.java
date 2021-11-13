@@ -59,7 +59,7 @@ public class HomeController extends HttpServlet {
                 if (accountDTO.getRolename().equals("admin")) {
                     response.sendRedirect(request.getContextPath()+"/admin-home");
                 } else if (accountDTO.getRolename().equals("user")) {
-                    response.sendRedirect(request.getContextPath()+"/profile-user");
+                    response.sendRedirect(request.getContextPath()+"/user-home");
                 }
             } else {
 //                RequestDispatcher rd = request.getRequestDispatcher("/home/home.jsp");

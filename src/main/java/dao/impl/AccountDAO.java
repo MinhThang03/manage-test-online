@@ -4,6 +4,7 @@ import dao.IAccountDAO;
 import entity.Account;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import util.HibernateUtil;
 
@@ -34,7 +35,7 @@ public  class AccountDAO extends AbstractDAO<Account> implements IAccountDAO {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Account result = null;
         try {
-            Query<Account> query = session.createQuery("FROM Account  WHERE Account.email = :mail");
+            Query<Account> query = session.createQuery("SELECT account FROM Account account WHERE account.email = :mail");
             query.setParameter("mail", email);
             if(query.list().size() != 0){
                 result = query.getSingleResult();
@@ -47,7 +48,7 @@ public  class AccountDAO extends AbstractDAO<Account> implements IAccountDAO {
         return result;
     }
 
-
+    @Override
     public Integer countTotalStudent(){
         Session session = HibernateUtil.getSessionFactory().openSession();
         Integer result = null;
@@ -57,6 +58,29 @@ public  class AccountDAO extends AbstractDAO<Account> implements IAccountDAO {
         }catch (Exception e) {
             session.getTransaction().rollback();
         }finally {
+            session.close();
+        }
+        return result;
+    }
+
+    @Override
+    public Integer resetPassword(String email, String newPassword) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Integer result = null;
+        try {
+            Transaction txn = session.beginTransaction();
+            String hql = "UPDATE Account a SET a.pass = ?1, a.passreset = ?2 WHERE a.email = ?3";
+            Query query = session.createQuery(hql);
+            query.setParameter(1, newPassword);
+            query.setParameter(2, null);
+            query.setParameter(3, email);
+            result = query.executeUpdate();
+            txn.commit();
+            System.out.println("success");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            session.getTransaction().rollback();
+        } finally {
             session.close();
         }
         return result;

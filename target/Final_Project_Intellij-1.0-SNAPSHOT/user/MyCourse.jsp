@@ -46,7 +46,7 @@
     <div class="leftside-menu">
 
         <!-- LOGO -->
-        <a href="<c:out value="/"/> " class="logo text-center logo-light">
+        <a href="<c:out value="/user-home"/> " class="logo text-center logo-light">
                     <span class="logo-lg">
                         <img src="../assets/images/logo.png" alt="" height="16">
                     </span>
@@ -64,14 +64,14 @@
 
 
                 <li class="side-nav-item">
-                    <a href="<c:out value="MyCourse.jsp"/> " class="side-nav-link">
+                    <a href="<c:out value="/user-home"/> " class="side-nav-link">
                         <i class="uil-book-reader"></i>
                         <span> My Courses </span>
                     </a>
                 </li>
 
                 <li class="side-nav-item">
-                    <a href="<c:out value="AddCourse.jsp"/> " class="side-nav-link">
+                    <a href="<c:out value="/user-add-course?id=${requestScope.userid}"/> " class="side-nav-link">
                         <i class=" uil-parcel"></i>
                         <span>  Courses </span>
                     </a>
@@ -80,7 +80,7 @@
 
 
                 <li class="side-nav-item">
-                    <a href="<c:out value="profile-student.jsp"/> " class="side-nav-link">
+                    <a href="<c:out value="/"/> " class="side-nav-link">
                         <i class=" uil-user"></i>
                         <span> My account</span>
                     </a>
@@ -190,7 +190,7 @@
 
                 <div class="row">
                     <div class="col-sm-4">
-                        <a href="<c:out value="AddCourse.jsp"/> " class="btn btn-danger btn-rounded mb-3"><i class="mdi mdi-plus"></i> Add Courses</a>
+                        <a href="<c:out value="/user-add-course"/> " class="btn btn-danger btn-rounded mb-3"><i class="mdi mdi-plus"></i> Add Courses</a>
                     </div>
                     <div class="col-sm-8">
                         <div class="text-sm-end">
@@ -207,274 +207,56 @@
                 <!-- end row-->
 
                 <div class="row">
-                    <div class="col-md-6 col-xxl-3">
-                        <!-- project card -->
-                        <div class="card d-block car-hover">
-                            <!-- project-thumbnail -->
-                            <a href="<c:out value="Exam.jsp"/> ">
-                                <img class="card-img-top" src="../assets/images/projects/project-1.jpg" alt="project image cap">
-                                <div class="card-img-overlay">
-                                    <div class="badge bg-secondary text-light p-1">Unfinished</div>
-                                </div>
 
-                                <div class="card-body position-relative">
-                                    <!-- project title-->
-                                    <h4 class="mt-0">
-                                        <div class="text-title">
-                                            Course Name
-                                            <span class="pe-2 text-nowrap" style="font-size: 12px">
-                                                <i class="mdi mdi-format-list-bulleted-type"></i>
-                                                <b>3</b> Exams
-                                        </span>
-                                        </div>
-                                    </h4>
+                    <c:forEach items="${requestScope.listCsUser}" var="cs">
 
+                        <div class="col-md-6 col-xxl-3">
+                            <!-- project card -->
+                            <div class="card d-block car-hover">
+                                <!-- project-thumbnail -->
+                                <a href="<c:out value="/user-exam?courseId=${cs.id}"/> ">
+                                    <c:if test="${cs.courseImage}">
+                                        <img class="card-img-top" src="../assets/images/projects/project-1.jpg" alt="project image cap">
+                                    </c:if>
+                                    <c:if test="${cs.courseImage != null}">
+                                        <img class="card-img-top" src="${cs.courseImage}" alt="project image cap">
+                                    </c:if>
 
-                                    <!-- project progress-->
-                                    <p class="mb-2 fw-bold">Progress <span class="float-end">45%</span></p>
-                                    <div class="progress progress-sm">
-                                        <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%;">
-                                        </div><!-- /.progress-bar -->
-                                    </div><!-- /.progress -->
-                                </div> <!-- end card-body-->
-                            </a>
-                        </div> <!-- end card-->
-                    </div> <!-- end col -->
+                                    <div class="card-img-overlay">
+                                        <div class="badge bg-secondary text-light p-1">Unfinished</div>
+                                    </div>
 
-                    <div class="col-md-6 col-xxl-3">
-                        <!-- project card -->
-                        <div class="card d-block car-hover">
-                            <!-- project-thumbnail -->
-                            <a href="<c:out value="Exam.jsp"/> ">
-                                <img class="card-img-top" src="../assets/images/projects/project-1.jpg" alt="project image cap">
-                                <div class="card-img-overlay">
-                                    <div class="badge bg-secondary text-light p-1">Unfinished</div>
-                                </div>
-
-                                <div class="card-body position-relative">
-                                    <!-- project title-->
-                                    <h4 class="mt-0">
-                                        <div class="text-title">
-                                            Course Name
-                                            <span class="pe-2 text-nowrap" style="font-size: 12px">
-                                                <i class="mdi mdi-format-list-bulleted-type"></i>
-                                                <b>3</b> Exams
-                                        </span>
-                                        </div>
-                                    </h4>
+                                    <div class="card-body position-relative">
+                                        <!-- project title-->
+                                        <h4 class="mt-0">
+                                            <div class="text-title">
+                                                    ${cs.courseName}
+                                                <c:forEach items="${requestScope.countExam}" var="item">
+                                                    <c:if test="${cs.id == item[0]}">
+                                                        <c:set var="count" value="${item[1]}"/>
+                                                        <c:set var="progress" value="${Math.round((item[2]/item[1])*100*100)/100}"/>
+                                                        <span class="pe-2 text-nowrap" style="font-size: 12px">
+                                                            <i class="mdi mdi-format-list-bulleted-type"></i>
+                                                            <b>${count}</b> Exams
+                                                        </span>
+                                                    </c:if>
+                                                </c:forEach>
+                                            </div>
+                                        </h4>
 
 
-                                    <!-- project progress-->
-                                    <p class="mb-2 fw-bold">Progress <span class="float-end">45%</span></p>
-                                    <div class="progress progress-sm">
-                                        <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%;">
-                                        </div><!-- /.progress-bar -->
-                                    </div><!-- /.progress -->
-                                </div> <!-- end card-body-->
-                            </a>
-                        </div> <!-- end card-->
-                    </div> <!-- end col -->
-                    <div class="col-md-6 col-xxl-3">
-                        <!-- project card -->
-                        <div class="card d-block car-hover">
-                            <!-- project-thumbnail -->
-                            <a href="<c:out value="Exam.jsp"/> ">
-                                <img class="card-img-top" src="../assets/images/projects/project-1.jpg" alt="project image cap">
-                                <div class="card-img-overlay">
-                                    <div class="badge bg-secondary text-light p-1">Unfinished</div>
-                                </div>
+                                        <!-- project progress-->
+                                        <p class="mb-2 fw-bold">Progress <span class="float-end">${progress}%</span></p>
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: ${progress}%;">
+                                            </div><!-- /.progress-bar -->
+                                        </div><!-- /.progress -->
+                                    </div> <!-- end card-body-->
+                                </a>
+                            </div> <!-- end card-->
+                        </div> <!-- end col -->
 
-                                <div class="card-body position-relative">
-                                    <!-- project title-->
-                                    <h4 class="mt-0">
-                                        <div class="text-title">
-                                            Course Name
-                                            <span class="pe-2 text-nowrap" style="font-size: 12px">
-                                                <i class="mdi mdi-format-list-bulleted-type"></i>
-                                                <b>3</b> Exams
-                                        </span>
-                                        </div>
-                                    </h4>
-
-
-                                    <!-- project progress-->
-                                    <p class="mb-2 fw-bold">Progress <span class="float-end">45%</span></p>
-                                    <div class="progress progress-sm">
-                                        <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%;">
-                                        </div><!-- /.progress-bar -->
-                                    </div><!-- /.progress -->
-                                </div> <!-- end card-body-->
-                            </a>
-                        </div> <!-- end card-->
-                    </div> <!-- end col -->
-
-                    <div class="col-md-6 col-xxl-3">
-                        <!-- project card -->
-                        <div class="card d-block car-hover">
-                            <!-- project-thumbnail -->
-                            <a href="<c:out value="Exam.jsp"/> ">
-                                <img class="card-img-top" src="../assets/images/projects/project-1.jpg" alt="project image cap">
-                                <div class="card-img-overlay">
-                                    <div class="badge bg-secondary text-light p-1">Unfinished</div>
-                                </div>
-
-                                <div class="card-body position-relative">
-                                    <!-- project title-->
-                                    <h4 class="mt-0">
-                                        <div class="text-title">
-                                            Course Name
-                                            <span class="pe-2 text-nowrap" style="font-size: 12px">
-                                                <i class="mdi mdi-format-list-bulleted-type"></i>
-                                                <b>3</b> Exams
-                                        </span>
-                                        </div>
-                                    </h4>
-
-
-                                    <!-- project progress-->
-                                    <p class="mb-2 fw-bold">Progress <span class="float-end">45%</span></p>
-                                    <div class="progress progress-sm">
-                                        <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%;">
-                                        </div><!-- /.progress-bar -->
-                                    </div><!-- /.progress -->
-                                </div> <!-- end card-body-->
-                            </a>
-                        </div> <!-- end card-->
-                    </div> <!-- end col -->
-                    <div class="col-md-6 col-xxl-3">
-                        <!-- project card -->
-                        <div class="card d-block car-hover">
-                            <!-- project-thumbnail -->
-                            <a href="<c:out value="Exam.jsp"/> ">
-                                <img class="card-img-top" src="../assets/images/projects/project-1.jpg" alt="project image cap">
-                                <div class="card-img-overlay">
-                                    <div class="badge bg-secondary text-light p-1">Unfinished</div>
-                                </div>
-
-                                <div class="card-body position-relative">
-                                    <!-- project title-->
-                                    <h4 class="mt-0">
-                                        <div class="text-title">
-                                            Course Name
-                                            <span class="pe-2 text-nowrap" style="font-size: 12px">
-                                                <i class="mdi mdi-format-list-bulleted-type"></i>
-                                                <b>3</b> Exams
-                                        </span>
-                                        </div>
-                                    </h4>
-
-
-                                    <!-- project progress-->
-                                    <p class="mb-2 fw-bold">Progress <span class="float-end">45%</span></p>
-                                    <div class="progress progress-sm">
-                                        <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%;">
-                                        </div><!-- /.progress-bar -->
-                                    </div><!-- /.progress -->
-                                </div> <!-- end card-body-->
-                            </a>
-                        </div> <!-- end card-->
-                    </div> <!-- end col -->
-
-                    <div class="col-md-6 col-xxl-3">
-                        <!-- project card -->
-                        <div class="card d-block car-hover">
-                            <!-- project-thumbnail -->
-                            <a href="<c:out value="Exam.jsp"/> ">
-                                <img class="card-img-top" src="../assets/images/projects/project-1.jpg" alt="project image cap">
-                                <div class="card-img-overlay">
-                                    <div class="badge bg-secondary text-light p-1">Unfinished</div>
-                                </div>
-
-                                <div class="card-body position-relative">
-                                    <!-- project title-->
-                                    <h4 class="mt-0">
-                                        <div class="text-title">
-                                            Course Name
-                                            <span class="pe-2 text-nowrap" style="font-size: 12px">
-                                                <i class="mdi mdi-format-list-bulleted-type"></i>
-                                                <b>3</b> Exams
-                                        </span>
-                                        </div>
-                                    </h4>
-
-
-                                    <!-- project progress-->
-                                    <p class="mb-2 fw-bold">Progress <span class="float-end">45%</span></p>
-                                    <div class="progress progress-sm">
-                                        <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%;">
-                                        </div><!-- /.progress-bar -->
-                                    </div><!-- /.progress -->
-                                </div> <!-- end card-body-->
-                            </a>
-                        </div> <!-- end card-->
-                    </div> <!-- end col -->
-                    <div class="col-md-6 col-xxl-3">
-                        <!-- project card -->
-                        <div class="card d-block car-hover">
-                            <!-- project-thumbnail -->
-                            <a href="<c:out value="Exam.jsp"/> ">
-                                <img class="card-img-top" src="../assets/images/projects/project-1.jpg" alt="project image cap">
-                                <div class="card-img-overlay">
-                                    <div class="badge bg-secondary text-light p-1">Unfinished</div>
-                                </div>
-
-                                <div class="card-body position-relative">
-                                    <!-- project title-->
-                                    <h4 class="mt-0">
-                                        <div class="text-title">
-                                            Course Name
-                                            <span class="pe-2 text-nowrap" style="font-size: 12px">
-                                                <i class="mdi mdi-format-list-bulleted-type"></i>
-                                                <b>3</b> Exams
-                                        </span>
-                                        </div>
-                                    </h4>
-
-
-                                    <!-- project progress-->
-                                    <p class="mb-2 fw-bold">Progress <span class="float-end">45%</span></p>
-                                    <div class="progress progress-sm">
-                                        <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%;">
-                                        </div><!-- /.progress-bar -->
-                                    </div><!-- /.progress -->
-                                </div> <!-- end card-body-->
-                            </a>
-                        </div> <!-- end card-->
-                    </div> <!-- end col -->
-
-                    <div class="col-md-6 col-xxl-3">
-                        <!-- project card -->
-                        <div class="card d-block car-hover">
-                            <!-- project-thumbnail -->
-                            <a href="<c:out value="Exam.jsp"/> ">
-                                <img class="card-img-top" src="../assets/images/projects/project-1.jpg" alt="project image cap">
-                                <div class="card-img-overlay">
-                                    <div class="badge bg-secondary text-light p-1">Unfinished</div>
-                                </div>
-
-                                <div class="card-body position-relative">
-                                    <!-- project title-->
-                                    <h4 class="mt-0">
-                                        <div class="text-title">
-                                            Course Name
-                                            <span class="pe-2 text-nowrap" style="font-size: 12px">
-                                                <i class="mdi mdi-format-list-bulleted-type"></i>
-                                                <b>3</b> Exams
-                                        </span>
-                                        </div>
-                                    </h4>
-
-
-                                    <!-- project progress-->
-                                    <p class="mb-2 fw-bold">Progress <span class="float-end">45%</span></p>
-                                    <div class="progress progress-sm">
-                                        <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%;">
-                                        </div><!-- /.progress-bar -->
-                                    </div><!-- /.progress -->
-                                </div> <!-- end card-body-->
-                            </a>
-                        </div> <!-- end card-->
-                    </div> <!-- end col -->
+                    </c:forEach>
                 </div>
                 <!-- end row-->
 

@@ -46,7 +46,7 @@
     <div class="leftside-menu">
 
         <!-- LOGO -->
-        <a href="<c:out value="/"/> " class="logo text-center logo-light">
+        <a href="<c:out value="/user-home"/> " class="logo text-center logo-light">
                     <span class="logo-lg">
                         <img src="../assets/images/logo.png" alt="" height="16">
                     </span>
@@ -64,14 +64,14 @@
 
 
                 <li class="side-nav-item">
-                    <a href="./MyCourse.jsp" class="side-nav-link">
+                    <a href="<c:out value="/user-home"/> " class="side-nav-link">
                         <i class="uil-book-reader"></i>
                         <span> My Courses </span>
                     </a>
                 </li>
 
                 <li class="side-nav-item">
-                    <a href="<c:out value="AddCourse.jsp"/>" class="side-nav-link">
+                    <a href="<c:out value="/user-add-course"/> " class="side-nav-link">
                         <i class=" uil-parcel"></i>
                         <span>  Courses </span>
                     </a>
@@ -80,9 +80,9 @@
 
 
                 <li class="side-nav-item">
-                    <a href="<c:out value="profile-student.jsp"/>" class="side-nav-link">
+                    <a href="<c:out value="/"/> " class="side-nav-link">
                         <i class=" uil-user"></i>
-                        <span> My accouut</span>
+                        <span> My account</span>
                     </a>
                 </li>
 
@@ -190,225 +190,48 @@
 
                 <div class="row mb-2">
                     <div class="col-sm-4">
-                        <a href="<c:out value="MyCourse.jsp"/>" class="btn btn-danger btn-rounded mb-3"><i class="uil-book-reader"></i> My Courses</a>
+                        <a href="<c:out value="/user-home"/>" class="btn btn-danger btn-rounded mb-3"><i class="uil-book-reader"></i> My Courses</a>
                     </div>
                 </div>
                 <!-- end row-->
 
                 <div class="row">
-                    <div class="col-md-6 col-xxl-3">
-                        <form action="/" method="POST">
-                            <!-- project card -->
-                            <div class="card d-block car-hover">
-                                <!-- project-thumbnail -->
-                                <div>
-                                    <img class="card-img-top" src="../assets/images/projects/project-1.jpg" alt="project image cap">
+                    <c:forEach var="item" items="${requestScope.listCS}">
+                        <div class="col-md-6 col-xxl-3">
+                            <form action="/Register-Course" method="POST">
+                                <!-- project card -->
+                                <div class="card d-block car-hover">
+                                    <!-- project-thumbnail -->
+                                    <div>
+                                        <c:if test="${item.courseImage == null}">
+                                            <img class="card-img-top" src="../assets/images/projects/project-1.jpg" alt="project image cap">
+                                        </c:if>
+                                        <c:if test="${item.courseImage != null}">
+                                            <img class="card-img-top" src="${item.courseImage}" alt="project image cap">
+                                        </c:if>
 
-                                    <div class="card-body position-relative">
-                                        <!-- project title-->
-                                        <div class="mt-0 text-title">
-                                            <h4 >
-                                                Course Name:
-                                            </h4>
-                                            <h6 style="font-size:  10px;">
-                                                Description about Course
+                                        <div class="card-body position-relative">
+                                            <!-- project title-->
+                                            <div class="mt-0 text-title">
+                                                <h4 >
+                                                    Course Name: ${item.courseName}
+                                                </h4>
+                                                <h6 style="font-size:  10px;">
+                                                        <%--Description about Course--%>
+                                                        ${item.description};
+                                                </h6>
 
-                                            </h6>
-
-                                        </div>
-                                        <!-- project progress-->
-                                        <button type="submit" class="btn btn-success col-12">Register</button>
-                                    </div> <!-- end card-body-->
-                                </div>
-                            </div> <!-- end card-->
-                        </form>
-                    </div> <!-- end col -->
-                    <div class="col-md-6 col-xxl-3">
-                        <form action="/" method="POST">
-                            <!-- project card -->
-                            <div class="card d-block car-hover">
-                                <!-- project-thumbnail -->
-                                <div>
-                                    <img class="card-img-top" src="../assets/images/projects/project-1.jpg" alt="project image cap">
-
-                                    <div class="card-body position-relative">
-                                        <!-- project title-->
-                                        <div class="mt-0 text-title">
-                                            <h4 >
-                                                Course Name:
-                                            </h4>
-                                            <h6 style="font-size:  10px;">
-                                                Description about Course
-                                            </h6>
-
-                                        </div>
-                                        <!-- project progress-->
-                                        <button type="submit" class="btn btn-success col-12">Register</button>
-                                    </div> <!-- end card-body-->
-                                </div>
-                            </div> <!-- end card-->
-                        </form>
-                    </div> <!-- end col -->
-                    <div class="col-md-6 col-xxl-3">
-                        <form action="/" method="POST">
-                            <!-- project card -->
-                            <div class="card d-block car-hover">
-                                <!-- project-thumbnail -->
-                                <div>
-                                    <img class="card-img-top" src="../assets/images/projects/project-1.jpg" alt="project image cap">
-
-                                    <div class="card-body position-relative">
-                                        <!-- project title-->
-                                        <div class="mt-0 text-title">
-                                            <h4 >
-                                                Course Name:
-                                            </h4>
-                                            <h6 style="font-size:  10px;">
-                                                Description about Course
-                                            </h6>
-
-                                        </div>
-                                        <!-- project progress-->
-                                        <button type="submit" class="btn btn-success col-12">Register</button>
-                                    </div> <!-- end card-body-->
-                                </div>
-                            </div> <!-- end card-->
-                        </form>
-                    </div> <!-- end col -->
-                    <div class="col-md-6 col-xxl-3">
-                        <form action="/" method="POST">
-                            <!-- project card -->
-                            <div class="card d-block car-hover">
-                                <!-- project-thumbnail -->
-                                <div>
-                                    <img class="card-img-top" src="../assets/images/projects/project-1.jpg" alt="project image cap">
-
-                                    <div class="card-body position-relative">
-                                        <!-- project title-->
-                                        <div class="mt-0 text-title">
-                                            <h4 >
-                                                Course Name:
-                                            </h4>
-                                            <h6 style="font-size:  10px;">
-                                                Description about Course
-                                            </h6>
-
-                                        </div>
-                                        <!-- project progress-->
-                                        <button type="submit" class="btn btn-success col-12">Register</button>
-                                    </div> <!-- end card-body-->
-                                </div>
-                            </div> <!-- end card-->
-                        </form>
-                    </div> <!-- end col -->
-                    <div class="col-md-6 col-xxl-3">
-                        <form action="/" method="POST">
-                            <!-- project card -->
-                            <div class="card d-block car-hover">
-                                <!-- project-thumbnail -->
-                                <div>
-                                    <img class="card-img-top" src="../assets/images/projects/project-1.jpg" alt="project image cap">
-
-                                    <div class="card-body position-relative">
-                                        <!-- project title-->
-                                        <div class="mt-0 text-title">
-                                            <h4 >
-                                                Course Name:
-                                            </h4>
-                                            <h6 style="font-size:  10px;">
-                                                Description about Course
-                                            </h6>
-
-                                        </div>
-                                        <!-- project progress-->
-                                        <button type="submit" class="btn btn-success col-12">Register</button>
-                                    </div> <!-- end card-body-->
-                                </div>
-                            </div> <!-- end card-->
-                        </form>
-                    </div> <!-- end col -->
-                    <div class="col-md-6 col-xxl-3">
-                        <form action="/" method="POST">
-                            <!-- project card -->
-                            <div class="card d-block car-hover">
-                                <!-- project-thumbnail -->
-                                <div>
-                                    <img class="card-img-top" src="../assets/images/projects/project-1.jpg" alt="project image cap">
-
-                                    <div class="card-body position-relative">
-                                        <!-- project title-->
-                                        <div class="mt-0 text-title">
-                                            <h4 >
-                                                Course Name:
-                                            </h4>
-                                            <h6 style="font-size:  10px;">
-                                                Description about Course
-
-
-                                            </h6>
-
-                                        </div>
-                                        <!-- project progress-->
-                                        <button type="submit" class="btn btn-success col-12">Register</button>
-                                    </div> <!-- end card-body-->
-                                </div>
-                            </div> <!-- end card-->
-                        </form>
-                    </div> <!-- end col -->
-                    <div class="col-md-6 col-xxl-3">
-                        <form action="/" method="POST">
-                            <!-- project card -->
-                            <div class="card d-block car-hover">
-                                <!-- project-thumbnail -->
-                                <div>
-                                    <img class="card-img-top" src="../assets/images/projects/project-1.jpg" alt="project image cap">
-
-                                    <div class="card-body position-relative">
-                                        <!-- project title-->
-                                        <div class="mt-0 text-title">
-                                            <h4 >
-                                                Course Name:
-                                            </h4>
-                                            <h6 style="font-size:  10px;">
-                                                Description about Course
-                                            </h6>
-
-                                        </div>
-                                        <!-- project progress-->
-                                        <button type="submit" class="btn btn-success col-12">Register</button>
-                                    </div> <!-- end card-body-->
-                                </div>
-                            </div> <!-- end card-->
-                        </form>
-                    </div> <!-- end col -->
-                    <div class="col-md-6 col-xxl-3">
-                        <form action="/" method="POST">
-                            <!-- project card -->
-                            <div class="card d-block car-hover">
-                                <!-- project-thumbnail -->
-                                <div>
-                                    <img class="card-img-top" src="../assets/images/projects/project-1.jpg" alt="project image cap">
-
-                                    <div class="card-body position-relative">
-                                        <!-- project title-->
-                                        <div class="mt-0 text-title">
-                                            <h4 >
-                                                Course Name:
-                                            </h4>
-                                            <h6 style="font-size:  10px;">
-                                                Description about Course
-                                            </h6>
-
-                                        </div>
-                                        <!-- project progress-->
-                                        <button type="submit" class="btn btn-success col-12">Register</button>
-                                    </div> <!-- end card-body-->
-                                </div>
-                            </div> <!-- end card-->
-                        </form>
-                    </div> <!-- end col -->
-
-
+                                            </div>
+                                            <input type="hidden" name="userID" value="${requestScope.account.id}">
+                                            <input type="hidden" name="courseID" value="${item.id}">
+                                            <!-- project progress-->
+                                            <button type="submit" class="btn btn-success col-12">Register</button>
+                                        </div> <!-- end card-body-->
+                                    </div>
+                                </div> <!-- end card-->
+                            </form>
+                        </div> <!-- end col -->
+                    </c:forEach>
                 </div>
                 <!-- end row-->
                 <!-- end row--> <!-- container -->

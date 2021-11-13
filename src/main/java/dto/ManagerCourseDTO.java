@@ -10,4 +10,5 @@ public class ManagerCourseDTO extends AbstractDTO<ManagerCourseDTO>{
     private String courseName;
     private String courseImage;
     private String description;
+    private Integer countRegister;
 }

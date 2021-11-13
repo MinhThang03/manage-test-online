@@ -2,12 +2,23 @@ package service.impl;
 
 import converter.AccountConverter;
 import dao.IAccountDAO;
+import dao.impl.AccountDAO;
 import dto.AccountDTO;
 import entity.Account;
+import org.apache.commons.lang.RandomStringUtils;
 import service.IAccountService;
-import java.util.List;
+import util.EmailUtil;
+import util.SecurityUtil;
+import util.SessionUtil;
+
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
+import javax.mail.MessagingException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
 
 public class AccountService implements IAccountService {
 
@@ -19,7 +30,7 @@ public class AccountService implements IAccountService {
     public boolean insertAccount(AccountDTO user) {
         Account account = accountConverter.toEntity(user);
         Account em = account;
-        if (accountDAO.insert(account)){
+        if (accountDAO.insert(account)) {
             return true;
         }
         return false;
@@ -28,13 +39,13 @@ public class AccountService implements IAccountService {
     @Override
     public Account updateAccount(AccountDTO user) {
         Account account = accountConverter.toEntity(user);
-        return  accountDAO.update(account);
+        return accountDAO.update(account);
     }
 
     @Override
     public boolean deleteAccount(AccountDTO user) {
         Account account = accountConverter.toEntity(user);
-        if(accountDAO.delete(account)){
+        if (accountDAO.delete(account)) {
             return true;
         }
         return false;
@@ -57,13 +68,12 @@ public class AccountService implements IAccountService {
 
     @Override
     public boolean registerAccount(AccountDTO account) {
-        if (account.getPass().equals(account.getComfirmPass())){
+        if (account.getPass().equals(account.getComfirmPass())) {
             account.setRoleid(2);
             account.setActive(true);
-            if (insertAccount(account)){
+            if (insertAccount(account)) {
                 return true;
-            }
-            else return false;
+            } else return false;
         }
         return false;
     }
@@ -83,4 +93,57 @@ public class AccountService implements IAccountService {
         }
     }
 
+    @Override
+    public Integer recoverPassword(String email) {
+        try {
+            accountDAO = new AccountDAO();
+            Account account = new Account();
+            account = accountDAO.findByEmail(email);
+            AccountDTO accountDTO = new AccountDTO();
+            accountDTO = accountConverter.toDto(account);
+            if (account != null) {
+                String newPassword = RandomStringUtils.randomAlphabetic(8);
+                accountDTO.setPassreset(newPassword);
+                updateAccount(accountDTO);
+                Calendar calendar = Calendar.getInstance();
+                calendar.add(Calendar.HOUR_OF_DAY, 1);
+                Date timeReset = calendar.getTime();
+                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                String strTimeReset = dateFormat.format(timeReset);
+                String subject = "Reset password";
+                String content = "New password: " + newPassword
+                        + "\nClick on the following link to reset your password:"
+                        + "\nhttp://localhost:8080/recover-password?value="
+                        + SecurityUtil.encoded(email + "|" + newPassword + "|" + strTimeReset)
+                        + "\nThe link is valid until: " + strTimeReset;
+                System.out.println(content);
+                EmailUtil.sendEmail(email, subject, content);
+                return 1;
+            } else {
+                return -2;
+            }
+        } catch (Exception ex) {
+            return -1;
+        }
+    }
+
+    @Override
+    public Integer resetPassword(String email, String newpassword, String strDatelink) {
+        try {
+            AccountDAO accountDAO = new AccountDAO();
+            Account account = accountDAO.findByEmail(email);
+            if (account.getPassreset() != null && account.getPassreset().equals(newpassword)) {
+                Date dateLink = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(strDatelink);
+                if (dateLink.after(Calendar.getInstance().getTime())) {
+                    return accountDAO.resetPassword(email, newpassword);
+                } else {
+                    return -2;
+                }
+            } else {
+                return -1;
+            }
+        } catch (ParseException e) {
+            return -1;
+        }
+    }
 }

@@ -54,4 +54,7 @@ public class Account {
 
     @Column(name = "avatar")
     private String avatar;
+
+    @Column(name = "passreset")
+    private String passreset;
 }
