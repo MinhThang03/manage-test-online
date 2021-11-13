@@ -330,7 +330,7 @@
         let r = parseInt(Math.random()*255).toString()
         let g = parseInt(Math.random()*255).toString()
         let b = parseInt(Math.random()*255).toString()
-        return 'rgba(' + r +',' + g + ',' + b 
+        return 'rgba(' + r +',' + g + ',' + b
     }
 
     function statsChart(id, labels = [], info = []){
