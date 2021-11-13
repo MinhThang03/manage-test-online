@@ -38,6 +38,9 @@ public class RegisterCourseService implements IRegisterCourseService {
 
     @Override
     public Integer countRegisterByCourseId(Integer courseId) {
+        if(registerCourseDAO.findRegisterByCourseId(courseId)==null){
+            return 0;
+        }
         return registerCourseDAO.findRegisterByCourseId(courseId).size();
     }
 }

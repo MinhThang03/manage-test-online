@@ -219,11 +219,11 @@
                                         <img class="card-img-top" src="../assets/images/projects/project-1.jpg" alt="project image cap">
                                     </c:if>
                                     <c:if test="${cs.courseImage != null}">
-                                        <img class="card-img-top" src="${cs.courseImage}" alt="project image cap">
+                                        <img class="card-img-top" style="max-height: 200px" src="${cs.courseImage}" alt="project image cap">
                                     </c:if>
 
                                     <div class="card-img-overlay">
-                                        <div class="badge bg-secondary text-light p-1">Unfinished</div>
+                                        <div id = "check" class="badge bg-secondary text-light p-1">Unfinished</div>
                                     </div>
 
                                     <div class="card-body position-relative">
@@ -240,6 +240,16 @@
                                                             <b>${count}</b> Exams
                                                         </span>
                                                     </c:if>
+
+                                                    <script>
+                                                        let check = ${progress};
+                                                        if(check == 100){
+                                                            var temp= document.getElementById("check");
+                                                            temp.innerText = "Finished"
+                                                            temp.classList.remove("bg-secondary");
+                                                            temp.classList.add("bg-success");
+                                                        }
+                                                    </script>
                                                 </c:forEach>
                                             </div>
                                         </h4>

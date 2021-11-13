@@ -105,6 +105,9 @@ public class ExamService implements IExamService {
     @Override
     public Integer getTotalQuestion(Integer examId) {
         List<Question> list = iQuestionDAO.findAllQuestionsByExamID(examId);
+        if(list == null){
+            return 0;
+        }
         return list.size();
     }
 

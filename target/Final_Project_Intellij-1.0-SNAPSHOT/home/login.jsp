@@ -59,7 +59,7 @@
 
                             <div class="mb-3">
 
-                                <a href="<c:url value = "/recover-password"/>" class="text-muted float-end"><small>Forgot your password?</small></a>
+                                <a href="<c:url value = "pages_recoverpw.jsp"/>" class="text-muted float-end"><small>Forgot your password?</small></a>
                                 <label for="password" class="form-label">Password</label>
                                 <div class="input-group input-group-merge">
                                     <input type="password" id="password" class="form-control" placeholder="Enter your password" name="pass">

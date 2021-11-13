@@ -51,36 +51,42 @@ public class ViewQuesionController extends HttpServlet {
                 new Sorter(questionDTO.getSortName(), questionDTO.getSortBy()));
 
         List<QuestionDTO> questionDTOCurrentList = questionService.findAll(pageble, questionDTO.getExamID());
-
-        questionDTO.setListResult(questionDTOCurrentList);
-        questionDTO.setTotalItem(questionService.getTotalItem(questionDTO.getExamID()));
-        questionDTO.setTotalPage((int) Math.ceil((double) questionDTO.getTotalItem() / questionDTO.getMaxPageItem()));
-        Integer userId = ((AccountDTO) SessionUtil.getInstance().getValue(request, "USERMODEL")).getId();
-
-        if (questionDTO.getType().equals("preview")) {
-
-            List<PreviewDTO> previewDTOS = iPreviewService.findByUserId(userId);
-            questionService.setListPreview(questionDTO, previewDTOS);
-            request.setAttribute("question", questionDTO);
-            RequestDispatcher rd = request.getRequestDispatcher("/user/Preview.jsp");
-            rd.forward(request, response);
-        } else {
-
-            ScoreDTO scoreDTO = iScoreService.findByExamIdAndUserId(questionDTO.getExamID(),userId);
-
-            if (scoreDTO != null){
-                if (iScoreService.deleteScore(scoreDTO) && iPreviewService.deleteListPreviewByExamIdAndUserId(questionDTO.getExamID(),userId)){
-
-                }
-            }
-
-            List<QuestionDTO> questionDTOList = questionService.getListQuestionDTOByExamId(questionDTO.getExamID());
-            SessionUtil.getInstance().putValue(request, "LISTQUESTION", questionDTOList);
-            SessionUtil.getInstance().putValue(request, "LISTCURRENTQUESTION", questionDTOCurrentList);
-            request.setAttribute("question", questionDTO);
-            RequestDispatcher rd = request.getRequestDispatcher("/user/practise.jsp");
-            rd.forward(request, response);
+        if(questionDTOCurrentList == null){
+            String courseId = iExamService.findById(questionDTO.getExamID()).getCourseID().toString();
+            response.sendRedirect(request.getContextPath() + "/user-exam?courseId="+courseId);
         }
+        else{
+            questionDTO.setListResult(questionDTOCurrentList);
+            questionDTO.setTotalItem(questionService.getTotalItem(questionDTO.getExamID()));
+            questionDTO.setTotalPage((int) Math.ceil((double) questionDTO.getTotalItem() / questionDTO.getMaxPageItem()));
+            Integer userId = ((AccountDTO) SessionUtil.getInstance().getValue(request, "USERMODEL")).getId();
+
+            if (questionDTO.getType().equals("preview")) {
+
+                List<PreviewDTO> previewDTOS = iPreviewService.findByUserId(userId);
+                questionService.setListPreview(questionDTO, previewDTOS);
+                request.setAttribute("question", questionDTO);
+                RequestDispatcher rd = request.getRequestDispatcher("/user/Preview.jsp");
+                rd.forward(request, response);
+            } else {
+
+                ScoreDTO scoreDTO = iScoreService.findByExamIdAndUserId(questionDTO.getExamID(),userId);
+
+                if (scoreDTO != null){
+                    if (iScoreService.deleteScore(scoreDTO) && iPreviewService.deleteListPreviewByExamIdAndUserId(questionDTO.getExamID(),userId)){
+
+                    }
+                }
+
+                List<QuestionDTO> questionDTOList = questionService.getListQuestionDTOByExamId(questionDTO.getExamID());
+                SessionUtil.getInstance().putValue(request, "LISTQUESTION", questionDTOList);
+                SessionUtil.getInstance().putValue(request, "LISTCURRENTQUESTION", questionDTOCurrentList);
+                request.setAttribute("question", questionDTO);
+                RequestDispatcher rd = request.getRequestDispatcher("/user/practise.jsp");
+                rd.forward(request, response);
+            }
+        }
+
 
 //        MessageUtil.showMessage(request);
 

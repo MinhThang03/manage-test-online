@@ -137,13 +137,17 @@ public class QuestionService implements IQuestionService {
 
     @Override
     public List<QuestionDTO> findAll(Pageble pageble, Integer examID) {
+
         List<Question> list = questionDAO.findAll(pageble, examID);
         List<QuestionDTO> questionDTOList = new ArrayList<>();
-        for (Question question: list) {
-            QuestionDTO questionDTO = questionConverter.toDto(question);
-            questionDTOList.add(questionDTO);
+        if(list !=null){
+            for (Question question: list) {
+                QuestionDTO questionDTO = questionConverter.toDto(question);
+                questionDTOList.add(questionDTO);
+            }
+            return  questionDTOList;
         }
-        return  questionDTOList;
+       return null;
     }
 
     @Override

@@ -17,4 +17,5 @@ public interface IAccountService {
     Boolean updatePassword(AccountDTO accountDTO);
     Integer recoverPassword(String email);
     Integer resetPassword(String username, String password, String strDateLink);
+
 }
