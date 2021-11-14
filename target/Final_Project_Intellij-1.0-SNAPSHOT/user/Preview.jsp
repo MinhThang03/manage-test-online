@@ -173,10 +173,10 @@
                             <div class="page-title-box">
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
-                                        <li class="breadcrumb-item "><a href="javascript: void(0);">My courses</a>
+                                        <li class="breadcrumb-item "><a href="<c:url value="/user-home"/> ">My courses</a>
                                         </li>
-                                        <li class="breadcrumb-item "><a href="javascript: void(0);">Exam</a></li>
-                                        <li class="breadcrumb-item active">Practice</li>
+                                        <li class="breadcrumb-item "><a href="<c:url value="/user-exam?courseId=${requestScope.courseId}"/>">Exam</a></li>
+                                        <li class="breadcrumb-item active">Preview</li>
                                     </ol>
                                 </div>
                                 <h4 class="page-title">Practice</h4>

@@ -62,9 +62,10 @@ public class ViewQuesionController extends HttpServlet {
             Integer userId = ((AccountDTO) SessionUtil.getInstance().getValue(request, "USERMODEL")).getId();
 
             if (questionDTO.getType().equals("preview")) {
-
+                String courseId = iExamService.findById(questionDTO.getExamID()).getCourseID().toString();
                 List<PreviewDTO> previewDTOS = iPreviewService.findByUserId(userId);
                 questionService.setListPreview(questionDTO, previewDTOS);
+                request.setAttribute("courseId", courseId);
                 request.setAttribute("question", questionDTO);
                 RequestDispatcher rd = request.getRequestDispatcher("/user/Preview.jsp");
                 rd.forward(request, response);
