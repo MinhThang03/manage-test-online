@@ -93,7 +93,7 @@ public class AccountService implements IAccountService {
     }
 
     @Override
-    public Integer recoverPassword(String email) {
+    public Integer recoverPassword(String email, String contextfile) {
         try {
             accountDAO = new AccountDAO();
             Account account = new Account();
@@ -112,7 +112,7 @@ public class AccountService implements IAccountService {
                 String subject = "Reset password";
                 String content = "New password: " + newPassword
                         + "\nClick on the following link to reset your password:"
-                        + "\nhttp://localhost:8080/recover-password?value="
+                        + "\nhttps://"+contextfile+"/recover-password?value="
                         + SecurityUtil.encoded(email + "|" + newPassword + "|" + strTimeReset)
                         + "\nThe link is valid until: " + strTimeReset;
                 System.out.println(content);

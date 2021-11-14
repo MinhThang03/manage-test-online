@@ -34,6 +34,9 @@
             transform: translateY(-4px) translateX(4px);
             box-shadow: rgba(0,0,0,0.1);
         }
+        .none-active{
+            display: none !important;
+        }
     </style>
 
 
@@ -191,11 +194,11 @@
                     <div class="col-sm-8">
                         <div class="text-sm-end">
                             <div class="btn-group mb-3">
-                                <button type="button" class="btn btn-primary">All</button>
+                                <button id="find-all" type="button" class="btn btn-primary">All</button>
                             </div>
                             <div class="btn-group mb-3 ms-1">
-                                <button type="button" class="btn btn-light">Unfinished</button>
-                                <button type="button" class="btn btn-light">Finished</button>
+                                <button id = "find-unfinish" type="button" class="btn btn-light">Unfinished</button>
+                                <button id = "find-finish" type="button" class="btn btn-light">Finished</button>
                             </div>
                         </div>
                     </div><!-- end col-->
@@ -206,7 +209,7 @@
 
                     <c:forEach items="${requestScope.listCsUser}" var="cs">
 
-                        <div class="col-md-6 col-xxl-3">
+                        <div class="col-md-6 col-xxl-3 course-check">
                             <!-- project card -->
                             <div class="card d-block car-hover">
                                 <!-- project-thumbnail -->
@@ -219,7 +222,7 @@
                                     </c:if>
 
                                     <div class="card-img-overlay">
-                                        <div id = "check" class="badge bg-secondary text-light p-1">Unfinished</div>
+                                        <div id ="check${cs.id}" class="badge bg-secondary text-light p-1 status">Unfinished</div>
                                     </div>
 
                                     <div class="card-body position-relative">
@@ -235,17 +238,16 @@
                                                             <i class="mdi mdi-format-list-bulleted-type"></i>
                                                             <b>${count}</b> Exams
                                                         </span>
+                                                        <script>
+                                                            var check = ${progress};
+                                                            if(check == 100){
+                                                                var temp= document.getElementById("check${cs.id}");
+                                                                temp.innerText = "Finished"
+                                                                temp.classList.remove("bg-secondary");
+                                                                temp.classList.add("bg-success");
+                                                            }
+                                                        </script>
                                                     </c:if>
-
-                                                    <script>
-                                                        let check = ${progress};
-                                                        if(check == 100){
-                                                            var temp= document.getElementById("check");
-                                                            temp.innerText = "Finished"
-                                                            temp.classList.remove("bg-secondary");
-                                                            temp.classList.add("bg-success");
-                                                        }
-                                                    </script>
                                                 </c:forEach>
                                             </div>
                                         </h4>
@@ -307,6 +309,76 @@
 <!-- bundle -->
 <script src="../assets/js/vendor.min.js"></script>
 <script src="../assets/js/app.min.js"></script>
+
+
+<!-------Filter Course --------->
+<script>
+    // find all
+    var btnALl = document.getElementById("find-all");
+    var btnUnfinished = document.getElementById("find-unfinish");
+    var btnfinish = document.getElementById("find-finish")
+
+
+    btnALl.onclick = function (){
+        btnALl.classList.add("btn-primary")
+        btnALl.classList.remove("btn-light")
+        btnUnfinished.classList.remove("btn-primary")
+        btnfinish.classList.remove("btn-primary")
+        btnUnfinished.classList.add("btn-light")
+        btnfinish.classList.add("btn-light")
+
+        var containers = document.querySelectorAll(".course-check")
+        containers.forEach(function (container){
+            container.classList.remove("none-active");
+        })
+    }
+
+    // find unfinished
+    btnUnfinished.onclick = function (){
+        btnUnfinished.classList.add("btn-primary")
+        btnUnfinished.classList.remove("btn-light")
+        btnALl.classList.remove("btn-primary")
+        btnfinish.classList.remove("btn-primary")
+        btnALl.classList.add("btn-light")
+        btnfinish.classList.add("btn-light")
+
+        var containers = document.querySelectorAll(".course-check")
+        containers.forEach(function (container){
+            var kt = container.querySelector(".status").innerText
+            if(kt === "Finished"){
+                console.log("ok")
+                container.classList.add("none-active");
+            }
+            else {
+                container.classList.remove("none-active")
+            }
+        })
+
+    }
+
+    // find finish
+    btnfinish.onclick = function (){
+        btnfinish.classList.add("btn-primary")
+        btnfinish.classList.remove("btn-light")
+        btnALl.classList.remove("btn-primary")
+        btnUnfinished.classList.remove("btn-primary")
+        btnALl.classList.add("btn-light")
+        btnUnfinished.classList.add("btn-light")
+
+        var containers = document.querySelectorAll(".course-check")
+        containers.forEach(function (container){
+            var kt = container.querySelector(".status").innerText
+            if(kt === "Unfinished"){
+                console.log("ok")
+                container.classList.add("none-active")
+            }
+            else {
+                container.classList.remove("none-active")
+            }
+        })
+    }
+
+</script>
 
 <!-- third party js -->
 <script src="../assets/js/vendor/apexcharts.min.js"></script>

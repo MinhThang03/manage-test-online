@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Enumeration;
 import java.util.ResourceBundle;
 
 @WebServlet(value = "/recover-password")
@@ -61,7 +62,16 @@ public class RecoverPasswordController extends HttpServlet {
         if (action != null && action.equals("recover")) {
             String email = req.getParameter("email");
             accountService = new AccountService();
-            int check = accountService.recoverPassword(email);
+            Enumeration headerNames = req.getHeaderNames();
+            String contextfile="";
+            while (headerNames.hasMoreElements()){
+                String paramName = (String) headerNames.nextElement();
+                if(paramName.equals("host")){
+                    contextfile = req.getHeader(paramName);
+                    break;
+                }
+            }
+            int check = accountService.recoverPassword(email, contextfile);
             if (check == 1) {
                 resp.sendRedirect(req.getContextPath()+"/recover-password?message=email_message_sent_successfully&alert=success");
             } else if (check == - 1) {

@@ -15,7 +15,7 @@ public interface IAccountService {
     boolean registerAccount(AccountDTO account);
     Integer countTotalStudent();
     Boolean updatePassword(AccountDTO accountDTO);
-    Integer recoverPassword(String email);
+    Integer recoverPassword(String email, String contexfile);
     Integer resetPassword(String username, String password, String strDateLink);
 
 }

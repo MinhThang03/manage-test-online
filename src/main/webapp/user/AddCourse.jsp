@@ -213,8 +213,7 @@
                                                     Course Name: ${item.courseName}
                                                 </h4>
                                                 <h6 style="font-size:  10px;">
-                                                        <%--Description about Course--%>
-                                                        ${item.description};
+                                                    Description: ${item.description}
                                                 </h6>
 
                                             </div>
