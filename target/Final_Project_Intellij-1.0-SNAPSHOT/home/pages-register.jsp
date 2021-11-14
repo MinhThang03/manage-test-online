@@ -51,6 +51,9 @@
                             <c:if test="${not empty messageResponse}">
                                 <div class="alert alert-${alert} mb-3" role="alert">
                                         ${messageResponse}
+                                    <c:if test="${requestScope.alert.equals('danger')}">
+                                        - Email or User Name already exists
+                                    </c:if>
                                 </div>
                             </c:if>
                             <div class="mb-3">

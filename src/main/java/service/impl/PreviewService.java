@@ -48,12 +48,15 @@ public class PreviewService implements IPreviewService {
     public List<PreviewDTO> findByUserId(Integer userid) {
         List<Preview> list = iPreviewDAO.findByUserId(userid);
         List<PreviewDTO> previewDTOS = new ArrayList<>();
-        for (Preview preview: list
-             ) {
-            PreviewDTO previewDTO = previewConverter.toDto(preview);
-            previewDTOS.add(previewDTO);
+        if(list != null){
+            for (Preview preview: list
+            ) {
+                PreviewDTO previewDTO = previewConverter.toDto(preview);
+                previewDTOS.add(previewDTO);
+            }
+            return previewDTOS;
         }
-        return previewDTOS;
+        return null;
     }
 
     @Override

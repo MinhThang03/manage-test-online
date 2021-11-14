@@ -80,7 +80,9 @@ public class ViewQuesionController extends HttpServlet {
 
                 List<QuestionDTO> questionDTOList = questionService.getListQuestionDTOByExamId(questionDTO.getExamID());
                 SessionUtil.getInstance().putValue(request, "LISTQUESTION", questionDTOList);
+                Integer courseId = iExamService.getCourseIdByExamId(questionDTOList.get(0).getExamID());
                 SessionUtil.getInstance().putValue(request, "LISTCURRENTQUESTION", questionDTOCurrentList);
+                request.setAttribute("courseId", courseId);
                 request.setAttribute("question", questionDTO);
                 RequestDispatcher rd = request.getRequestDispatcher("/user/practise.jsp");
                 rd.forward(request, response);
@@ -101,6 +103,8 @@ public class ViewQuesionController extends HttpServlet {
         QuestionDTO questionDTO = FormUtil.toModel(QuestionDTO.class, request);
         String submit = request.getParameter("submittype");
 
+        Integer courseId = iExamService.getCourseIdByExamId(questionDTO.getExamID());
+
         if (submit.equals("")) {
             double score = iScoreService.calculateScore(questionDTOList);
             Integer userId = ((AccountDTO) SessionUtil.getInstance().getValue(request, "USERMODEL")).getId();
@@ -113,7 +117,7 @@ public class ViewQuesionController extends HttpServlet {
 
             if (iScoreService.insertScore(scoreDTO)) {
                 if (iPreviewService.insertListPreviewWithQuestion(questionDTOList, userId)) {
-                    Integer courseId = iExamService.getCourseIdByExamId(examId);
+
                     SessionUtil.getInstance().removeValue(request, "LISTQUESTION");
                     SessionUtil.getInstance().removeValue(request, "LISTCURRENTQUESTION");
                     String url = "/user-exam?courseId=" + courseId.toString();
@@ -133,6 +137,7 @@ public class ViewQuesionController extends HttpServlet {
             SessionUtil.getInstance().putValue(request, "LISTCURRENTQUESTION", questionDTOCurrentList);
             SessionUtil.getInstance().putValue(request, "LISTQUESTION", questionDTOList);
 
+            request.setAttribute("courseId", courseId);
             request.setAttribute("question", questionDTO);
             RequestDispatcher rd = request.getRequestDispatcher("/user/practise.jsp");
             rd.forward(request, response);

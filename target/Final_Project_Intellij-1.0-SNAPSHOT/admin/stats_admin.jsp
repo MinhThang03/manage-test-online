@@ -34,7 +34,7 @@
     <div class="leftside-menu">
 
         <!-- LOGO -->
-        <a href="<c:url value="../index.jsp"/>" class="logo text-center logo-light">
+        <a href="<c:url value="/admin-home"/>" class="logo text-center logo-light">
                     <span class="logo-lg">
                         <img src="<c:url value = "../assets/images/logo.png"/>" alt="" height="16">
                     </span>
@@ -44,7 +44,7 @@
         </a>
 
         <!-- LOGO -->
-        <a href="<c:url value="../index.jsp"/>" class="logo text-center logo-dark">
+        <a href="<c:url value="/admin-home"/>" class="logo text-center logo-dark">
                     <span class="logo-lg">
 
                         <img src="<c:url value = "../assets/images/logo-dark.png"/>" alt="" height="16">
@@ -114,7 +114,7 @@
     <div class="content-page">
         <div class="content">
             <!-- Topbar Start -->
-            <div class="navbar-custom">
+            <%--<div class="navbar-custom">
                 <ul class="list-unstyled topbar-menu float-end mb-0">
                     <li class="dropdown notification-list d-lg-none">
                         <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button"
@@ -176,6 +176,70 @@
                         </div>
                     </form>
                 </div>
+            </div>--%>
+            <div class="navbar-custom">
+                <ul class="list-unstyled topbar-menu float-end mb-0">
+                    <li class="dropdown notification-list d-lg-none">
+                        <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            <i class="dripicons-search noti-icon"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-animated dropdown-lg p-0">
+                            <form class="p-3">
+                                <input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
+                            </form>
+                        </div>
+                    </li>
+
+
+                    <li class="dropdown notification-list">
+                        <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                    <span class="account-user-avatar">
+                                        <c:if test="${USERMODEL.getUrlAvatar() != null}">
+                                            <img src="${USERMODEL.getUrlAvatar()}" alt="user-image" class="rounded-circle">
+                                        </c:if>
+                                        <c:if test="${USERMODEL.getUrlAvatar() == null}">
+                                            <img src="<c:url value = "../assets/images/users/avatar-1.jpg"/>" alt="user-image" class="rounded-circle">
+                                        </c:if>
+                                    </span>
+                            <span>
+                                        <span class="account-user-name">${USERMODEL.fullname}</span>
+                                        <span class="account-position">Admin</span>
+                                    </span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
+                            <!-- item-->
+                            <div class=" dropdown-header noti-title">
+                                <h6 class="text-overflow m-0">Welcome !</h6>
+                            </div>
+
+                            <!-- item-->
+                            <a href="/admin-profile" class="dropdown-item notify-item">
+                                <i class="mdi mdi-account-circle me-1"></i>
+                                <span>My Account</span>
+                            </a>
+
+
+                            <!-- item-->
+                            <a href="<c:url value="/view-login?action=logout"/>" class="dropdown-item notify-item">
+                                <i class="mdi mdi-logout me-1"></i>
+                                <span>Logout</span>
+                            </a>
+                        </div>
+                    </li>
+
+                </ul>
+                <button class="button-menu-mobile open-left">
+                    <i class="mdi mdi-menu"></i>
+                </button>
+                <div class="app-search dropdown d-none d-lg-block">
+                    <form>
+                        <div class="input-group">
+                            <input type="text" class="form-control dropdown-toggle" placeholder="Search..." id="top-search">
+                            <span class="mdi mdi-magnify search-icon"></span>
+                            <button class="input-group-text btn-primary" type="submit">Search</button>
+                        </div>
+                    </form>
+                </div>
             </div>
             <!-- end Topbar -->
 
@@ -187,9 +251,9 @@
                     <div class="col-12">
                         <div class="page-title-box">
                             <div class="page-title-right">
-                                <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Hyper</a></li>
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboard</a></li>
+                                <ol class="breadcrumb m-0"><%--
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Hyper</a></li>--%>
+                                    <li class="breadcrumb-item"><a href="">Dashboard</a></li>
                                     <li class="breadcrumb-item active">Projects</li>
                                 </ol>
                             </div>

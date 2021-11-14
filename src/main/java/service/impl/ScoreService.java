@@ -26,7 +26,8 @@ public class ScoreService implements IScoreService {
                 count++;
             }
         }
-        return (10/sum)*count;
+        double score = (10/sum)*count;
+        return (double)Math.round(score*100)/100;
     }
 
     @Override

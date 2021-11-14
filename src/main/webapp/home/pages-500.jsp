@@ -34,7 +34,7 @@
                 <div class="card">
                     <!-- Logo -->
                     <div class="card-header pt-4 pb-4 text-center bg-primary">
-                        <a href="<c:url value = "home.jsp"/>">
+                        <a href="<c:url value = "/home/home.jsp"/>">
                             <span><img src="<c:url value = "../assets/images/logo.png"/>" alt="" height="18"></span>
                         </a>
                     </div>
@@ -49,7 +49,7 @@
                             <h4 class="text-uppercase text-danger mt-3">Internal Server Error</h4>
                             <p class="text-muted mt-3">Why not try refreshing your page? or you can contact <a href="" class="text-muted"><b>Support</b></a></p>
 
-                            <a class="btn btn-info mt-3" href="   <c:url value = "home.jsp"/>"><i class="mdi mdi-reply"></i> Return Home</a>
+                            <a class="btn btn-info mt-3" href="<c:url value = "/home/home.jsp"/>"><i class="mdi mdi-reply"></i> Return Home</a>
                         </div>
 
                     </div> <!-- end card-body-->

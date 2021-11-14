@@ -32,7 +32,7 @@
     <div class="leftside-menu">
 
         <!-- LOGO -->
-        <a href="<c:url value = "/index.jsp"/>" class="logo text-center logo-light">
+        <a href="<c:url value = "/user-home"/>" class="logo text-center logo-light">
                     <span class="logo-lg">
                         <img src="<c:url value = "/assets/images/logo.png"/>" alt="" height="16">
                     </span>
@@ -42,7 +42,7 @@
         </a>
 
         <!-- LOGO -->
-        <a href="<c:url value = "../index.jsp"/>" class="logo text-center logo-dark">
+        <a href="<c:url value = "user-home"/>" class="logo text-center logo-dark">
                     <span class="logo-lg">
                         <img src="<c:url value = "../assets/images/logo-dark.png"/>" alt="" height="16">
                     </span>
@@ -56,14 +56,14 @@
             <!--- Sidemenu -->
             <ul class="side-nav">
                 <li class="side-nav-item">
-                    <a href="<c:url value = "MyCourse.jsp"/>" class="side-nav-link">
+                    <a href="<c:url value = "/user-home"/>" class="side-nav-link">
                         <i class="uil-book-reader"></i>
                         <span> My Courses </span>
                     </a>
                 </li>
 
                 <li class="side-nav-item">
-                    <a href="<c:url value = "AddCourse.jsp"/>" class="side-nav-link">
+                    <a href="<c:url value = "/user-add-course"/>" class="side-nav-link">
                         <i class=" uil-parcel"></i>
                         <span>  Courses </span>
                     </a>
@@ -260,7 +260,7 @@
 
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email</label>
-                                    <input name="email" id="email" type="email" class="form-control" aria-describedby="emailHelp" placeholder="Email"  value="${USERMODEL.getEmail()}" required>
+                                    <input name="email" id="email" type="email" class="form-control" aria-describedby="emailHelp" placeholder="Email"  value="${USERMODEL.getEmail()}" required readonly>
                                     <div class="valid-feedback">
                                         Looks good!
                                     </div>

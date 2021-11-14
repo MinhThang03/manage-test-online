@@ -31,14 +31,20 @@ public class ExamUser extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Integer courseId = Integer.parseInt(request.getParameter("courseId"));
         List<ExamDTO> examDTOS = iExamService.findAllQuestionsByCourseID(courseId);
-        ExamDTO examDTO = new ExamDTO();
-        examDTO.setListResult(examDTOS);
-        Integer userId = ((AccountDTO) SessionUtil.getInstance().getValue(request,"USERMODEL")).getId();
-        iExamService.setScoreForListExam(examDTO,userId);
+        if(examDTOS == null){
+            response.sendRedirect(request.getContextPath() + "/user-home");
+        }
+        else {
+            ExamDTO examDTO = new ExamDTO();
+            examDTO.setListResult(examDTOS);
+            Integer userId = ((AccountDTO) SessionUtil.getInstance().getValue(request,"USERMODEL")).getId();
+            iExamService.setScoreForListExam(examDTO,userId);
 
-        request.setAttribute("exam", examDTO);
-        RequestDispatcher rd = request.getRequestDispatcher("/user/Exam.jsp");
-        rd.forward(request,response);
+            request.setAttribute("exam", examDTO);
+            RequestDispatcher rd = request.getRequestDispatcher("/user/Exam.jsp");
+            rd.forward(request,response);
+        }
+
     }
 
     @Override

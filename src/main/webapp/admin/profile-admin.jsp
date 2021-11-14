@@ -31,7 +31,7 @@
     <div class="leftside-menu">
 
         <!-- LOGO -->
-        <a href="<c:url value="../index.jsp"/>" class="logo text-center logo-light">
+        <a href="<c:url value="/admin-home"/>" class="logo text-center logo-light">
                     <span class="logo-lg">
                         <img src="<c:url value = "../assets/images/logo.png"/>" alt="" height="16">
                     </span>
@@ -56,7 +56,7 @@
             <!--- Sidemenu -->
             <ul class="side-nav">
 
-                <li class="side-nav-item menuitem-active">
+                <li class="side-nav-item">
                     <a href="<c:url value = "/admin-home"/>" class="side-nav-link">
                         <%--                <a href="<c:url value = "apps-calendar.jsp"/>" class="side-nav-link">--%>
                         <i class="uil-graph-bar"></i>
@@ -196,6 +196,13 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box">
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0"><%--
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Hyper</a></li>--%>
+                                <li class="breadcrumb-item"><a href="<c:url value="/admin-home"/> ">Dashboard</a></li>
+                                <li class="breadcrumb-item active">My Profile</li>
+                            </ol>
+                        </div>
                         <h4 class="page-title">My profile</h4>
                     </div>
                 </div>

@@ -24,10 +24,10 @@ public class ManagerCourseController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ManagerCourseDTO courseDTO = FormUtil.toModel(ManagerCourseDTO.class, request);
         if(managerCourseService.insertCourse(courseDTO)){
-            response.sendRedirect(request.getContextPath()+"/CourseController?message=insert_success");
+            response.sendRedirect(request.getContextPath()+"/CourseController?message=insert_success&alert=success");
         }
         else{
-            response.sendRedirect(request.getContextPath()+"/CourseController?message=error_system");
+            response.sendRedirect(request.getContextPath()+"/CourseController?message=error_system&alert=error");
         }
     }
 }

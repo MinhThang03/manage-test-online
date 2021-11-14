@@ -65,11 +65,15 @@ public class ExamService implements IExamService {
     public List<ExamDTO> findAllQuestionsByCourseID(Integer courseId) {
         List<Exam> examDTOS = examDAO.findAllQuestionsByCourseID(courseId);
         List<ExamDTO> list = new ArrayList<>();
-        for (Exam exam: examDTOS) {
-            ExamDTO examDTO = examConverter.toDto(exam);
-            list.add(examDTO);
+        if(examDTOS != null){
+            for (Exam exam: examDTOS) {
+                ExamDTO examDTO = examConverter.toDto(exam);
+                list.add(examDTO);
+            }
+            return list;
         }
-        return list;
+        return null;
+
     }
 
     @Override

@@ -13,7 +13,7 @@ function thongBao(classElm){
                     icon: 'success',
                     title: 'Tải hình ảnh lên thành công'
                 })
-            }, 1000);
+            }, 5000);
             //alert('success')
 
         });

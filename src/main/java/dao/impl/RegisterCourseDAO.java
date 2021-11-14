@@ -28,4 +28,22 @@ public class RegisterCourseDAO extends AbstractDAO<RegisterCourse>  implements I
         }
         return result;
     }
+    @Override
+    public List<RegisterCourse> findByCourseId(Integer courseId) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        List<RegisterCourse> result = null;
+        try {
+            Query<RegisterCourse> query = session.createQuery("Select u FROM RegisterCourse u WHERE u.course.id = :id");
+            query.setParameter("id", courseId);
+            if(query.list().size() != 0){
+                result=query.getResultList();
+            }
+        }catch (Exception e) {
+            System.out.println(e.toString());
+            session.getTransaction().rollback();
+        }finally {
+            session.close();
+        }
+        return result;
+    }
 }

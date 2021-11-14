@@ -22,8 +22,7 @@ import java.util.Date;
 
 public class AccountService implements IAccountService {
 
-    @Inject
-    private IAccountDAO accountDAO;
+    private IAccountDAO accountDAO = new AccountDAO();
     private AccountConverter accountConverter = new AccountConverter();
 
     @Override
