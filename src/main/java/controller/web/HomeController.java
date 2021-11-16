@@ -53,7 +53,6 @@ public class HomeController extends HttpServlet {
         if (action != null && action.equals("login")) {
             AccountDTO accountDTO = FormUtil.toModel(AccountDTO.class, request);
             accountDTO = accountService.findByUsernamePassword(accountDTO.getUsername(), accountDTO.getPass());
-            AccountDTO ac = accountDTO;
             if (accountDTO != null) {
                 SessionUtil.getInstance().putValue(request, "USERMODEL", accountDTO);
                 if (accountDTO.getRolename().equals("admin")) {

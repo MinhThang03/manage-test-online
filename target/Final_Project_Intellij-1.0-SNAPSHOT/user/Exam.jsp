@@ -201,30 +201,31 @@
                 <!-- end row-->
 
                 <div class="row">
+                    <c:forEach var="item" items="${exam.listResult}">
                     <div class="col-md-6 col-xxl-3">
                         <!-- project card -->
                         <div class="card d-block car-hover">
                             <div class="card-body">
-                                <c:forEach var="item" items="${exam.listResult}">
-                                    <!-- project title-->
-                                    <h4 class="mt-0 text-title">
-                                            ${item.examName}
-                                    </h4>
-                                    <c:if test="${empty item.score}">
-                                        <div class="badge bg-secondary  mb-3">Unfinished</div>
-                                    </c:if>
-                                    <c:if test="${not empty item.score}">
-                                        <div class="badge bg-success mb-3">Finished</div>
-                                    </c:if>
+
+                                <!-- project title-->
+                                <h4 class="mt-0 text-title">
+                                        ${item.examName}
+                                </h4>
+                                <c:if test="${empty item.score}">
+                                    <div class="badge bg-secondary  mb-3">Unfinished</div>
+                                </c:if>
+                                <c:if test="${not empty item.score}">
+                                    <div class="badge bg-success mb-3">Finished</div>
+                                </c:if>
 
 
-                                    <!-- project detail-->
-                                    <p class="mb-1" style="display: flex; justify-content: space-between;">
+                                <!-- project detail-->
+                                <p class="mb-1" style="display: flex; justify-content: space-between;">
                                     <span class="pe-2 text-nowrap mb-2 d-inline-block">
                                         <i class="mdi mdi-format-list-checks text-muted"></i>
                                         <b>${item.countCorrectQuestion}/${item.totalQuestion}</b> Correct
                                     </span>
-                                        <span class="text-nowrap mb-2 d-inline-block">
+                                    <span class="text-nowrap mb-2 d-inline-block">
                                         <i class="uil uil-heart-alt text-muted"></i>
                                             <c:if test="${empty item.score}">
                                                 <b>0</b> Points
@@ -234,27 +235,28 @@
                                             </c:if>
 
                                     </span>
-                                    </p>
-                                    <div style="display: flex; justify-content: space-between;">
-                                        <a href="<c:out value="/user-view-question?examID=${item.id}&type=practise&page=1&maxPageItem=5&sortName=questionNo&sortBy=asc"/>"
-                                           type="button" class="btn btn-success"
-                                           style="min-width: 110px;">Exam</a>
-                                        <c:if test="${empty item.score}">
-                                            <a type="button" class="btn btn-secondary" style="min-width: 110px;"
-                                               disabled>
-                                                Review
-                                            </a>
-                                        </c:if>
-                                        <c:if test="${not empty item.score}">
-                                            <a type="button" class="btn btn-secondary" style="min-width: 110px;"
-                                               href="<c:out value="/user-view-question?examID=${item.id}&type=preview&page=1&maxPageItem=5&sortName=questionNo&sortBy=asc"/>">
-                                               Review
-                                            </a>
-                                        </c:if>
-                                    </div>
-                                </c:forEach>
+                                </p>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <a href="<c:out value="/user-view-question?examID=${item.id}&type=practise&page=1&maxPageItem=5&sortName=questionNo&sortBy=asc"/>"
+                                       type="button" class="btn btn-success"
+                                       style="min-width: 110px;">Exam</a>
+                                    <c:if test="${empty item.score}">
+                                        <a type="button" class="btn btn-secondary" style="min-width: 110px;"
+                                           disabled>
+                                            Review
+                                        </a>
+                                    </c:if>
+                                    <c:if test="${not empty item.score}">
+                                        <a type="button" class="btn btn-secondary" style="min-width: 110px;"
+                                           href="<c:out value="/user-view-question?examID=${item.id}&type=preview&page=1&maxPageItem=5&sortName=questionNo&sortBy=asc"/>">
+                                            Review
+                                        </a>
+                                    </c:if>
+                                </div>
+
                             </div> <!-- end card-body-->
                         </div> <!-- end card-->
+                        </c:forEach>
                     </div> <!-- end col -->
 
 
