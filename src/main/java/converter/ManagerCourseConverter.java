@@ -13,6 +13,7 @@ public class ManagerCourseConverter {
         result.setCourseName(entity.getCourseName());
         result.setCourseImage(entity.getCourseImage());
         result.setDescription(entity.getDescription());
+        result.setPrice(entity.getPrice());
         return result;
     }
     public Course toEntity(ManagerCourseDTO dto){
@@ -24,6 +25,7 @@ public class ManagerCourseConverter {
         result.setCourseName(dto.getCourseName());
         result.setCourseImage(dto.getCourseImage());
         result.setDescription(dto.getDescription());
+        result.setPrice(dto.getPrice());
         return result;
     }
 }

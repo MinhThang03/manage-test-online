@@ -30,16 +30,17 @@
     <link href="../assets/css/app.min.css" rel="stylesheet" type="text/css" id="light-style">
     <link href="../assets/css/app-dark.min.css" rel="stylesheet" type="text/css" id="dark-style">
     <style>
-        .car-hover:hover{
+        .car-hover:hover {
             transform: translateY(-4px) translateX(4px);
-            box-shadow: rgba(0,0,0,0.1);
+            box-shadow: rgba(0, 0, 0, 0.1);
         }
     </style>
 
 
 </head>
 
-<body class="loading" data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": false}'>
+<body class="loading"
+      data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": false}'>
 <!-- Begin page -->
 <div class="wrapper">
     <!-- ========== Left Sidebar Start ========== -->
@@ -110,24 +111,50 @@
             <div class="navbar-custom">
                 <ul class="list-unstyled topbar-menu float-end mb-0">
                     <li class="dropdown notification-list d-lg-none">
-                        <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button"
+                           aria-haspopup="false" aria-expanded="false">
                             <i class="dripicons-search noti-icon"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-animated dropdown-lg p-0">
                             <form class="p-3">
-                                <input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
+                                <input type="text" class="form-control" placeholder="Search ..."
+                                       aria-label="Recipient's username">
                             </form>
                         </div>
                     </li>
 
                     <li class="dropdown notification-list">
-                        <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle arrow-none" href="<c:url value="/ListCartController"/>"  role="button" aria-haspopup="false"
+                           aria-expanded="false">
+                            <i class="dripicons-cart noti-icon"> <span id="cartCounter" style="font-style: initial;
+    background-color: #777;
+    position: absolute;
+    bottom: 33px;
+display: inline-block;
+    padding: 0.1em 0.2em;
+    font-size: 0.6em;
+    font-weight: 700;
+    line-height: 1;
+    color: #ffff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;">0</span></i>
+
+                        </a>
+                    </li>
+
+                    <li class="dropdown notification-list">
+                        <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#"
+                           role="button" aria-haspopup="false" aria-expanded="false">
                                     <span class="account-user-avatar">
                                         <c:if test="${USERMODEL.getUrlAvatar() != null}">
-                                            <img src="${USERMODEL.getUrlAvatar()}" alt="user-image" class="rounded-circle">
+                                            <img src="${USERMODEL.getUrlAvatar()}" alt="user-image"
+                                                 class="rounded-circle">
                                         </c:if>
                                         <c:if test="${USERMODEL.getUrlAvatar() == null}">
-                                            <img src="<c:url value = "../assets/images/users/avatar-1.jpg"/>" alt="user-image" class="rounded-circle">
+                                            <img src="<c:url value = "../assets/images/users/avatar-1.jpg"/>"
+                                                 alt="user-image" class="rounded-circle">
                                         </c:if>
                                     </span>
                             <span>
@@ -162,7 +189,8 @@
                 <div class="app-search dropdown d-none d-lg-block">
                     <form>
                         <div class="input-group">
-                            <input type="text" class="form-control dropdown-toggle" placeholder="Search..." id="top-search">
+                            <input type="text" class="form-control dropdown-toggle" placeholder="Search..."
+                                   id="top-search">
                             <span class="mdi mdi-magnify search-icon"></span>
                             <button class="input-group-text btn-primary" type="submit">Search</button>
                         </div>
@@ -186,7 +214,8 @@
 
                 <div class="row mb-2">
                     <div class="col-sm-4">
-                        <a href="<c:out value="/user-home"/>" class="btn btn-danger btn-rounded mb-3"><i class="uil-book-reader"></i> My Courses</a>
+                        <a href="<c:out value="/user-home"/>" class="btn btn-danger btn-rounded mb-3"><i
+                                class="uil-book-reader"></i> My Courses</a>
                     </div>
                 </div>
                 <!-- end row-->
@@ -194,38 +223,42 @@
                 <div class="row">
                     <c:forEach var="item" items="${requestScope.listCS}">
                         <div class="col-md-6 col-xxl-3">
-                            <form action="/Register-Course" method="POST">
                                 <!-- project card -->
                                 <div class="card d-block car-hover">
                                     <!-- project-thumbnail -->
                                     <div>
                                         <c:if test="${item.courseImage == null}">
-                                            <img class="card-img-top" src="../assets/images/projects/project-1.jpg" alt="project image cap">
+                                            <img class="card-img-top" src="../assets/images/projects/project-1.jpg"
+                                                 alt="project image cap">
                                         </c:if>
                                         <c:if test="${item.courseImage != null}">
-                                            <img class="card-img-top" style="max-height: 200px" src="${item.courseImage}" alt="project image cap">
+                                            <img class="card-img-top" style="max-height: 200px"
+                                                 src="${item.courseImage}" alt="project image cap">
                                         </c:if>
 
                                         <div class="card-body position-relative">
                                             <!-- project title-->
                                             <div class="mt-0 text-title">
-                                                <h4 >
+                                                <h4>
                                                     Course Name: ${item.courseName}
                                                 </h4>
                                                 <h6 style="font-size:  10px;">
                                                     Description: ${item.description}
+                                                </h6>
+                                                <h6 style="font-size:  10px;">
+                                                    Price: ${item.price}
                                                 </h6>
 
                                             </div>
                                             <input type="hidden" name="userID" value="${requestScope.account.id}">
                                             <input type="hidden" name="courseID" value="${item.id}">
                                             <!-- project progress-->
-                                            <button type="submit" class="btn btn-success col-12">Register</button>
+                                            <button  class="btn btn-success col-12" onclick="addToCart(${item.id},  '${item.courseName}', ${item.price})">Register</button>
                                         </div> <!-- end card-body-->
                                     </div>
                                 </div> <!-- end card-->
-                            </form>
-                        </div> <!-- end col -->
+                        </div>
+                        <!-- end col -->
                     </c:forEach>
                 </div>
                 <!-- end row-->
@@ -240,7 +273,8 @@
                     <div class="col-md-6">
                         <script>
                             document.write(new Date().getFullYear())
-                        </script> © FIT - Ho Chi Minh University of Technology and Education
+                        </script>
+                        © FIT - Ho Chi Minh University of Technology and Education
                     </div>
                     <div class="col-md-6">
                         <div class="text-md-end footer-links d-none d-md-block">
@@ -263,6 +297,39 @@
 <!-- END wrapper -->
 <div class="rightbar-overlay"></div>
 <!-- /End-bar -->
+<script>
+    function addToCart(id, name, price) {
+        fetch("/api/add-item-cart", {
+            method: 'post',
+            body: JSON.stringify({
+                "id": id,
+                "courseName": name,
+                "price": price
+            }),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(function(res) {
+            console.info(res)
+            return res.json()
+        }).then(function(data) {
+            console.info(data)
+            if (data.alertCart != null){
+                alert(data.alertCart);
+            }
+            else{
+                const counter = document.getElementById("cartCounter")
+
+                if (counter !== null){
+                    console.log(data.totalCart)
+                    counter.innerText = data.totalCart
+                }
+            }
+
+        })
+
+    }
+</script>
 
 <!-- bundle -->
 <script src="../assets/js/vendor.min.js"></script>
