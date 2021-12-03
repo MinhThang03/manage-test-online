@@ -1,4 +1,4 @@
-    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -67,8 +67,8 @@
                 transform: translate(50%, 120px);
             }
             .btn-upfile{
-/*                right: 0;
-                top: 160px;*/
+                /*                right: 0;
+                                top: 160px;*/
                 display: flex;
                 /*position: absolute;*/
             }
@@ -368,6 +368,7 @@
                                             <th>Course ID</th>
                                             <th>Course Name</th>
                                             <th>Description</th>
+                                            <th>Price</th>
                                             <%--<th>Update</th>
                                             <th>Admin Name</th>--%>
                                             <th>Action</th>
@@ -386,6 +387,7 @@
                                                     </div>
                                                 </td>
                                                 <td>${item.description}</td>
+                                                <td>${item.price}</td>
                                                 <td class="table-action" style="display: flex;justify-content: center">
                                                     <div class="rightbar-overlay " id ="update-course${item.id}" style=" background-color: rgba(0,0,0,0.05); opacity: 1;">
                                                         <div class="course-upload col-md-4" style="transform: translate(100%, 100px); color: #6c757d; background-color: #FFF;padding: 40px 0; border-radius: 4px;">
@@ -401,6 +403,13 @@
                                                                 <div class="mb-0">
                                                                     <label class="form-label" for="validationCustom04" style="margin-top: 16px;float:left;">Description</label>
                                                                     <input type="text" class="form-control" id="validationCustom04"value="${item.description}" placeholder="Description" required name="description">
+                                                                    <div class="valid-feedback">
+                                                                        Looks good!
+                                                                    </div>
+                                                                </div>
+                                                                <div class="mb-0">
+                                                                    <label class="form-label" for="validationCustom05" style="margin-top: 16px;float:left;">Price</label>
+                                                                    <input type="text" class="form-control" id="validationCustom05"value="${item.price}" placeholder="Price" required name="price">
                                                                     <div class="valid-feedback">
                                                                         Looks good!
                                                                     </div>
@@ -460,84 +469,84 @@
                                                 <td>${exam.id}</td>
                                                 <td>${exam.course.courseName}</td>
                                                 <td>
-                                                    ${exam.examName}
+                                                        ${exam.examName}
                                                 </td>
 
                                                 <td class="table-action" style="display: flex; justify-content: center">
                                                     <div class="rightbar-overlay" id ="file${exam.id}" style=" background-color: rgba(0,0,0,0.05); opacity: 1;">
-                                                        <%--<div class="file-upload col-md-6 container-file">
-                                                            <!-- File Upload -->
-                                                            <form action="/QuestionController?action=insertFile" method="post" class="dropzone" id="myAwesomeDropzone" data-plugin="dropzone" data-previews-container="#file-previews"
-                                                                  data-upload-preview-template="#uploadPreviewTemplate">
-                                                                <div class="fallback">
-                                                                    <input name="file" type="file" multiple accept=".xlsx" required/>
-                                                                </div>
-    
-                                                                <div class="dz-message needsclick">
-                                                                    <i class="h1 text-muted dripicons-cloud-upload"></i>
-                                                                    <h3>Drop files here or click to upload.</h3>
-                                                                    <span class="text-muted font-13">(This is just a demo dropzone. Selected files are
-                                                                    <strong>not</strong> actually uploaded.)</span>
-                                                                </div>
-                                                                <input type="hidden" name="id" value="${exam.id}}">
-                                                                <input type="hidden" name="examName" value="${exam.examName}">
-                                                                <input type="hidden" name="courseID" value="${exam.course.id}">
-                                                                <input type="hidden" name="fileCheck" value="true">
-
-                                                                <div class="btn btn-upfile" >
-                                                                    <button type="button" id = "cancel-file" onclick="hiddenForm('#file${exam.id}','.file-previews${exam.id}')" class="btn btn-danger" style="margin: 0 10px">Cancel</button>
-                                                                    <button type="submit" class="btn btn-success">Upload</button>
-                                                                </div>
-
-                                                            </form>
-
-
-                                                            <!-- Preview -->
-                                                            <div data-bs-spy="scroll" class="scrollspy-example" style="height: 320px;">
-                                                                <div class="dropzone-previews mt-3 file-previews${exam.id}" id="file-previews"></div>
-                                                            </div>
-
-                                                            <!-- file preview template -->
-                                                            <div class="d-none" id="uploadPreviewTemplate">
-                                                                <div class="card mt-1 mb-0 shadow-none border">
-                                                                    <div class="p-2">
-                                                                        <div class="row align-items-center">
-                                                                            <div class="col-auto">
-                                                                                <img data-dz-thumbnail src="#" class="avatar-sm rounded bg-light" alt="">
-                                                                            </div>
-                                                                            <div class="col ps-0">
-                                                                                <a href="javascript:void(0);" class="text-muted fw-bold" data-dz-name></a>
-                                                                                <p class="mb-0" data-dz-size></p>
-                                                                            </div>
-                                                                            <div class="col-auto">
-                                                                                <!-- Button -->
-                                                                                <a href="" class="btn btn-link btn-lg text-muted" data-dz-remove>
-                                                                                    <i class="dripicons-cross"></i>
-                                                                                </a>
-                                                                            </div>
-                                                                        </div>
+                                                            <%--<div class="file-upload col-md-6 container-file">
+                                                                <!-- File Upload -->
+                                                                <form action="/QuestionController?action=insertFile" method="post" class="dropzone" id="myAwesomeDropzone" data-plugin="dropzone" data-previews-container="#file-previews"
+                                                                      data-upload-preview-template="#uploadPreviewTemplate">
+                                                                    <div class="fallback">
+                                                                        <input name="file" type="file" multiple accept=".xlsx" required/>
                                                                     </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>--%>
-                                                            <div class="course-upload col-md-4" style="transform: translate(100%, 100px); color: #6c757d; background-color: #FFF;padding: 40px 0; border-radius: 4px;">
-                                                                <form class="needs-validation col-md-6" novalidate enctype="multipart/form-data" style="transform: translate(50%, 0);" method="post" action="/QuestionController?action=insertFile">
-                                                                    <div style="margin-top: 16px; display: flex; align-items: flex-start;flex-direction: column">
-                                                                        <label class="form-label">Insert Exam: </label>
-                                                                        <div style="display: flex; justify-content: center; align-items: center">
-                                                                            <input type="file" name="file-exam" id="upload-file${exam.id}"  accept=".xlsx" style="margin: 16px 0;">
-                                                                        </div>
+
+                                                                    <div class="dz-message needsclick">
+                                                                        <i class="h1 text-muted dripicons-cloud-upload"></i>
+                                                                        <h3>Drop files here or click to upload.</h3>
+                                                                        <span class="text-muted font-13">(This is just a demo dropzone. Selected files are
+                                                                        <strong>not</strong> actually uploaded.)</span>
                                                                     </div>
-                                                                    <input type="hidden" name="id" value="${exam.id}">
+                                                                    <input type="hidden" name="id" value="${exam.id}}">
                                                                     <input type="hidden" name="examName" value="${exam.examName}">
                                                                     <input type="hidden" name="courseID" value="${exam.course.id}">
                                                                     <input type="hidden" name="fileCheck" value="true">
-                                                                    <div class="mb-0" style="display: flex">
-                                                                        <button type="button" id = "cancel-file${exam.id}" onclick="hiddenForm('#file${exam.id}','#upload-file${exam.id}')" class="btn btn-danger" style="margin-right: 4px;min-width: 100px">Cancel</button>
-                                                                        <button class="btn btn-success" type="submit" style="min-width: 100px;">Submit</button>
+
+                                                                    <div class="btn btn-upfile" >
+                                                                        <button type="button" id = "cancel-file" onclick="hiddenForm('#file${exam.id}','.file-previews${exam.id}')" class="btn btn-danger" style="margin: 0 10px">Cancel</button>
+                                                                        <button type="submit" class="btn btn-success">Upload</button>
                                                                     </div>
+
                                                                 </form>
-                                                            </div>
+
+
+                                                                <!-- Preview -->
+                                                                <div data-bs-spy="scroll" class="scrollspy-example" style="height: 320px;">
+                                                                    <div class="dropzone-previews mt-3 file-previews${exam.id}" id="file-previews"></div>
+                                                                </div>
+
+                                                                <!-- file preview template -->
+                                                                <div class="d-none" id="uploadPreviewTemplate">
+                                                                    <div class="card mt-1 mb-0 shadow-none border">
+                                                                        <div class="p-2">
+                                                                            <div class="row align-items-center">
+                                                                                <div class="col-auto">
+                                                                                    <img data-dz-thumbnail src="#" class="avatar-sm rounded bg-light" alt="">
+                                                                                </div>
+                                                                                <div class="col ps-0">
+                                                                                    <a href="javascript:void(0);" class="text-muted fw-bold" data-dz-name></a>
+                                                                                    <p class="mb-0" data-dz-size></p>
+                                                                                </div>
+                                                                                <div class="col-auto">
+                                                                                    <!-- Button -->
+                                                                                    <a href="" class="btn btn-link btn-lg text-muted" data-dz-remove>
+                                                                                        <i class="dripicons-cross"></i>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>--%>
+                                                        <div class="course-upload col-md-4" style="transform: translate(100%, 100px); color: #6c757d; background-color: #FFF;padding: 40px 0; border-radius: 4px;">
+                                                            <form class="needs-validation col-md-6" novalidate enctype="multipart/form-data" style="transform: translate(50%, 0);" method="post" action="/QuestionController?action=insertFile">
+                                                                <div style="margin-top: 16px; display: flex; align-items: flex-start;flex-direction: column">
+                                                                    <label class="form-label">Insert Exam: </label>
+                                                                    <div style="display: flex; justify-content: center; align-items: center">
+                                                                        <input type="file" name="file-exam" id="upload-file${exam.id}"  accept=".xlsx" style="margin: 16px 0;">
+                                                                    </div>
+                                                                </div>
+                                                                <input type="hidden" name="id" value="${exam.id}">
+                                                                <input type="hidden" name="examName" value="${exam.examName}">
+                                                                <input type="hidden" name="courseID" value="${exam.course.id}">
+                                                                <input type="hidden" name="fileCheck" value="true">
+                                                                <div class="mb-0" style="display: flex">
+                                                                    <button type="button" id = "cancel-file${exam.id}" onclick="hiddenForm('#file${exam.id}','#upload-file${exam.id}')" class="btn btn-danger" style="margin-right: 4px;min-width: 100px">Cancel</button>
+                                                                    <button class="btn btn-success" type="submit" style="min-width: 100px;">Submit</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
                                                     </div>
                                                     <button type="button" class="action-icon insert-file" onclick="addActive('#file${exam.id}')"  style="border-radius: 50%; margin-right: 4px" ><i class="mdi mdi-plus"></i></button>
                                                     <form action="/QuestionController?action=deleteFile" method="post">
@@ -712,6 +721,13 @@
                     Looks good!
                 </div>
             </div>
+            <div class="mb-0">
+                <label class="form-label" for="validationCustom10" style="margin-top: 16px;">Price</label>
+                <input type="text" class="form-control" id="validationCustom10" placeholder="Price" required name="price">
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
             <div style="margin-top: 16px; ">
                 <label class="form-label" for="validationCustom02">Course Image: </label>
                 <div id="image-grid" >
@@ -804,7 +820,7 @@
 
 <script>
     uploadFirebase('file-uploader', 'send','urlImage')
-   // uploadFirebase('update-file-uploader', 'update-send','update-urlImage')
+    // uploadFirebase('update-file-uploader', 'update-send','update-urlImage')
 </script>
 
 <script>
