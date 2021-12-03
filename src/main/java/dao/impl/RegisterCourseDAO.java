@@ -46,4 +46,23 @@ public class RegisterCourseDAO extends AbstractDAO<RegisterCourse>  implements I
         }
         return result;
     }
+
+    @Override
+    public List<Object[]> CountUserIdGroupByCourseId() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        List<Object[]> result = null;
+        try {
+            Query<Object[]> query = session.createQuery("Select count(u.user.id) , u.course.id  FROM RegisterCourse u group by u.course.id");
+            if(query.list().size() != 0){
+                result=query.getResultList();
+            }
+        }catch (Exception e) {
+            System.out.println(e.toString());
+            session.getTransaction().rollback();
+        }finally {
+            session.close();
+        }
+
+        return result;
+    }
 }

@@ -7,4 +7,5 @@ import java.util.List;
 public interface IRegisterCourseDAO extends GenericDAO<RegisterCourse> {
     List<RegisterCourse> findRegisterByCourseId(Integer courseId);
     List<RegisterCourse> findByCourseId(Integer courseId);
+    List<Object[]> CountUserIdGroupByCourseId();
 }

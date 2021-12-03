@@ -139,7 +139,8 @@ display: inline-block;
     text-align: center;
     white-space: nowrap;
     vertical-align: baseline;
-    border-radius: 0.25rem;">0</span></i>
+    border-radius: 0.25rem;"><c:if test="${CARTKEY != null}">${CARTKEY.size()}</c:if>
+                            <c:if test="${CARTKEY == null}"> 0</c:if></span></i>
 
                         </a>
                     </li>
