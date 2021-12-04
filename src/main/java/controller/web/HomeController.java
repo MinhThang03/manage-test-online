@@ -47,6 +47,7 @@ public class HomeController extends HttpServlet {
             }
         } else if (action != null && action.equals("logout")) {
             SessionUtil.getInstance().removeValue(request, "USERMODEL");
+            SessionUtil.getInstance().removeValue(request, "CARTKEY");
             response.sendRedirect(request.getContextPath()+"/view-home");
         } else {
             RequestDispatcher rd = request.getRequestDispatcher("/home/home.jsp");
