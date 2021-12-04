@@ -16,8 +16,7 @@
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="Coderthemes" name="author" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="<c:url value = "../assets/images/favicon.ico"/>">
-
+    <link rel="shortcut icon" href="../assets/images/title.ico">
     <!-- App css -->
     <link href="<c:url value = "../assets/css/icons.min.css"/>" rel="stylesheet" type="text/css">
     <link href="<c:url value = "../assets/css/app.min.css"/>" rel="stylesheet" type="text/css" id="light-style">

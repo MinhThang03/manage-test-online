@@ -14,6 +14,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-school</title>
     <!-- Start of Async Drift Code -->
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="../assets/images/title.ico">
     <script>
         "use strict";
 
