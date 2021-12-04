@@ -27,4 +27,7 @@ public class Course {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "price")
+    private Float price;
+
 }

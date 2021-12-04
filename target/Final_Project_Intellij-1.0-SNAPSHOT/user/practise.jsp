@@ -36,40 +36,45 @@
     <div class="leftside-menu">
 
         <!-- LOGO -->
-        <a href="<c:out value="/"/> " class="logo text-center logo-light">
+        <a href="<c:url value = "/user-home"/>" class="logo text-center logo-light">
                     <span class="logo-lg">
-                        <img src="../assets/images/logo.png" alt="" height="16">
+                        <img src="<c:url value = "/assets/images/logo.png"/>" alt="" height="16">
                     </span>
             <span class="logo-sm">
-                        <img src="../assets/images/logo_sm.png" alt="" height="16">
+                        <img src="<c:url value = "../assets/images/logo_sm.png"/>" alt="" height="16">
                     </span>
         </a>
 
         <!-- LOGO -->
+        <a href="<c:url value = "user-home"/>" class="logo text-center logo-dark">
+                    <span class="logo-lg">
+                        <img src="<c:url value = "../assets/images/logo-dark.png"/>" alt="" height="16">
+                    </span>
+            <span class="logo-sm">
+                        <img src="<c:url value = "../assets/images/logo_sm_dark.png"/>" alt="" height="16">
+                    </span>
+        </a>
 
         <div class="h-100" id="leftside-menu-container" data-simplebar="">
 
             <!--- Sidemenu -->
             <ul class="side-nav">
-
-
-                <li class="side-nav-item">
-                    <a href="<c:out value="MyCourse.jsp"/> " class="side-nav-link">
+                <li class="side-nav-item menuitem-active">
+                    <a href="<c:url value = "/user-home"/>" class="side-nav-link">
                         <i class="uil-book-reader"></i>
                         <span> My Courses </span>
                     </a>
                 </li>
 
                 <li class="side-nav-item">
-                    <a href="<c:out value="AddCourse.jsp"/> " class="side-nav-link">
+                    <a href="<c:url value = "/user-add-course"/>" class="side-nav-link">
                         <i class=" uil-parcel"></i>
                         <span>  Courses </span>
                     </a>
                 </li>
 
-
-                <li class="side-nav-item">
-                    <a href="<c:out value="profile-student.jsp"/> " class="side-nav-link">
+                <li class="side-nav-item ">
+                    <a href="<c:url value = "/profile-user"/>" class="side-nav-link ">
                         <i class=" uil-user"></i>
                         <span> My account</span>
                     </a>
@@ -95,16 +100,29 @@
             <!-- Topbar Start -->
             <div class="navbar-custom">
                 <ul class="list-unstyled topbar-menu float-end mb-0">
+                    <li class="dropdown notification-list d-lg-none">
+                        <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            <i class="dripicons-search noti-icon"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-animated dropdown-lg p-0">
+                            <form class="p-3">
+                                <input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
+                            </form>
+                        </div>
+                    </li>
 
                     <li class="dropdown notification-list">
-                        <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#"
-                           role="button" aria-haspopup="false" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                     <span class="account-user-avatar">
-                                        <img src="../assets/images/users/avatar-1.jpg" alt="user-image"
-                                             class="rounded-circle">
+                                        <c:if test="${USERMODEL.getUrlAvatar() != null}">
+                                            <img src="${USERMODEL.getUrlAvatar()}" alt="user-image" class="rounded-circle">
+                                        </c:if>
+                                        <c:if test="${USERMODEL.getUrlAvatar() == null}">
+                                            <img src="<c:url value = "../assets/images/users/avatar-1.jpg"/>" alt="user-image" class="rounded-circle">
+                                        </c:if>
                                     </span>
                             <span>
-                                        <span class="account-user-name">Phan Thanh Tài</span>
+                                        <span class="account-user-name">${USERMODEL.getFullname()}</span>
                                         <span class="account-position">Student</span>
                                     </span>
                         </a>
@@ -115,14 +133,13 @@
                             </div>
 
                             <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <a href="<c:url value="/profile-user"/>" class="dropdown-item notify-item">
                                 <i class="mdi mdi-account-circle me-1"></i>
                                 <span>My Account</span>
                             </a>
 
-
                             <!-- item-->
-                            <a href="<c:url value="../index.jsp"/>" class="dropdown-item notify-item">
+                            <a href="<c:url value="/view-logout?action=logout"/>" class="dropdown-item notify-item">
                                 <i class="mdi mdi-logout me-1"></i>
                                 <span>Logout</span>
                             </a>
@@ -130,27 +147,25 @@
                     </li>
 
                 </ul>
-
                 <button class="button-menu-mobile open-left">
                     <i class="mdi mdi-menu"></i>
                 </button>
                 <div class="app-search dropdown d-none d-lg-block">
                     <form>
                         <div class="input-group">
-                            <input type="text" class="form-control dropdown-toggle" placeholder="Search..."
-                                   id="top-search">
+                            <input type="text" class="form-control dropdown-toggle" placeholder="Search..." id="top-search">
                             <span class="mdi mdi-magnify search-icon"></span>
                             <button class="input-group-text btn-primary" type="submit">Search</button>
                         </div>
                     </form>
-
-
                 </div>
             </div>
             <!-- end Topbar -->
 
             <!-- Start Content-->
             <div class="container-fluid">
+
+
                 <form action="<c:url value='/user-view-question'/>" id="formSubmit" method="post">
                     <!-- start page title -->
                     <div class="row">
@@ -158,9 +173,10 @@
                             <div class="page-title-box">
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
-                                        <li class="breadcrumb-item "><a href="javascript: void(0);">My courses</a></li>
-                                        <li class="breadcrumb-item "><a href="javascript: void(0);">Exam</a></li>
-                                        <li class="breadcrumb-item  active">Practice</li>
+                                        <li class="breadcrumb-item "><a href="<c:url value="/user-home"/> ">My courses</a>
+                                        </li>
+                                        <li class="breadcrumb-item "><a href="<c:url value="/user-exam?courseId=${requestScope.courseId}"/> ">Exam</a></li>
+                                        <li class="breadcrumb-item active">Practice</li>
                                     </ol>
                                 </div>
                                 <h4 class="page-title">Practice</h4>
@@ -171,46 +187,93 @@
 
 
                     <div class="row">
+
                         <c:forEach var="item" items="${question.listResult}">
+
+                            <c:forEach var="questionItem" items="${LISTQUESTION}">
+                                <c:if test="${questionItem.id == item.id}">
+                                    <c:set scope="request" var="userAnswer" value="${questionItem.userAnswer}"/>
+                                </c:if>
+                            </c:forEach>
+
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
                                         <h4>Câu ${item.getQuestionNo()}</h4><!--dat so thu tu cau o day-->
                                         <p class="fw-bold">${item.getQuestionName()}</p>
                                         <div class="form-check mb-2">
-                                            <input type="radio" name="${item.getId()}" class="form-check-input">
-                                            <label class="form-check-label">${item.getResultA()}</label><!--Dap an cau a-->
+                                            <c:if test="${question.type == 'practise'}">
+
+                                                <input type="radio" name="${item.getId()}" class="form-check-input"
+                                                       value="A"
+                                                       <c:if test="${userAnswer == 'A'}">checked="checked"</c:if>>
+
+                                            </c:if>
+
+                                            <c:if test="${question.type == 'preview'}">
+                                                <input type="radio" name="${item.getId()}" class="form-check-input"
+                                                       value="A" disabled="disabled" <c:if
+                                                        test="${not empty item.userAnswer and item.userAnswer == 'A'}">
+                                                       checked=checked
+                                                </c:if>>
+                                            </c:if>
+
+                                            <label class="form-check-label">${item.getResultA()}</label>
+                                            <!--Dap an cau a-->
                                         </div>
                                         <div class="form-check mb-2">
-                                            <input type="radio" name="${item.getId()}" class="form-check-input">
-                                            <label class="form-check-label">${item.getResultB()}</label><!--Dap an cau b-->
+
+
+                                            <input type="radio" name="${item.getId()}" class="form-check-input"
+                                                   value="B"
+                                                   <c:if test="${userAnswer == 'B'}">checked="checked"</c:if>>
+
+
+                                            <label class="form-check-label">${item.getResultB()}</label>
+                                            <!--Dap an cau b-->
                                         </div>
                                         <div class="form-check mb-2">
-                                            <input type="radio" name="${item.getId()}" class="form-check-input">
-                                            <label class="form-check-label">${item.getResultC()}</label><!--Dap an cau c-->
+
+
+                                            <input type="radio" name="${item.getId()}" class="form-check-input"
+                                                   value="C"
+                                                   <c:if test="${userAnswer == 'C'}">checked="checked"</c:if>>
+
+
+                                            <label class="form-check-label">${item.getResultC()}</label>
+                                            <!--Dap an cau c-->
                                         </div>
                                         <div class="form-check mb-2">
-                                            <input type="radio" name="${item.getId()}" class="form-check-input">
-                                            <label class="form-check-label">${item.getResultD()}</label><!--Dap an cau d-->
+
+                                            <input type="radio" name="${item.getId()}" class="form-check-input"
+                                                   value="D"
+                                                   <c:if test="${userAnswer == 'D'}">checked="checked"</c:if>>
+
+                                            <label class="form-check-label">${item.getResultD()}</label>
+                                            <!--Dap an cau d-->
                                         </div>
                                     </div> <!-- end card body-->
                                 </div> <!-- end card -->
                             </div>
+                            <c:if test="${question.type == 'practise'}">
+                                <c:remove scope="request" var="userAnswer"/>
+                            </c:if>
                             <!-- end col-->
                         </c:forEach>
+
                     </div>
 
 
                     <!-- Colors -->
 
                     <!-- <div class="form-check form-radio-success mb-2">
-                        <input type="radio" id="customRadiocolor2" name="customRadiocolor2" class="form-check-input" checked>
-                        <label class="form-check-label" for="customRadiocolor2">Success Radio</label>
+                    <input type="radio" id="customRadiocolor2" name="customRadiocolor2" class="form-check-input" checked>
+                    <label class="form-check-label" for="customRadiocolor2">Success Radio</label>
                     </div>
 
                     <div class="form-check form-radio-danger mb-2">
-                        <input type="radio" id="customRadiocolor5" name="customRadiocolor5" class="form-check-input" checked>
-                        <label class="form-check-label" for="customRadiocolor5">Danger Radio</label>
+                    <input type="radio" id="customRadiocolor5" name="customRadiocolor5" class="form-check-input" checked>
+                    <label class="form-check-label" for="customRadiocolor5">Danger Radio</label>
                     </div> -->
 
                     <div class="row ">
@@ -221,8 +284,16 @@
                             <input type="hidden" value="" id="maxPageItem" name="maxPageItem"/>
                             <input type="hidden" value="" id="sortName" name="sortName"/>
                             <input type="hidden" value="" id="sortBy" name="sortBy"/>
-                            <input type="hidden" value="" id="type" name="type"/>
+                            <input type="hidden" value="" id="submittype" name="submittype"/>
                             <input type="hidden" value="${question.getExamID()}" id="examID" name="examID"/>
+                            <input type="hidden" value="${question.type}" name="type"/>
+
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-end">
+                        <div class="col-sm-4 d-flex justify-content-end float-right">
+
+                            <button type="submit" class="btn btn-danger btn-rounded mb-3 ">Submit</button>
                         </div>
                     </div>
                 </form>
@@ -315,7 +386,8 @@
                     $('#page').val(page);
                     $('#sortName').val('questionNo');
                     $('#sortBy').val('asc');
-                    $('#type').val('list');
+                    // $('#type').val('list');
+                    $('#submittype').val('practise');
                     $('#formSubmit').submit();
                 }
             }

@@ -67,8 +67,8 @@
                 transform: translate(50%, 120px);
             }
             .btn-upfile{
-/*                right: 0;
-                top: 160px;*/
+                /*                right: 0;
+                                top: 160px;*/
                 display: flex;
                 /*position: absolute;*/
             }
@@ -92,7 +92,7 @@
     <div class="leftside-menu">
 
         <!-- LOGO -->
-        <a href="<c:url value="../index.jsp"/>" class="logo text-center logo-light">
+        <a href="<c:url value="/admin-home"/>" class="logo text-center logo-light">
                     <span class="logo-lg">
                         <img src="<c:url value = "../assets/images/logo.png"/>" alt="" height="16">
                     </span>
@@ -100,7 +100,6 @@
                         <img src="<c:url value = "../assets/images/logo_sm.png"/>" alt="" height="16">
                     </span>
         </a>
-
         <!-- LOGO -->
         <a href="<c:url value="../index.jsp"/>" class="logo text-center logo-dark">
                     <span class="logo-lg">
@@ -117,7 +116,7 @@
             <!--- Sidemenu -->
             <ul class="side-nav">
 
-                <li class="side-nav-item menuitem-active">
+                <li class="side-nav-item">
                     <a href="<c:url value = "/admin-home"/>" class="side-nav-link">
                         <%--                <a href="<c:url value = "apps-calendar.jsp"/>" class="side-nav-link">--%>
                         <i class="uil-graph-bar"></i>
@@ -136,6 +135,10 @@
                             <li>
 
                                 <a href="<c:url value = "/admin-manager-file"/>">Courses</a>
+                            </li>
+                            <li>
+                                <a href="<c:url value = "/admin/stats-doanh-thu"/>">Revenue</a>
+                                <%--                            <a href="<c:url value = "apps-ecommerce-products-details.jsp"/>">Users</a>--%>
                             </li>
                             <li>
                                 <a href="<c:url value = "#"/>">Users</a>
@@ -171,7 +174,7 @@
     <div class="content-page">
         <div class="content">
             <!-- Topbar Start -->
-            <div class="navbar-custom">
+            <%--<div class="navbar-custom">
                 <ul class="list-unstyled topbar-menu float-end mb-0">
 
                     <li class="dropdown notification-list">
@@ -239,12 +242,89 @@
 
                     </div>
                 </div>
+            </div>--%>
+            <div class="navbar-custom">
+                <ul class="list-unstyled topbar-menu float-end mb-0">
+                    <li class="dropdown notification-list d-lg-none">
+                        <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            <i class="dripicons-search noti-icon"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-animated dropdown-lg p-0">
+                            <form class="p-3">
+                                <input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
+                            </form>
+                        </div>
+                    </li>
+
+
+                    <li class="dropdown notification-list">
+                        <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                    <span class="account-user-avatar">
+                                        <c:if test="${USERMODEL.getUrlAvatar() != null}">
+                                            <img src="${USERMODEL.getUrlAvatar()}" alt="user-image" class="rounded-circle">
+                                        </c:if>
+                                        <c:if test="${USERMODEL.getUrlAvatar() == null}">
+                                            <img src="<c:url value = "../assets/images/users/avatar-1.jpg"/>" alt="user-image" class="rounded-circle">
+                                        </c:if>
+                                    </span>
+                            <span>
+                                        <span class="account-user-name">${USERMODEL.fullname}</span>
+                                        <span class="account-position">Admin</span>
+                                    </span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
+                            <!-- item-->
+                            <div class=" dropdown-header noti-title">
+                                <h6 class="text-overflow m-0">Welcome !</h6>
+                            </div>
+
+                            <!-- item-->
+                            <a href="/admin-profile" class="dropdown-item notify-item">
+                                <i class="mdi mdi-account-circle me-1"></i>
+                                <span>My Account</span>
+                            </a>
+
+
+                            <!-- item-->
+                            <a href="<c:url value="/view-login?action=logout"/>" class="dropdown-item notify-item">
+                                <i class="mdi mdi-logout me-1"></i>
+                                <span>Logout</span>
+                            </a>
+                        </div>
+                    </li>
+
+                </ul>
+                <button class="button-menu-mobile open-left">
+                    <i class="mdi mdi-menu"></i>
+                </button>
+                <div class="app-search dropdown d-none d-lg-block">
+                    <form>
+                        <div class="input-group">
+                            <input type="text" class="form-control dropdown-toggle" placeholder="Search..." id="top-search">
+                            <span class="mdi mdi-magnify search-icon"></span>
+                            <button class="input-group-text btn-primary" type="submit">Search</button>
+                        </div>
+                    </form>
+                </div>
             </div>
             <!-- end Topbar -->
 
             <!-- Start Content-->
             <div class="container-fluid">
-
+                <c:if test="${not empty messageResponse}">
+                    <c:if test="${alert.equals('success')}">
+                        <div id="success" class="alert alert-success alert-dismissible bg-success text-white border-0 fade show text-center" style="z-index: 999; position: fixed; width: auto; right: 0;" role="alert">
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            <strong>Success - </strong> ${messageResponse}
+                        </div>
+                    </c:if>
+                    <c:if test="${alert.equals('danger')}">
+                        <div id="error" class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show text-center" style="z-index: 999; position: fixed; width: auto; right: 0;" role="alert">
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            <strong>Error - </strong> ${messageResponse}
+                        </div>
+                    </c:if>
+                </c:if>
                 <!-- start page title -->
                 <div class="row">
                     <div class="col-12">
@@ -274,7 +354,7 @@
                                     <div>
                                         <nav aria-label="breadcrumb">
                                             <ol class="breadcrumb mb-0">
-                                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                                <li class="breadcrumb-item"><a href="<c:url value="/admin-home"/> ">Dashboard</a></li>
                                                 <li class="breadcrumb-item active" aria-current="page">Manager Courses</li>
                                             </ol>
                                         </nav>
@@ -292,6 +372,7 @@
                                             <th>Course ID</th>
                                             <th>Course Name</th>
                                             <th>Description</th>
+                                            <th>Price</th>
                                             <%--<th>Update</th>
                                             <th>Admin Name</th>--%>
                                             <th>Action</th>
@@ -310,6 +391,7 @@
                                                     </div>
                                                 </td>
                                                 <td>${item.description}</td>
+                                                <td>${item.price}</td>
                                                 <td class="table-action" style="display: flex;justify-content: center">
                                                     <div class="rightbar-overlay " id ="update-course${item.id}" style=" background-color: rgba(0,0,0,0.05); opacity: 1;">
                                                         <div class="course-upload col-md-4" style="transform: translate(100%, 100px); color: #6c757d; background-color: #FFF;padding: 40px 0; border-radius: 4px;">
@@ -325,6 +407,13 @@
                                                                 <div class="mb-0">
                                                                     <label class="form-label" for="validationCustom04" style="margin-top: 16px;float:left;">Description</label>
                                                                     <input type="text" class="form-control" id="validationCustom04"value="${item.description}" placeholder="Description" required name="description">
+                                                                    <div class="valid-feedback">
+                                                                        Looks good!
+                                                                    </div>
+                                                                </div>
+                                                                <div class="mb-0">
+                                                                    <label class="form-label" for="validationCustom05" style="margin-top: 16px;float:left;">Price</label>
+                                                                    <input type="text" class="form-control" id="validationCustom05"value="${item.price}" placeholder="Price" required name="price">
                                                                     <div class="valid-feedback">
                                                                         Looks good!
                                                                     </div>
@@ -384,84 +473,84 @@
                                                 <td>${exam.id}</td>
                                                 <td>${exam.course.courseName}</td>
                                                 <td>
-                                                    ${exam.examName}
+                                                        ${exam.examName}
                                                 </td>
 
                                                 <td class="table-action" style="display: flex; justify-content: center">
                                                     <div class="rightbar-overlay" id ="file${exam.id}" style=" background-color: rgba(0,0,0,0.05); opacity: 1;">
-                                                        <%--<div class="file-upload col-md-6 container-file">
-                                                            <!-- File Upload -->
-                                                            <form action="/QuestionController?action=insertFile" method="post" class="dropzone" id="myAwesomeDropzone" data-plugin="dropzone" data-previews-container="#file-previews"
-                                                                  data-upload-preview-template="#uploadPreviewTemplate">
-                                                                <div class="fallback">
-                                                                    <input name="file" type="file" multiple accept=".xlsx" required/>
-                                                                </div>
-    
-                                                                <div class="dz-message needsclick">
-                                                                    <i class="h1 text-muted dripicons-cloud-upload"></i>
-                                                                    <h3>Drop files here or click to upload.</h3>
-                                                                    <span class="text-muted font-13">(This is just a demo dropzone. Selected files are
-                                                                    <strong>not</strong> actually uploaded.)</span>
-                                                                </div>
-                                                                <input type="hidden" name="id" value="${exam.id}}">
-                                                                <input type="hidden" name="examName" value="${exam.examName}">
-                                                                <input type="hidden" name="courseID" value="${exam.course.id}">
-                                                                <input type="hidden" name="fileCheck" value="true">
-
-                                                                <div class="btn btn-upfile" >
-                                                                    <button type="button" id = "cancel-file" onclick="hiddenForm('#file${exam.id}','.file-previews${exam.id}')" class="btn btn-danger" style="margin: 0 10px">Cancel</button>
-                                                                    <button type="submit" class="btn btn-success">Upload</button>
-                                                                </div>
-
-                                                            </form>
-
-
-                                                            <!-- Preview -->
-                                                            <div data-bs-spy="scroll" class="scrollspy-example" style="height: 320px;">
-                                                                <div class="dropzone-previews mt-3 file-previews${exam.id}" id="file-previews"></div>
-                                                            </div>
-
-                                                            <!-- file preview template -->
-                                                            <div class="d-none" id="uploadPreviewTemplate">
-                                                                <div class="card mt-1 mb-0 shadow-none border">
-                                                                    <div class="p-2">
-                                                                        <div class="row align-items-center">
-                                                                            <div class="col-auto">
-                                                                                <img data-dz-thumbnail src="#" class="avatar-sm rounded bg-light" alt="">
-                                                                            </div>
-                                                                            <div class="col ps-0">
-                                                                                <a href="javascript:void(0);" class="text-muted fw-bold" data-dz-name></a>
-                                                                                <p class="mb-0" data-dz-size></p>
-                                                                            </div>
-                                                                            <div class="col-auto">
-                                                                                <!-- Button -->
-                                                                                <a href="" class="btn btn-link btn-lg text-muted" data-dz-remove>
-                                                                                    <i class="dripicons-cross"></i>
-                                                                                </a>
-                                                                            </div>
-                                                                        </div>
+                                                            <%--<div class="file-upload col-md-6 container-file">
+                                                                <!-- File Upload -->
+                                                                <form action="/QuestionController?action=insertFile" method="post" class="dropzone" id="myAwesomeDropzone" data-plugin="dropzone" data-previews-container="#file-previews"
+                                                                      data-upload-preview-template="#uploadPreviewTemplate">
+                                                                    <div class="fallback">
+                                                                        <input name="file" type="file" multiple accept=".xlsx" required/>
                                                                     </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>--%>
-                                                            <div class="course-upload col-md-4" style="transform: translate(100%, 100px); color: #6c757d; background-color: #FFF;padding: 40px 0; border-radius: 4px;">
-                                                                <form class="needs-validation col-md-6" novalidate enctype="multipart/form-data" style="transform: translate(50%, 0);" method="post" action="/QuestionController?action=insertFile">
-                                                                    <div style="margin-top: 16px; display: flex; align-items: flex-start;flex-direction: column">
-                                                                        <label class="form-label">Insert Exam: </label>
-                                                                        <div style="display: flex; justify-content: center; align-items: center">
-                                                                            <input type="file" name="file-exam" id="upload-file${exam.id}"  accept=".xlsx" style="margin: 16px 0;">
-                                                                        </div>
+
+                                                                    <div class="dz-message needsclick">
+                                                                        <i class="h1 text-muted dripicons-cloud-upload"></i>
+                                                                        <h3>Drop files here or click to upload.</h3>
+                                                                        <span class="text-muted font-13">(This is just a demo dropzone. Selected files are
+                                                                        <strong>not</strong> actually uploaded.)</span>
                                                                     </div>
-                                                                    <input type="hidden" name="id" value="${exam.id}">
+                                                                    <input type="hidden" name="id" value="${exam.id}}">
                                                                     <input type="hidden" name="examName" value="${exam.examName}">
                                                                     <input type="hidden" name="courseID" value="${exam.course.id}">
                                                                     <input type="hidden" name="fileCheck" value="true">
-                                                                    <div class="mb-0" style="display: flex">
-                                                                        <button type="button" id = "cancel-file${exam.id}" onclick="hiddenForm('#file${exam.id}','#upload-file${exam.id}')" class="btn btn-danger" style="margin-right: 4px;min-width: 100px">Cancel</button>
-                                                                        <button class="btn btn-success" type="submit" style="min-width: 100px;">Submit</button>
+
+                                                                    <div class="btn btn-upfile" >
+                                                                        <button type="button" id = "cancel-file" onclick="hiddenForm('#file${exam.id}','.file-previews${exam.id}')" class="btn btn-danger" style="margin: 0 10px">Cancel</button>
+                                                                        <button type="submit" class="btn btn-success">Upload</button>
                                                                     </div>
+
                                                                 </form>
-                                                            </div>
+
+
+                                                                <!-- Preview -->
+                                                                <div data-bs-spy="scroll" class="scrollspy-example" style="height: 320px;">
+                                                                    <div class="dropzone-previews mt-3 file-previews${exam.id}" id="file-previews"></div>
+                                                                </div>
+
+                                                                <!-- file preview template -->
+                                                                <div class="d-none" id="uploadPreviewTemplate">
+                                                                    <div class="card mt-1 mb-0 shadow-none border">
+                                                                        <div class="p-2">
+                                                                            <div class="row align-items-center">
+                                                                                <div class="col-auto">
+                                                                                    <img data-dz-thumbnail src="#" class="avatar-sm rounded bg-light" alt="">
+                                                                                </div>
+                                                                                <div class="col ps-0">
+                                                                                    <a href="javascript:void(0);" class="text-muted fw-bold" data-dz-name></a>
+                                                                                    <p class="mb-0" data-dz-size></p>
+                                                                                </div>
+                                                                                <div class="col-auto">
+                                                                                    <!-- Button -->
+                                                                                    <a href="" class="btn btn-link btn-lg text-muted" data-dz-remove>
+                                                                                        <i class="dripicons-cross"></i>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>--%>
+                                                        <div class="course-upload col-md-4" style="transform: translate(100%, 100px); color: #6c757d; background-color: #FFF;padding: 40px 0; border-radius: 4px;">
+                                                            <form class="needs-validation col-md-6" novalidate enctype="multipart/form-data" style="transform: translate(50%, 0);" method="post" action="/QuestionController?action=insertFile">
+                                                                <div style="margin-top: 16px; display: flex; align-items: flex-start;flex-direction: column">
+                                                                    <label class="form-label">Insert Exam: </label>
+                                                                    <div style="display: flex; justify-content: center; align-items: center">
+                                                                        <input type="file" name="file-exam" id="upload-file${exam.id}"  accept=".xlsx" style="margin: 16px 0;">
+                                                                    </div>
+                                                                </div>
+                                                                <input type="hidden" name="id" value="${exam.id}">
+                                                                <input type="hidden" name="examName" value="${exam.examName}">
+                                                                <input type="hidden" name="courseID" value="${exam.course.id}">
+                                                                <input type="hidden" name="fileCheck" value="true">
+                                                                <div class="mb-0" style="display: flex">
+                                                                    <button type="button" id = "cancel-file${exam.id}" onclick="hiddenForm('#file${exam.id}','#upload-file${exam.id}')" class="btn btn-danger" style="margin-right: 4px;min-width: 100px">Cancel</button>
+                                                                    <button class="btn btn-success" type="submit" style="min-width: 100px;">Submit</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
                                                     </div>
                                                     <button type="button" class="action-icon insert-file" onclick="addActive('#file${exam.id}')"  style="border-radius: 50%; margin-right: 4px" ><i class="mdi mdi-plus"></i></button>
                                                     <form action="/QuestionController?action=deleteFile" method="post">
@@ -636,6 +725,13 @@
                     Looks good!
                 </div>
             </div>
+            <div class="mb-0">
+                <label class="form-label" for="validationCustom10" style="margin-top: 16px;">Price</label>
+                <input type="text" class="form-control" id="validationCustom10" placeholder="Price" required name="price">
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
             <div style="margin-top: 16px; ">
                 <label class="form-label" for="validationCustom02">Course Image: </label>
                 <div id="image-grid" >
@@ -728,8 +824,47 @@
 
 <script>
     uploadFirebase('file-uploader', 'send','urlImage')
-   // uploadFirebase('update-file-uploader', 'update-send','update-urlImage')
+    // uploadFirebase('update-file-uploader', 'update-send','update-urlImage')
 </script>
+
+<script>
+    $(function() {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        });
+
+        $('.swalDefaultSuccess').click(function() {
+            setTimeout(function(){
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Tải hình ảnh lên thành công'
+                })
+            }, 1000);
+
+
+        });
+
+        $('#urlAvatar').change(function() {
+            Toast.fire({
+                icon: 'success',
+                title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        })
+
+    });
+</script>
+<script>
+    $("#success").fadeOut(5000);
+</script>
+<script>
+    $("#error").fadeOut(5000);
+</script>
+
+
+
 <!-- bundle -->
 <script src="../assets/js/vendor.min.js"></script>
 <script src="../assets/js/app.min.js"></script>

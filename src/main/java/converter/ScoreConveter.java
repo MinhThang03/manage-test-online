@@ -28,6 +28,7 @@ public class ScoreConveter {
         }
         Score result = new Score();
         result.setId(dto.getId());
+        result.setExamScore(dto.getExamScore());
 
         IAccountService accountService = new AccountService();
         AccountDTO accountDTO = accountService.findById(dto.getUserId());

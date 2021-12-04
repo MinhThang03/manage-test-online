@@ -21,4 +21,6 @@ public class AccountDTO extends AbstractDTO<AccountDTO> {
     private String urlAvatar;
     private String oldPass;
     private String newPass;
+    private String passreset;
+    private String code;
 }

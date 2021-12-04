@@ -32,7 +32,7 @@
     <div class="leftside-menu">
 
         <!-- LOGO -->
-        <a href="<c:url value = "/index.jsp"/>" class="logo text-center logo-light">
+        <a href="<c:url value = "/user-home"/>" class="logo text-center logo-light">
                     <span class="logo-lg">
                         <img src="<c:url value = "/assets/images/logo.png"/>" alt="" height="16">
                     </span>
@@ -42,7 +42,7 @@
         </a>
 
         <!-- LOGO -->
-        <a href="<c:url value = "../index.jsp"/>" class="logo text-center logo-dark">
+        <a href="<c:url value = "user-home"/>" class="logo text-center logo-dark">
                     <span class="logo-lg">
                         <img src="<c:url value = "../assets/images/logo-dark.png"/>" alt="" height="16">
                     </span>
@@ -56,14 +56,14 @@
             <!--- Sidemenu -->
             <ul class="side-nav">
                 <li class="side-nav-item">
-                    <a href="<c:url value = "MyCourse.jsp"/>" class="side-nav-link">
+                    <a href="<c:url value = "/user-home"/>" class="side-nav-link">
                         <i class="uil-book-reader"></i>
                         <span> My Courses </span>
                     </a>
                 </li>
 
                 <li class="side-nav-item">
-                    <a href="<c:url value = "AddCourse.jsp"/>" class="side-nav-link">
+                    <a href="<c:url value = "/user-add-course"/>" class="side-nav-link">
                         <i class=" uil-parcel"></i>
                         <span>  Courses </span>
                     </a>
@@ -105,6 +105,29 @@
                             </form>
                         </div>
                     </li>
+
+                    <li class="dropdown notification-list">
+                        <a class="nav-link dropdown-toggle arrow-none" href="#" role="button" aria-haspopup="false"
+                           aria-expanded="false">
+                            <i class="dripicons-cart noti-icon"> <span id="cartCounter" style="font-style: initial;
+    background-color: #777;
+    position: absolute;
+    bottom: 33px;
+display: inline-block;
+    padding: 0.1em 0.2em;
+    font-size: 0.6em;
+    font-weight: 700;
+    line-height: 1;
+    color: #ffff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;"><c:if test="${CARTKEY != null}">${CARTKEY.size()}</c:if>
+                            <c:if test="${CARTKEY == null}"> 0</c:if></span></i>
+
+                        </a>
+                    </li>
+
 
                     <li class="dropdown notification-list">
                         <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
@@ -260,7 +283,7 @@
 
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email</label>
-                                    <input name="email" id="email" type="email" class="form-control" aria-describedby="emailHelp" placeholder="Email"  value="${USERMODEL.getEmail()}" required>
+                                    <input name="email" id="email" type="email" class="form-control" aria-describedby="emailHelp" placeholder="Email"  value="${USERMODEL.getEmail()}" required readonly>
                                     <div class="valid-feedback">
                                         Looks good!
                                     </div>

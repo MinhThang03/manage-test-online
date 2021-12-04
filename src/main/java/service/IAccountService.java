@@ -12,8 +12,11 @@ public interface IAccountService {
     AccountDTO findById(Integer id);
     AccountDTO findByUsernamePassword(String username, String password);
     AccountDTO findByEmail(String email);
-    boolean registerAccount(AccountDTO account);
+    Boolean registerAccount(AccountDTO account);
+    Boolean sendMailRegister(AccountDTO account, String contextfile);
     Integer countTotalStudent();
     Boolean updatePassword(AccountDTO accountDTO);
+    Integer recoverPassword(String email, String contexfile);
+    Integer resetPassword(String username, String password, String strDateLink);
 
 }
