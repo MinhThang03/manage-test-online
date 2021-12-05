@@ -16,8 +16,7 @@
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="Coderthemes" name="author" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="<c:url value = "../assets/images/favicon.ico"/>">
-
+    <link rel="shortcut icon" href="../assets/images/title.ico">
     <!-- App css -->
     <link href="<c:url value = "../assets/css/icons.min.css"/>" rel="stylesheet" type="text/css">
     <link href="<c:url value = "../assets/css/app.min.css"/>" rel="stylesheet" type="text/css" id="light-style">
@@ -34,7 +33,7 @@
                 <div class="card">
                     <!-- Logo -->
                     <div class="card-header pt-4 pb-4 text-center bg-primary">
-                        <a href="<c:url value = "home.jsp"/>">
+                        <a href="<c:url value = "/home/home.jsp"/>">
                             <span><img src="<c:url value = "../assets/images/logo.png"/>" alt="" height="18"></span>
                         </a>
                     </div>
@@ -47,7 +46,7 @@
                                 happens to the best of us. Here's a
                                 little tip that might help you get back on track.</p>
 
-                            <a class="btn btn-info mt-3" href="   <c:url value = "home.jsp"/>"><i class="mdi mdi-reply"></i> Return Home</a>
+                            <a class="btn btn-info mt-3" href="<c:url value = "/home/home.jsp"/>"><i class="mdi mdi-reply"></i> Return Home</a>
                         </div>
                     </div> <!-- end card-body-->
                 </div>

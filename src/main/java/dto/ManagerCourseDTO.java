@@ -6,8 +6,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ManagerCourseDTO extends AbstractDTO<ManagerCourseDTO>{
-    private Integer id;
     private String courseName;
     private String courseImage;
     private String description;
+    private Float price;
+    private Integer countRegister;
+    private Integer totalCart;
+    private String alertCart;
 }

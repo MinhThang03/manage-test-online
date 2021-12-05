@@ -25,7 +25,7 @@ public class HibernateUtil {
         pros.put(Environment.USER, resourceBundle.getString("user"));
         pros.put(Environment.PASS, resourceBundle.getString("password"));
         pros.put(Environment.SHOW_SQL, resourceBundle.getString("showSQL"));
-        System.out.println(Environment.USER.toString());
+
         conf.setProperties(pros);
         conf.addAnnotatedClass(Account.class);
         conf.addAnnotatedClass(Course.class);
@@ -40,10 +40,9 @@ public class HibernateUtil {
                 conf.getProperties()).build();
 
         FACTORY = conf.buildSessionFactory(registry);
-        System.out.println("Hibernate Java Config serviceRegistry created");
     }
 
-    public static SessionFactory getSessionFactory() {
+    public static  SessionFactory getSessionFactory() {
         return FACTORY;
     }
 }

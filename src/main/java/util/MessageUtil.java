@@ -20,6 +20,9 @@ public class MessageUtil {
             } else if (message.equals("error_system")) {
                 messageResponse = "Error ";
                 alert = "danger";
+            } else if (message.equals("check_your_email_to_confirm")) {
+                messageResponse = "Check your email to confirm";
+                alert = "success";
             }
             request.setAttribute("messageResponse", messageResponse);
             request.setAttribute("alert", alert);

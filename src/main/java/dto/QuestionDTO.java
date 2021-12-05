@@ -5,8 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class QuestionDTO {
-    private Integer id;
+public class QuestionDTO extends AbstractDTO<QuestionDTO> {
     private Integer examID;
     private Integer questionNo;
     private String questionName;
@@ -15,4 +14,5 @@ public class QuestionDTO {
     private String resultC;
     private String resultD;
     private String answer;
+    private String userAnswer;
 }

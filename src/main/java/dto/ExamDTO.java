@@ -5,9 +5,11 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ExamDTO {
-    private Integer  id;
+public class ExamDTO extends AbstractDTO<ExamDTO> {
     private String examName;
     private Integer courseID;
     private String fileCheck;
+    private Double score;
+    private Integer countCorrectQuestion;
+    private Integer totalQuestion;
 }

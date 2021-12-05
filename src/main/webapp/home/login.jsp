@@ -16,8 +16,7 @@
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="Coderthemes" name="author" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="<c:url value = "../assets/images/favicon.ico"/>">
-
+    <link rel="shortcut icon" href="../assets/images/title.ico">
     <!-- App css -->
     <link href="<c:url value = "../assets/css/icons.min.css"/>" rel="stylesheet" type="text/css">
     <link href="<c:url value = "../assets/css/app.min.css"/>" rel="stylesheet" type="text/css" id="light-style">
@@ -59,7 +58,7 @@
 
                             <div class="mb-3">
 
-                                <a href="<c:url value = "pages_recoverpw.jsp"/>" class="text-muted float-end"><small>Forgot your password?</small></a>
+                                <a href="<c:url value = "/recover-password"/>" class="text-muted float-end"><small>Forgot your password?</small></a>
                                 <label for="password" class="form-label">Password</label>
                                 <div class="input-group input-group-merge">
                                     <input type="password" id="password" class="form-control" placeholder="Enter your password" name="pass">

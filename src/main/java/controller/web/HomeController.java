@@ -27,17 +27,27 @@ public class HomeController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         if (action != null && action.equals("login")) {
-            String alert = request.getParameter("alert");
-            String message = request.getParameter("message");
-            if (message != null && alert != null) {
-                request.setAttribute("message", resourceBundle.getString(message));
-                request.setAttribute("alert", alert);
+            AccountDTO accountDTO =(AccountDTO) SessionUtil.getInstance().getValue(request,"USERMODEL");
+            if(accountDTO == null){
+                String alert = request.getParameter("alert");
+                String message = request.getParameter("message");
+                if (message != null && alert != null) {
+                    request.setAttribute("message", resourceBundle.getString(message));
+                    request.setAttribute("alert", alert);
+                }
+                RequestDispatcher rd = request.getRequestDispatcher("/home/login.jsp");
+                rd.forward(request, response);
             }
-            RequestDispatcher rd = request.getRequestDispatcher("/home/login.jsp");
-            rd.forward(request, response);
-
+            else {
+                if (accountDTO.getRolename().equals("admin")) {
+                    response.sendRedirect(request.getContextPath()+"/admin-home");
+                } else if (accountDTO.getRolename().equals("user")) {
+                    response.sendRedirect(request.getContextPath()+"/user-home");
+                }
+            }
         } else if (action != null && action.equals("logout")) {
             SessionUtil.getInstance().removeValue(request, "USERMODEL");
+            SessionUtil.getInstance().removeValue(request, "CARTKEY");
             response.sendRedirect(request.getContextPath()+"/view-home");
         } else {
             RequestDispatcher rd = request.getRequestDispatcher("/home/home.jsp");
@@ -54,7 +64,7 @@ public class HomeController extends HttpServlet {
             AccountDTO accountDTO = FormUtil.toModel(AccountDTO.class, request);
             accountDTO = accountService.findByUsernamePassword(accountDTO.getUsername(), accountDTO.getPass());
             AccountDTO ac = accountDTO;
-            if (accountDTO != null) {
+            if (accountDTO != null && accountDTO.getActive()==true) {
                 SessionUtil.getInstance().putValue(request, "USERMODEL", accountDTO);
                 if (accountDTO.getRolename().equals("admin")) {
                     response.sendRedirect(request.getContextPath()+"/admin-home");
