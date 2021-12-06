@@ -94,7 +94,7 @@
 
                 <li class="side-nav-item ">
                     <a href="/support" class="side-nav-link ">
-                        <i class=" uil-user"></i>
+                        <i class=" uil-clipboard-alt"></i>
                         <span> Support</span>
                     </a>
                 </li>

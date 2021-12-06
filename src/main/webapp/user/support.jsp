@@ -73,14 +73,14 @@
             <!--- Sidemenu -->
             <ul class="side-nav">
                 <li class="side-nav-item">
-                    <a href="<c:url value = "/user-home"/>" class="side-nav-link">
+                    <a href="<c:url value = "/support"/>" class="side-nav-link">
                         <i class="uil-book-reader"></i>
                         <span> How to use this website </span>
                     </a>
                 </li>
 
                 <li class="side-nav-item">
-                    <a href="<c:url value = "/user-add-course"/>" class="side-nav-link">
+                    <a href="<c:url value = "/faq-support"/>" class="side-nav-link">
                         <i class=" uil-parcel"></i>
                         <span>  FAQ </span>
                     </a>
@@ -192,9 +192,12 @@ display: inline-block;
 
             <!-- Start Content-->
             <div class="container-fluid">
-
+                <br>
                 <!-- start page title -->
                 <div class="row">
+                    <div class="col-sm-4">
+                        <a href="<c:out value="/user-home"/> " class="btn btn-danger btn-rounded mb-3"><i class="mdi mdi-plus"></i> Back to your courses</a>
+                    </div>
                     <div class="col-12">
                         <div class="page-title-box">
                             <h4 class="page-title">Support</h4>
@@ -203,121 +206,199 @@ display: inline-block;
                 </div>
                 <!-- end page title -->
                 <div>
-
-                    <h1>E-School</h1>
-                    <div style="width: 50%">
-                        <p>Welcome to our website E-School. This website is built by Group 01. It's for students, it gives them chances and environment to train themselves with many courses, tests and documents
-                            If you are student, this website is good for you. We not only give you environment for studying but also we support you to use this website easier. You can read guide below to understand the website.
-                            You can send mail us by sending message through chat box at the homepage.
-                        </p>
+                    <div style="text-align: center">
+                        <h1>E-School</h1>
+                    </div>
+                    <br>
+                    <div  style="display: flex; justify-content: center;">
+                        <div style="width: 60%">
+                            <p style="text-align: justify">Welcome to our website E-School. This website is built by Group 01. It's for students, it gives them chances and environment to train themselves with many courses, tests and documents
+                                If you are student, this website is good for you. We not only give you environment for studying but also we support you to use this website easier. You can read guide below to understand the website.
+                                You can send mail us by sending message through chat box at the homepage.
+                            </p>
+                        </div>
                     </div>
 
 
-                    <div>
-                        <img style="alignment: center" src="<c:url value = "/assets/images/support/homechatbox.png"/>" alt="Home page">
+                    <div style="text-align: center">
+                        <img src="<c:url value = "/assets/images/support/chatbox.png"/>" alt="Home page">
                     </div>
-
-                    <h1>1. Homepage</h1>
-                    <div style="width: 50%">
-                        <p>This is the homepage of our website. You can see Login button, chat box.</p>
-                        <p>You can click Sign In to log in your account with username, password.</p>
-                        <p>If you want to contact us for supporting or you have some good ideas for us. You can chat at chat box</p>
+                    <div style="margin-left: 150px">
+                        <h1>1. Homepage</h1>
                     </div>
-                    <div>
+                    <div style="display: flex; justify-content: center;">
+                        <div style="width: 60%">
+                            <p style="text-align: justify">This is the homepage of our website. You can see Login button, chat box.</p>
+                            <p style="text-align: justify">You can click Sign In to log in your account with username, password.</p>
+                            <p style="text-align: justify">If you want to contact us for supporting or you have some good ideas for us. You can chat at chat box</p>
+                        </div>
+                    </div>
+                    <div style="text-align: center">
                         <img src="<c:url value="/assets/images/support/home.png"/>" width="500px" alt="Home page">
                     </div>
-                    <h1>2. Login</h1>
-                    <div style="width: 50%">
-                        <p>This is log in page you have to use username and password to access your account</p>
-                        <p>If you don't have account, you click sign up to register new account. You fill in your full name, email, username, password and you accept the term and conditions.
-                            Then you click Sign Up. Your account will be created.
-                        </p>
+                    <div style="margin-left: 150px">
+                        <h1>2. Login</h1>
                     </div>
-
-                    <img src="<c:url value="/assets/images/support/register_account.png"/>" width="500px" alt="Register">
-                    <div style="width: 50%">
-                        <p>You have account then you fill your username, password. Click sign in, you can use account and access your user page.</p>
+                    <div style="display: flex; justify-content: center;">
+                        <div style="width: 60%">
+                            <p style="text-align: justify">This is log in page you have to use username and password to access your account</p>
+                            <p style="text-align: justify">If you don't have account, you click sign up to register new account. You fill in your full name, email, username, password and you accept the term and conditions.
+                                Then you click Sign Up. Your account will be created.
+                            </p>
+                        </div>
                     </div>
-                    <img src="<c:url value="/assets/images/support/login.png"/>" width="500px" alt="Login">
-                    <h1>3. Your courses</h1>
-                    <div style="width: 50%">
-                        <p>This page you can see all courses you registered. We have a filter on page to check which courses are finished or not easily.</p>
-                        <p>The image below you can see all your courses.</p>
+                    <div style="text-align: center">
+                        <img src="<c:url value="/assets/images/support/register_account.png"/>" width="500px" alt="Register">
                     </div>
-                    <img src="<c:url value="/assets/images/support/all_courses.png"/>" width="500px" alt="All_Courses">
-                    <div style="width: 50%">
-                        <p>When you click unfinished, the page will appear your courses which you haven't finished.</p>
+                    <div style="display: flex; justify-content: center;">
+                        <div style="width: 60%">
+                            <p style="text-align: justify">You have account then you fill your username, password. Click sign in, you can use account and access your user page.</p>
+                        </div>
                     </div>
-                    <img src="<c:url value="/assets/images/support/unfinish_course.png"/>" width="500px" alt="Unfinished_Course">
-                    <div style="width: 50%">
-                        <p>When you click finished, the page will appear your courses which you have finished.</p>
+                    <div style="text-align: center">
+                        <img src="<c:url value="/assets/images/support/login.png"/>" width="500px" alt="Login">
                     </div>
-                    <img src="<c:url value="/assets/images/support/finish_courses.png"/>" width="500px" alt="Finished_Course">
-                    <h1>4. Register courses</h1>
-                    <div style="width: 50%">
-                        <p>If you want to register new courses. You can click Add Course at homepage of user page (The red button)
+                    <div style="margin-left: 150px">
+                        <h1>3. Your courses</h1>
+                    </div>
+                    <div style="display: flex; justify-content: center;">
+                        <div style="width: 60%">
+                            <p style="text-align: justify">This page you can see all courses you registered. We have a filter on page to check which courses are finished or not easily.</p>
+                            <p style="text-align: justify">The image below you can see all your courses.</p>
+                        </div>
+                    </div>
+                    <div style="text-align: center">
+                        <img src="<c:url value="/assets/images/support/all_courses.png"/>" width="500px" alt="All_Courses">
+                    </div>
+                    <div style="display: flex; justify-content: center;">
+                        <div style="width: 60%">
+                            <p style="text-align: justify">When you click unfinished, the page will appear your courses which you haven't finished.</p>
+                        </div>
+                    </div>
+                    <div style="text-align: center">
+                        <img src="<c:url value="/assets/images/support/unfinish_course.png"/>" width="500px" alt="Unfinished_Course">
+                    </div>
+                    <div style="display: flex; justify-content: center;">
+                        <div style="width: 60%">
+                            <p style="text-align: justify">When you click finished, the page will appear your courses which you have finished.</p>
+                        </div>
+                    </div>
+                    <div style="text-align: center">
+                        <img src="<c:url value="/assets/images/support/finish_courses.png"/>" width="500px" alt="Finished_Course">
+                    </div>
+                    <div style="margin-left: 150px">
+                        <h1>4. Register courses</h1>
+                    </div>
+                    <div style="display: flex; justify-content: center;">
+                        <div style="width: 60%">
+                            <p style="text-align: justify">If you want to register new courses. You can click Add Course at homepage of user page (The red button)
                             or click Courses at left side-bar to go to page that you register new courses</p>
+                        </div>
                     </div>
+                    <div style="text-align: center">
+                        <img src="<c:url value="/assets/images/support/all_courses_forcus.png"/>" width="500px" alt="Register_Course_Button">
+                    </div>
+                    <div style="display: flex; justify-content: center;">
+                        <div style="width: 60%">
+                            <p style="text-align: justify">In this page you register a new course by clicking "Register" button (The green buttons) then your course
+                                you registered will have in your cart. Your cart will appear a number.
+                                The number let you know how many courses have in your cart.</p>
+                        </div>
+                    </div>
+                    <div style="text-align: center">
+                        <img src="<c:url value="/assets/images/support/cart_number.png"/>" width="500px" alt="Cart_Number_Course_Button">
+                    </div>
+                    <div style="display: flex; justify-content: center;">
+                        <div style="width: 60%">
+                            <p style="text-align: justify">In the cart you can add more courses or delete a course and you can see total
+                                money you have to pay if you buy all courses in your cart
+                                . To access your courses in your cart.
+                                You have to pay for it. You can pay by PayPal or Credit Cards</p>
+                        </div>
 
-                    <img src="<c:url value="/assets/images/support/all_courses_forcus.png"/>" width="500px" alt="Register_Course_Button">
-                    <div style="width: 50%">
-                        <p>In this page you register a new course by clicking "Register" button (The green buttons) then your course
-                            you registered will have in your cart. Your cart will appear a number.
-                            The number let you know how many courses have in your cart.</p>
                     </div>
-                    <img src="<c:url value="/assets/images/support/cart_number.png"/>" width="500px" alt="Cart_Number_Course_Button">
-                    <div style="width: 50%">
-                        <p>In the cart you can add more courses or delete a course and you can see total
-                            money you have to pay if you buy all courses in your cart
-                            . To access your courses in your cart.
-                            You have to pay for it. You can pay by PayPal or Credit Cards</p>
+                    <div style="text-align: center">
+                        <img src="<c:url value="/assets/images/support/paypal.png"/>" width="500px" alt="PayPal_Button">
                     </div>
-                    <img src="<c:url value="/assets/images/support/paypal.png"/>" width="500px" alt="PayPal_Button">
-                    <h1>5. Test</h1>
-                    <div style="width: 50%">
-                        <p>In your courses that you registered have some tests for you. With tests you can train yourself. You can study some more knowledge.
+                    <div style="margin-left: 150px">
+                        <h1>5. Test</h1>
+                    </div>
+                    <div style="display: flex; justify-content: center;">
+                        <div style="width: 60%">
+                        <p style="text-align: justify">In your courses that you registered have some tests for you. With tests you can train yourself. You can study some more knowledge.
                             They help you more confident in your test in class or university exam.</p>
-                        <p>To do tests you click your course you've got. And then there are many tests, you want to test
+                        <p style="text-align: justify">To do tests you click your course you've got. And then there are many tests, you want to test
                             you click "Exam" button so you access the test and you click "Submit" button to finish your test.
                             After that the page will appear your score and number of your correct answer in your test.
                             And your test is finished. You can do it many times</p>
+                        </div>
                     </div>
-                    <img src="<c:url value="/assets/images/support/test.png"/>" width="500px" alt="Test_Button">
+                    <div style="text-align: center">
+                        <img src="<c:url value="/assets/images/support/test.png"/>" width="500px" alt="Test_Button">
+                    </div>
                     <br>
-                    <div style="width: 50%">
-                        <p>This is test page. There are 50 questions you have to do. You can click next or back to go
-                            to question you want. If you finish, you click Submit to finish.</p>
+                    <div style="display: flex; justify-content: center;">
+                        <div style="width: 60%">
+                            <p style="text-align: justify">This is test page. There are 50 questions you have to do. You can click next or back to go
+                                to question you want. If you finish, you click Submit to finish.</p>
+                        </div>
                     </div>
-                    <img src="<c:url value="/assets/images/support/practise.png"/>" width="500px" alt="practise">
+                    <div style="text-align: center">
+                        <img src="<c:url value="/assets/images/support/practise.png"/>" width="500px" alt="practise">
+                    </div>
                     <br>
                     <br>
-                    <img src="<c:url value="/assets/images/support/pratise_submit.png"/>" width="500px" alt="Submit_Button">
+                    <div style="text-align: center">
+                        <img src="<c:url value="/assets/images/support/pratise_submit.png"/>" width="500px" alt="Submit_Button">
+                    </div>
                     <br>
-                    <div style="width: 50%">
-                        <p>After the test, this is your result.</p>
+                    <div style="display: flex; justify-content: center;">
+                        <div style="width: 60%">
+                            <p style="text-align: justify">After the test, this is your result.</p>
+                        </div>
                     </div>
-                    <img src="<c:url value="/assets/images/support/result.png"/>" width="500px" alt="Result">
-                    <div style="width: 50%">
-                        <p>If you want to see all question have in test you finished. You click "Review" button.
-                            It will show all question you want, it will let you know that which answer is correct,
-                            which is not correct and answer of the question you want.</p>
+                    <div style="text-align: center">
+                        <img src="<c:url value="/assets/images/support/result.png"/>" width="500px" alt="Result">
                     </div>
-                    <img src="<c:url value="/assets/images/support/reviews.png"/>" width="500px" alt="Reviews">
-                    <h1>6. Edit profile</h1>
-                    <div style="width: 50%">
-                        <p>You want to edit your profile? That's okay. Click "My account" at the left side-bar.
-                            Then it will appear your information and your username, password.</p>
-                        <p>You modified your infomation then click "Edit" button and finish.</p>
+                    <div style="display: flex; justify-content: center;">
+                        <div style="width: 60%">
+                            <p style="text-align: justify">If you want to see all question have in test you finished. You click "Review" button.
+                                It will show all question you want, it will let you know that which answer is correct,
+                                which is not correct and answer of the question you want.</p>
+                        </div>
                     </div>
-
-                    <img src="<c:url value="/assets/images/support/profile.png"/>" width="500px" alt="profile">
+                    <div style="text-align: center">
+                        <img src="<c:url value="/assets/images/support/reviews.png"/>" width="500px" alt="Reviews">
+                    </div>
+                    <div style="margin-left: 150px">
+                        <h1>6. Edit profile</h1>
+                    </div>
+                    <div style="display: flex; justify-content: center;">
+                        <div style="width: 60%">
+                            <p style="text-align: justify">You want to edit your profile? That's okay. Click "My account" at the left side-bar.
+                                Then it will appear your information and your username, password.</p>
+                            <p style="text-align: justify">You modified your infomation then click "Edit" button and finish.</p>
+                        </div>
+                    </div>
+                    <div style="text-align: center">
+                        <img src="<c:url value="/assets/images/support/profile.png"/>" width="500px" alt="profile">
+                    </div>
                     <br>
-                    <img src="<c:url value="/assets/images/support/edit_pass.png"/>" width="500px" alt="edit_pass">
-                    <h1>7. Logout</h1>
-                    <div style="width: 50%">
-                        <p>If you want to log out your account you click Log out button.</p>
+                    <div style="text-align: center">
+                        <img src="<c:url value="/assets/images/support/edit_pass.png"/>" width="500px" alt="edit_pass">
                     </div>
-                    <img src="<c:url value="/assets/images/support/logout.png"/>" width="500px" alt="Logout">
+                    <div style="margin-left: 150px">
+                        <h1>7. Logout</h1>
+                    </div>
+                    <div style="display: flex; justify-content: center;">
+                        <div style="width: 60%">
+                            <p style="text-align: justify">If you want to log out your account you click Log out button.</p>
+                        </div>
+                    </div>
+                    <div style="text-align: center">
+                        <img src="<c:url value="/assets/images/support/logout.png"/>" width="500px" alt="Logout">
+                    </div>
+                    <br>
                     <!-- end row-->
 
                 </div>
