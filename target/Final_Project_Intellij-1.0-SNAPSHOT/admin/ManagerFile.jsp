@@ -133,11 +133,7 @@
                     <div class="collapse" id="sidebarEcommerce">
                         <ul class="side-nav-second-level">
                             <li>
-
                                 <a href="<c:url value = "/admin-manager-file"/>">Courses</a>
-                            </li>
-                            <li>
-                                <a href="<c:url value = "/admin-manager-file"/>">Documents</a>
                             </li>
                             <li>
                                 <a href="<c:url value = "/admin/stats-doanh-thu"/>">Revenue</a>
@@ -579,6 +575,87 @@
                                     </table>
 
                                 </div> <!-- end .mt-3-->
+                                <div class="mt-3">
+                                    <div class="page-title-box" style="display:flex; align-items: center">
+                                        <h4 class="page-title">Documents</h4>
+                                        <button  class="btn btn-success Add-document" style="margin-left: 8px"><i class="mdi mdi-file-plus-outline me-1"></i>Add Document</button>
+                                    </div>
+                                    <table class="table table-striped table-centered mb-0">
+                                        <thead>
+                                        <tr>
+                                            <th>Document ID</th>
+                                            <th>Document Name</th>
+                                            <th>Course Name</th>
+                                            <th>Document Link</th>
+                                            <th>Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <c:forEach items="${requestScope.listDocument}" var="document">
+                                            <tr>
+                                                <td>${document.id}</td>
+                                                <td>${document.documentName}</td>
+                                                <td>
+                                                        ${document.course.courseName}
+                                                </td>
+
+                                                <td class="table-action" style="display: flex; justify-content: center">
+                                                    <div class="rightbar-overlay" id ="file${document.id}" style=" background-color: rgba(0,0,0,0.05); opacity: 1;">
+                                                        <div class="course-upload col-md-4" style="transform: translate(100%, 100px); color: #6c757d; background-color: #FFF;padding: 40px 0; border-radius: 4px;">
+                                                            <form class="needs-validation col-md-6" novalidate style="transform: translate(50%, 0);" method="post" action="/admin-manager-file?action=updateDocument">
+                                                                <input type="hidden" name="id" value="${document.id}">
+                                                                <div class="mb-0">
+                                                                    <label class="form-label" for="validationCustom08" style="float:left;">Document Name</label>
+                                                                    <input type="text" class="form-control" id="validationCustom08" value="${document.documentName}" placeholder="Document Name" required name = "documentName">
+                                                                    <div class="valid-feedback">
+                                                                        Looks good!
+                                                                    </div>
+                                                                </div>
+                                                                <div class="mb-0">
+                                                                    <label class="form-label" for="validationCustom09" style="margin-top: 16px;float:left;">Course Name</label>
+                                                                    <input type="text" class="form-control" id="validationCustom09"value="${document.course.courseName}" placeholder="Course Name" required name="courseName">
+                                                                    <div class="valid-feedback">
+                                                                        Looks good!
+                                                                    </div>
+                                                                </div>
+                                                                <div class="mb-0">
+                                                                    <label class="form-label" for="validationCustom010" style="margin-top: 16px;float:left;">Document Link</label>
+                                                                    <input type="text" class="form-control" id="validationCustom010"value="${document.documentLink}" placeholder="Document Link" required name="documentLink">
+                                                                    <div class="valid-feedback">
+                                                                        Looks good!
+                                                                    </div>
+                                                                </div>
+                                                                <div class="mb-0">
+                                                                    <select name="courseID" required style="border-radius: 3px; width: 100%; height: 36px;margin: 16px 0">
+                                                                        <option value="" selected disabled hidden>Choose Course</option>
+                                                                        <c:forEach items="${list}" var="item">
+                                                                            <option value="${item.id}" style="border-radius: 3px; max-height: 38px">${item.courseName}</option>
+                                                                        </c:forEach>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="mb-0" style="display: flex">
+                                                                    <button type="button" id = "update-cancel-course${document.id}"
+                                                                            onclick="hiddenForm('#update-document${document.id}')"
+                                                                            class="btn btn-danger" style="margin-right: 4px;min-width: 100px">Cancel</button>
+                                                                    <button class="btn btn-success" type="submit" style="min-width: 100px;">Submit</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                    <button type="button" class="action-icon update-document${document.id}" style="border-radius: 50%; margin-right: 8px" onclick="addActive('#update-document${document.id}')"><i class="mdi mdi-pencil"></i></button>
+                                                    <form action="/admin-manager-file?action=deleteDocument" method="post">
+                                                        <input type="hidden" name="id" value="${document.id}">
+                                                        <input type="hidden" name="documentName" value="${document.documentName}">
+                                                        <input type="hidden" name="courseName" value="${document.course.courseName}">
+                                                        <input type="hidden" name="documentLink" value="${document.documentLink}">
+                                                        <button type="submit" class="action-icon" style="border-radius: 50%"><i class="mdi mdi-delete"></i></button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div> <!-- end .mt-3-->
                             </div>
                             <!-- end card-body -->
                             <div class="clearfix"></div>
@@ -781,6 +858,40 @@
         </form>
     </div>
 </div>
+<!-- =====================Document============================= -->
+<div class="rightbar-overlay " id ="document" style=" background-color: rgba(0,0,0,0.5); opacity: 1;">
+    <div class="course-upload col-md-4" style="transform: translate(100%, 100px); color: #6c757d; background-color: #FFF;padding: 40px 0; border-radius: 4px;">
+        <form class="needs-validation col-md-6" novalidate style="transform: translate(50%, 0);" method="post" action="/admin-manager-file?action=insertDocument">
+            <div class="mb-0">
+                <label class="form-label" for="validationCustom06">Document Name</label>
+                <input type="text" class="form-control" id="validationCustom06" placeholder="Document Name" required name = "documentName">
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-0">
+                <label class="form-label" for="validationCustom07" style="margin-top: 16px;">Description</label>
+                <input type="text" class="form-control" id="validationCustom07" placeholder="Document link" required name="documentLink">
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-0">
+                <select name="courseID" required style="border-radius: 3px; width: 100%; height: 36px;margin: 16px 0">
+                    <option value="" selected disabled hidden>Choose Course</option>
+                    <c:forEach items="${list}" var="item">
+                        <option value="${item.id}" style="border-radius: 3px; max-height: 38px">${item.courseName}</option>
+                    </c:forEach>
+                </select>
+            </div>
+            <div class="mb-0">
+                <button type="button" id = "cancel-document" class="btn btn-danger" style="margin-right: 8px;min-width: 120px">Cancel</button>
+                <button class="btn btn-success" type="submit" style="min-width: 120px;">Submit form</button>
+            </div>
+        </form>
+    </div>
+</div>
+
 <!-- /End-bar -->
 <script src="../assets/js/TuViet/handlerInForm.js"></script>
 <script src="../assets/js/TuViet/upFirebase.js"></script>
@@ -793,13 +904,14 @@
     handle('.Add-course', '#course');
     // handle('.insert-file', '#file');
     handle('.Add-exam', '#exam');
+    handle('.Add-document','#document')
     Cancel('#cancel-course', '#course','#image-grid');
     // Cancel('#cancel-file', '#file','#file-previews')
     Cancel('#cancel-exam','#exam')
+    Cancel('#cancel-document','#document')
 </script>
 <script>
     loadImage('file-uploader','image-grid');
-    //loadImage('update-file-uploader','update-image-grid')
 </script>
 <script>
     thongBao('.swalDefaultSuccess');

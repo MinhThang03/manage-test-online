@@ -12,5 +12,6 @@ public interface IDocumentService {
     Document updateDocument(DocumentDTO documentDTO);
     boolean deleteDocument(DocumentDTO documentDTO);
     List<Document> getListDocument();
+    List<Document> getAllDocumentsByCourseID(Integer courseId);
     public List<DocumentDTO> findAllDocumentsByCourseID(Integer courseId);
 }

@@ -44,6 +44,12 @@ public class DocumentService implements IDocumentService {
     }
 
     @Override
+    public List<Document> getAllDocumentsByCourseID(Integer courseId) {
+        List<Document> documentList=documentDAO.findAllDocumentsByCourseID(courseId);
+        return documentList;
+    }
+
+    @Override
     public List<DocumentDTO> findAllDocumentsByCourseID(Integer courseId) {
         List<Document> documentDTOS=documentDAO.findAllDocumentsByCourseID(courseId);
         List<DocumentDTO>list=new ArrayList<>();

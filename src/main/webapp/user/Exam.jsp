@@ -211,8 +211,9 @@ display: inline-block;
                     <div class="col-sm-4">
                         <a href="<c:out value="/user-home"/>" class="btn btn-danger btn-rounded mb-3"><i
                                 class="uil-book-reader"></i> My Courses</a>
+                        <a href="<c:out value="/document?courseID=${exam.courseID}"/>" class="btn btn-danger btn-rounded mb-3"><i
+                                class="uil-book-reader"></i> Course's Library</a>
                     </div>
-
                 </div>
                 <!-- end row-->
 

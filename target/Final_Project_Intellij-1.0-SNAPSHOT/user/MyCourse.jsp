@@ -294,9 +294,6 @@ display: inline-block;
 
                     </c:forEach>
                 </div>
-                <!-- end row-->
-
-
                 <!-- end row--> <!-- container -->
             </div>
         </div> <!-- content -->
