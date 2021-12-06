@@ -137,6 +137,9 @@
                                 <a href="<c:url value = "/admin-manager-file"/>">Courses</a>
                             </li>
                             <li>
+                                <a href="<c:url value = "/admin-manager-file"/>">Documents</a>
+                            </li>
+                            <li>
                                 <a href="<c:url value = "/admin/stats-doanh-thu"/>">Revenue</a>
                                 <%--                            <a href="<c:url value = "apps-ecommerce-products-details.jsp"/>">Users</a>--%>
                             </li>

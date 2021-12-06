@@ -133,8 +133,10 @@
                     <div class="collapse" id="sidebarEcommerce">
                         <ul class="side-nav-second-level">
                             <li>
-
                                 <a href="<c:url value = "/admin-manager-file"/>">Courses</a>
+                            </li>
+                            <li>
+                                <a href="<c:url value = "/admin-manager-file"/>">Documents</a>
                             </li>
                             <li>
                                 <a href="<c:url value = "/admin/stats-doanh-thu"/>">Revenue</a>
