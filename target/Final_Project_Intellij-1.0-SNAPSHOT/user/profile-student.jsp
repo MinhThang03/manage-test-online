@@ -75,7 +75,30 @@
                         <span> My account</span>
                     </a>
                 </li>
+                <li class="side-nav-item">
+                    <a data-bs-toggle="collapse" href="#sidebarEcommerce" aria-expanded="false" aria-controls="sidebarEcommerce" class="side-nav-link">
+                        <i class="uil-layer-group"></i>
+                        <span> Support </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarEcommerce">
+                        <ul class="side-nav-second-level">
+                            <li class="side-nav-item">
+                                <a href="<c:url value = "/support"/>" class="side-nav-link">
+                                    <i class="uil-book-reader"></i>
+                                    <span> How to use this website </span>
+                                </a>
+                            </li>
 
+                            <li class="side-nav-item">
+                                <a href="<c:url value = "/faq-support"/>" class="side-nav-link">
+                                    <i class=" uil-parcel"></i>
+                                    <span>  FAQ </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
             </ul>
 
             <div class="clearfix"></div>
@@ -107,7 +130,7 @@
                     </li>
 
                     <li class="dropdown notification-list">
-                        <a class="nav-link dropdown-toggle arrow-none" href="#" role="button" aria-haspopup="false"
+                        <a class="nav-link dropdown-toggle arrow-none" href="/ListCartController" role="button" aria-haspopup="false"
                            aria-expanded="false">
                             <i class="dripicons-cart noti-icon"> <span id="cartCounter" style="font-style: initial;
     background-color: #777;

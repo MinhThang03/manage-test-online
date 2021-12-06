@@ -35,6 +35,7 @@ public class HibernateUtil {
         conf.addAnnotatedClass(RegisterCourse.class);
         conf.addAnnotatedClass(RoleUser.class);
         conf.addAnnotatedClass(Score.class);
+        conf.addAnnotatedClass(Document.class);
 
         ServiceRegistry registry = new StandardServiceRegistryBuilder().applySettings(
                 conf.getProperties()).build();

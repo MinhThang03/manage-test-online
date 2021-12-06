@@ -18,7 +18,7 @@ public class QuestionController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try{
             Integer exam_id=Integer.parseInt(request.getParameter("exam_id"));
-            List<Question> list=questionService.getListQuestionByExamID(exam_id);
+            List<Question> list=questionService.getListQuestionByExamId(exam_id);
             request.setAttribute("list",list);
         }catch (Exception exception){
             System.out.println(exception.toString());

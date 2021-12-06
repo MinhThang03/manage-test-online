@@ -41,6 +41,7 @@ public class ExamUser extends HttpServlet {
             iExamService.setScoreForListExam(examDTO,userId);
 
             request.setAttribute("exam", examDTO);
+            request.setAttribute("courseId",courseId);
             RequestDispatcher rd = request.getRequestDispatcher("/user/Exam.jsp");
             rd.forward(request,response);
         }

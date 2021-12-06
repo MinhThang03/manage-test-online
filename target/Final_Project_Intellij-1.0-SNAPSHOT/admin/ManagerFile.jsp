@@ -173,75 +173,6 @@
     <div class="content-page">
         <div class="content">
             <!-- Topbar Start -->
-            <%--<div class="navbar-custom">
-                <ul class="list-unstyled topbar-menu float-end mb-0">
-
-                    <li class="dropdown notification-list">
-                        <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                    <span class="account-user-avatar">
-                                        <img src="../assets/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
-                                    </span>
-                            <span>
-                                        <span class="account-user-name">Phan Thanh Tài</span>
-                                        <span class="account-position">Admin</span>
-                                    </span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
-                            <!-- item-->
-                            <div class=" dropdown-header noti-title">
-                                <h6 class="text-overflow m-0">Welcome !</h6>
-                            </div>
-
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                <i class="mdi mdi-account-circle me-1"></i>
-                                <span>My Account</span>
-                            </a>
-
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                <i class="mdi mdi-account-edit me-1"></i>
-                                <span>Settings</span>
-                            </a>
-
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                <i class="mdi mdi-lifebuoy me-1"></i>
-                                <span>Support</span>
-                            </a>
-
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                <i class="mdi mdi-lock-outline me-1"></i>
-                                <span>Lock Screen</span>
-                            </a>
-
-                            <!-- item-->
-                            <a href="<c:url value="../index.jsp"/>" class="dropdown-item notify-item">
-                                <i class="mdi mdi-logout me-1"></i>
-                                <span>Logout</span>
-                            </a>
-                        </div>
-                    </li>
-
-                </ul>
-                <button class="button-menu-mobile open-left">
-                    <i class="mdi mdi-menu"></i>
-                </button>
-                <div class="app-search dropdown d-none d-lg-block">
-                    <form>
-                        <div class="input-group">
-                            <input type="text" class="form-control dropdown-toggle" placeholder="Search..." id="top-search">
-                            <span class="mdi mdi-magnify search-icon"></span>
-                            <button class="input-group-text btn-primary" type="submit">Search</button>
-                        </div>
-                    </form>
-
-                    <div class="dropdown-menu dropdown-menu-animated dropdown-lg" id="search-dropdown">
-
-                    </div>
-                </div>
-            </div>--%>
             <div class="navbar-custom">
                 <ul class="list-unstyled topbar-menu float-end mb-0">
                     <li class="dropdown notification-list d-lg-none">
@@ -393,7 +324,7 @@
                                                 <td>${item.price}</td>
                                                 <td class="table-action" style="display: flex;justify-content: center">
                                                     <div class="rightbar-overlay " id ="update-course${item.id}" style=" background-color: rgba(0,0,0,0.05); opacity: 1;">
-                                                        <div class="course-upload col-md-4" style="transform: translate(100%, 100px); color: #6c757d; background-color: #FFF;padding: 40px 0; border-radius: 4px;">
+                                                        <div class="course-upload col-md-4" style="position: fixed;transform: translate(50%, 0); color: #6c757d; background-color: #FFF;padding: 40px 0; border-radius: 4px;">
                                                             <form class="needs-validation col-md-6" novalidate style="transform: translate(50%, 0);" method="post" action="/admin-manager-file?action=updateCourse">
                                                                 <input type="hidden" name="id" value="${item.id}">
                                                                 <div class="mb-0">
@@ -477,62 +408,7 @@
 
                                                 <td class="table-action" style="display: flex; justify-content: center">
                                                     <div class="rightbar-overlay" id ="file${exam.id}" style=" background-color: rgba(0,0,0,0.05); opacity: 1;">
-                                                            <%--<div class="file-upload col-md-6 container-file">
-                                                                <!-- File Upload -->
-                                                                <form action="/QuestionController?action=insertFile" method="post" class="dropzone" id="myAwesomeDropzone" data-plugin="dropzone" data-previews-container="#file-previews"
-                                                                      data-upload-preview-template="#uploadPreviewTemplate">
-                                                                    <div class="fallback">
-                                                                        <input name="file" type="file" multiple accept=".xlsx" required/>
-                                                                    </div>
-
-                                                                    <div class="dz-message needsclick">
-                                                                        <i class="h1 text-muted dripicons-cloud-upload"></i>
-                                                                        <h3>Drop files here or click to upload.</h3>
-                                                                        <span class="text-muted font-13">(This is just a demo dropzone. Selected files are
-                                                                        <strong>not</strong> actually uploaded.)</span>
-                                                                    </div>
-                                                                    <input type="hidden" name="id" value="${exam.id}}">
-                                                                    <input type="hidden" name="examName" value="${exam.examName}">
-                                                                    <input type="hidden" name="courseID" value="${exam.course.id}">
-                                                                    <input type="hidden" name="fileCheck" value="true">
-
-                                                                    <div class="btn btn-upfile" >
-                                                                        <button type="button" id = "cancel-file" onclick="hiddenForm('#file${exam.id}','.file-previews${exam.id}')" class="btn btn-danger" style="margin: 0 10px">Cancel</button>
-                                                                        <button type="submit" class="btn btn-success">Upload</button>
-                                                                    </div>
-
-                                                                </form>
-
-
-                                                                <!-- Preview -->
-                                                                <div data-bs-spy="scroll" class="scrollspy-example" style="height: 320px;">
-                                                                    <div class="dropzone-previews mt-3 file-previews${exam.id}" id="file-previews"></div>
-                                                                </div>
-
-                                                                <!-- file preview template -->
-                                                                <div class="d-none" id="uploadPreviewTemplate">
-                                                                    <div class="card mt-1 mb-0 shadow-none border">
-                                                                        <div class="p-2">
-                                                                            <div class="row align-items-center">
-                                                                                <div class="col-auto">
-                                                                                    <img data-dz-thumbnail src="#" class="avatar-sm rounded bg-light" alt="">
-                                                                                </div>
-                                                                                <div class="col ps-0">
-                                                                                    <a href="javascript:void(0);" class="text-muted fw-bold" data-dz-name></a>
-                                                                                    <p class="mb-0" data-dz-size></p>
-                                                                                </div>
-                                                                                <div class="col-auto">
-                                                                                    <!-- Button -->
-                                                                                    <a href="" class="btn btn-link btn-lg text-muted" data-dz-remove>
-                                                                                        <i class="dripicons-cross"></i>
-                                                                                    </a>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>--%>
-                                                        <div class="course-upload col-md-4" style="transform: translate(100%, 100px); color: #6c757d; background-color: #FFF;padding: 40px 0; border-radius: 4px;">
+                                                        <div class="course-upload col-md-4" style="position: fixed;transform: translate(50%, 50%); color: #6c757d; background-color: #FFF;padding: 40px 0; border-radius: 4px;">
                                                             <form class="needs-validation col-md-6" novalidate enctype="multipart/form-data" style="transform: translate(50%, 0);" method="post" action="/QuestionController?action=insertFile">
                                                                 <div style="margin-top: 16px; display: flex; align-items: flex-start;flex-direction: column">
                                                                     <label class="form-label">Insert Exam: </label>
@@ -598,10 +474,10 @@
                                                 <td>
                                                         ${document.course.courseName}
                                                 </td>
-
-                                                <td class="table-action" style="display: flex; justify-content: center">
-                                                    <div class="rightbar-overlay" id ="file${document.id}" style=" background-color: rgba(0,0,0,0.05); opacity: 1;">
-                                                        <div class="course-upload col-md-4" style="transform: translate(100%, 100px); color: #6c757d; background-color: #FFF;padding: 40px 0; border-radius: 4px;">
+                                                <td>${document.documentLink}</td>
+                                                <td class="table-action">
+                                                    <div class="rightbar-overlay" id ="update-document${document.id}" style=" background-color: rgba(0,0,0,0.05); opacity: 1;">
+                                                        <div class="course-upload col-md-4" style="position: fixed;transform: translate(50%, 0); color: #6c757d; background-color: #FFF;padding: 40px 0; border-radius: 4px;">
                                                             <form class="needs-validation col-md-6" novalidate style="transform: translate(50%, 0);" method="post" action="/admin-manager-file?action=updateDocument">
                                                                 <input type="hidden" name="id" value="${document.id}">
                                                                 <div class="mb-0">
@@ -642,13 +518,13 @@
                                                             </form>
                                                         </div>
                                                     </div>
-                                                    <button type="button" class="action-icon update-document${document.id}" style="border-radius: 50%; margin-right: 8px" onclick="addActive('#update-document${document.id}')"><i class="mdi mdi-pencil"></i></button>
+                                                    <button type="button" class="action-icon" style="border-radius: 50%; margin-bottom: 4px" onclick="addActive('#update-document${document.id}')"><i class="mdi mdi-pencil"></i></button>
                                                     <form action="/admin-manager-file?action=deleteDocument" method="post">
                                                         <input type="hidden" name="id" value="${document.id}">
                                                         <input type="hidden" name="documentName" value="${document.documentName}">
                                                         <input type="hidden" name="courseName" value="${document.course.courseName}">
                                                         <input type="hidden" name="documentLink" value="${document.documentLink}">
-                                                        <button type="submit" class="action-icon" style="border-radius: 50%"><i class="mdi mdi-delete"></i></button>
+                                                        <button type="submit" class="action-icon" style="border-radius: 50%; margin-top: 4px"><i class="mdi mdi-delete"></i></button>
                                                     </form>
                                                 </td>
                                             </tr>
@@ -789,7 +665,7 @@
 
 <!-- =====================course============================= -->
 <div class="rightbar-overlay " id ="course" style=" background-color: rgba(0,0,0,0.5); opacity: 1;">
-    <div class="course-upload col-md-4" style="transform: translate(100%, 100px); color: #6c757d; background-color: #FFF;padding: 40px 0; border-radius: 4px;">
+    <div class="course-upload col-md-4" style="position: fixed;transform: translate(100%, 100px); color: #6c757d; background-color: #FFF;padding: 40px 0; border-radius: 4px;">
         <form class="needs-validation col-md-6" novalidate style="transform: translate(50%, 0);" method="post" action="/admin-manager-file?action=insertCourse">
             <div class="mb-0">
                 <label class="form-label" for="validationCustom01">Course Name</label>
@@ -833,7 +709,7 @@
 
 <!-- =====================EXAM============================= -->
 <div class="rightbar-overlay " id ="exam" style=" background-color: rgba(0,0,0,0.5); opacity: 1;">
-    <div class="course-upload col-md-4" style="transform: translate(100%, 200px); color: #6c757d; background-color: #FFF;padding: 40px 0; border-radius: 4px;">
+    <div class="course-upload col-md-4" style="position: fixed;transform: translate(100%, 200px); color: #6c757d; background-color: #FFF;padding: 40px 0; border-radius: 4px;">
         <form class="needs-validation col-md-6" novalidate style="transform: translate(50%, 0);" method="post" action="/admin-manager-file?action=insertExam">
             <div class="mb-0">
                 <label class="form-label" for="validationCustom5">Exam Name</label>
@@ -860,7 +736,7 @@
 </div>
 <!-- =====================Document============================= -->
 <div class="rightbar-overlay " id ="document" style=" background-color: rgba(0,0,0,0.5); opacity: 1;">
-    <div class="course-upload col-md-4" style="transform: translate(100%, 100px); color: #6c757d; background-color: #FFF;padding: 40px 0; border-radius: 4px;">
+    <div class="course-upload col-md-4" style="position: fixed;transform: translate(100%, 50%); color: #6c757d; background-color: #FFF;padding: 40px 0; border-radius: 4px;">
         <form class="needs-validation col-md-6" novalidate style="transform: translate(50%, 0);" method="post" action="/admin-manager-file?action=insertDocument">
             <div class="mb-0">
                 <label class="form-label" for="validationCustom06">Document Name</label>

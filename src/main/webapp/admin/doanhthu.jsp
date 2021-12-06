@@ -60,7 +60,7 @@
             <!--- Sidemenu -->
             <ul class="side-nav">
 
-                <li class="side-nav-item menuitem-active">
+                <li class="side-nav-item">
                     <a href="<c:url value = "/admin-home"/>" class="side-nav-link">
                         <%--                <a href="<c:url value = "apps-calendar.jsp"/>" class="side-nav-link">--%>
                         <i class="uil-graph-bar"></i>

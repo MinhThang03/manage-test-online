@@ -14,7 +14,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>My Course</title>
+    <title>Support</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description">
     <meta content="Coderthemes" name="author">
@@ -73,19 +73,49 @@
             <!--- Sidemenu -->
             <ul class="side-nav">
                 <li class="side-nav-item">
-                    <a href="<c:url value = "/support"/>" class="side-nav-link">
+                    <a href="<c:url value = "/user-home"/>" class="side-nav-link">
                         <i class="uil-book-reader"></i>
-                        <span> How to use this website </span>
+                        <span> My Courses </span>
                     </a>
                 </li>
 
                 <li class="side-nav-item">
-                    <a href="<c:url value = "/faq-support"/>" class="side-nav-link">
+                    <a href="<c:url value = "/user-add-course"/>" class="side-nav-link">
                         <i class=" uil-parcel"></i>
-                        <span>  FAQ </span>
+                        <span>  Courses </span>
                     </a>
                 </li>
 
+                <li class="side-nav-item">
+                    <a href="<c:url value = "/profile-user"/>" class="side-nav-link ">
+                        <i class=" uil-user"></i>
+                        <span> My account</span>
+                    </a>
+                </li>
+                <li class="side-nav-item">
+                    <a data-bs-toggle="collapse" href="#sidebarEcommerce" aria-expanded="false" aria-controls="sidebarEcommerce" class="side-nav-link">
+                        <i class="uil-layer-group"></i>
+                        <span> Support </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarEcommerce">
+                        <ul class="side-nav-second-level">
+                            <li class="side-nav-item">
+                                <a href="<c:url value = "/support"/>" class="side-nav-link">
+                                    <i class="uil-book-reader"></i>
+                                    <span> How to use this website </span>
+                                </a>
+                            </li>
+
+                            <li class="side-nav-item">
+                                <a href="<c:url value = "/faq-support"/>" class="side-nav-link">
+                                    <i class=" uil-parcel"></i>
+                                    <span>  FAQ </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
             </ul>
 
             <div class="clearfix"></div>
@@ -117,7 +147,7 @@
                     </li>
 
                     <li class="dropdown notification-list">
-                        <a class="nav-link dropdown-toggle arrow-none" href="#" role="button" aria-haspopup="false"
+                        <a class="nav-link dropdown-toggle arrow-none" href="/ListCartController" role="button" aria-haspopup="false"
                            aria-expanded="false">
                             <i class="dripicons-cart noti-icon"> <span id="cartCounter" style="font-style: initial;
     background-color: #777;
@@ -252,12 +282,12 @@ display: inline-block;
                         </div>
                     </div>
                     <div style="text-align: center">
-                        <img src="<c:url value="/assets/images/support/register_account.png"/>" width="500px" alt="Register">
+                        <img src="<c:url value="/assets/images/support/LIB.png"/>" width="500px" alt="Register">
                         <p>Click read button</p>
                     </div>
                     <br>
                     <div style="text-align: center">
-                        <img src="<c:url value="/assets/images/support/login.png"/>" width="500px" alt="Login">
+                        <img src="<c:url value="/assets/images/support/Down_LIB.png"/>" width="500px" alt="Login">
                         <p>Click download icon</p>
                     </div>
                     <br>

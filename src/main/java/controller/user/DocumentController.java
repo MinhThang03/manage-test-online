@@ -27,7 +27,7 @@ public class DocumentController extends HttpServlet {
         req.setAttribute("account", accountDTO);
         List<Document> listDocument = documentService.getAllDocumentsByCourseID(courseID);
         req.setAttribute("listDocument", listDocument);
-        RequestDispatcher rd = req.getRequestDispatcher("/user/Document.jsp");
+        RequestDispatcher rd = req.getRequestDispatcher("/user/Documents.jsp");
         rd.forward(req, resp);
     }
 
