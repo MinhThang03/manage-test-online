@@ -409,7 +409,7 @@
                                                 <td class="table-action" style="display: flex; justify-content: center">
                                                     <div class="rightbar-overlay" id ="file${exam.id}" onclick="hiddenForm('#file${exam.id}')" style=" background-color: rgba(0,0,0,0.05); opacity: 1;">
                                                         <div class="course-upload col-md-4" style="position: fixed;transform: translate(50%, 50%); color: #6c757d; background-color: #FFF;padding: 40px 0; border-radius: 4px;">
-                                                            <form class="needs-validation col-md-6" novalidate enctype="multipart/form-data" style="transform: translate(50%, 0);" method="post" action="/QuestionController?action=insertFile">
+                                                            <form class="needs-validation col-md-6" novalidate enctype="multipart/form-data" style="transform: translate(50%, 0);" method="post" action="/QuestionController-file?action=insertFile">
                                                                 <div style="margin-top: 16px; display: flex; align-items: flex-start;flex-direction: column">
                                                                     <label class="form-label">Insert Exam: </label>
                                                                     <div style="display: flex; justify-content: center; align-items: center">
@@ -428,7 +428,7 @@
                                                         </div>
                                                     </div>
                                                     <button type="button" class="action-icon insert-file" onclick="addActive('#file${exam.id}')"  style="border-radius: 50%; margin-right: 4px" ><i class="mdi mdi-plus"></i></button>
-                                                    <form action="/QuestionController?action=deleteFile" method="post">
+                                                    <form action="/FileController?action=deleteFile" method="post">
                                                         <input type="hidden" name="id" value="${exam.id}">
                                                         <input type="hidden" name="examName" value="${exam.examName}">
                                                         <input type="hidden" name="courseID" value="${exam.course.id}">

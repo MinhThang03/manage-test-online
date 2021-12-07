@@ -20,7 +20,7 @@ import java.util.List;
 
 
 @MultipartConfig
-@WebServlet(name = "QuestionController", value = "/QuestionController")
+@WebServlet(name = "QuestionController", value = "/QuestionController-file")
 public class QuestionController extends HttpServlet {
     @Inject
     private IQuestionService questionService;
@@ -36,16 +36,27 @@ public class QuestionController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
+        System.out.println("get action");
         if(action.equals("insertFile")){
+            System.out.println("check action");
             int id = Integer.parseInt(request.getParameter("id"));
+            System.out.println("get id");
             int courseID = Integer.parseInt(request.getParameter("courseID"));
+            System.out.println("get course id");
             String examName = request.getParameter("examName");
+            System.out.println("get examName");
             String fileCheck = request.getParameter("fileCheck");
+            System.out.println("get fileCheck");
             ExamDTO examDTO = new ExamDTO();
+            System.out.println("new DTO");
             examDTO.setId(id);
+            System.out.println("set id");
             examDTO.setExamName(examName);
+            System.out.println("set examName");
             examDTO.setCourseID(courseID);
+            System.out.println("set courseID");
             examDTO.setFileCheck(fileCheck);
+            System.out.println("set fileCheck");
             try{
 
                 Part part = request.getPart("file-exam");

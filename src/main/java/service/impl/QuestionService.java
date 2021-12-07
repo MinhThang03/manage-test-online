@@ -160,7 +160,7 @@ public class QuestionService implements IQuestionService {
     public List<QuestionDTO> setListAnswer(List<QuestionDTO> list, List<QuestionDTO> oldList, HttpServletRequest request) {
         for (QuestionDTO question: list) {
             for (QuestionDTO oldQuestion: oldList) {
-                if (question.getId() == oldQuestion.getId()) {
+                if (question.getId().toString().equals(oldQuestion.getId().toString())) {
                     String name = oldQuestion.getId().toString();
                     String value = request.getParameter(name);
                     question.setUserAnswer(value);
@@ -174,7 +174,7 @@ public class QuestionService implements IQuestionService {
     public QuestionDTO setListPreview(QuestionDTO questionDTO, List<PreviewDTO> listPreview) {
         for (QuestionDTO questionDTOPreview: questionDTO.getListResult()) {
             for (PreviewDTO previewDTO: listPreview) {
-                if (questionDTOPreview.getId() == previewDTO.getQuestionId()){
+                if (questionDTOPreview.getId().toString().equals(previewDTO.getQuestionId().toString())){
                     questionDTOPreview.setUserAnswer(previewDTO.getAnswer());
                 }
             }
