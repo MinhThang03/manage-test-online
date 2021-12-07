@@ -323,7 +323,7 @@
                                                 <td>${item.description}</td>
                                                 <td>${item.price}</td>
                                                 <td class="table-action" style="display: flex;justify-content: center">
-                                                    <div class="rightbar-overlay " id ="update-course${item.id}" style=" background-color: rgba(0,0,0,0.05); opacity: 1;">
+                                                    <div class="rightbar-overlay " id ="update-course${item.id}" onclick="hiddenForm('#update-course${item.id}')" style=" background-color: rgba(0,0,0,0.05); opacity: 1;">
                                                         <div class="course-upload col-md-4" style="position: fixed;transform: translate(50%, 0); color: #6c757d; background-color: #FFF;padding: 40px 0; border-radius: 4px;">
                                                             <form class="needs-validation col-md-6" novalidate style="transform: translate(50%, 0);" method="post" action="/admin-manager-file?action=updateCourse">
                                                                 <input type="hidden" name="id" value="${item.id}">
@@ -361,7 +361,7 @@
 
                                                                 </div>
                                                                 <div class="mb-0" style="display: flex">
-                                                                    <button type="button" id = "update-cancel-course${item.id}" onclick="hiddenForm('#update-course${item.id}','#update-image-grid${item.id}')" class="btn btn-danger" style="margin-right: 4px;min-width: 100px">Cancel</button>
+                                                                    <button type="button" id = "update-cancel-course${item.id}" onclick="hiddenCancel('#update-course${item.id}','#update-image-grid${item.id}')" class="btn btn-danger" style="margin-right: 4px;min-width: 100px">Cancel</button>
                                                                     <button class="btn btn-success" type="submit" style="min-width: 100px;">Submit</button>
                                                                 </div>
                                                             </form>
@@ -407,7 +407,7 @@
                                                 </td>
 
                                                 <td class="table-action" style="display: flex; justify-content: center">
-                                                    <div class="rightbar-overlay" id ="file${exam.id}" style=" background-color: rgba(0,0,0,0.05); opacity: 1;">
+                                                    <div class="rightbar-overlay" id ="file${exam.id}" onclick="hiddenForm('#file${exam.id}')" style=" background-color: rgba(0,0,0,0.05); opacity: 1;">
                                                         <div class="course-upload col-md-4" style="position: fixed;transform: translate(50%, 50%); color: #6c757d; background-color: #FFF;padding: 40px 0; border-radius: 4px;">
                                                             <form class="needs-validation col-md-6" novalidate enctype="multipart/form-data" style="transform: translate(50%, 0);" method="post" action="/QuestionController?action=insertFile">
                                                                 <div style="margin-top: 16px; display: flex; align-items: flex-start;flex-direction: column">
@@ -421,7 +421,7 @@
                                                                 <input type="hidden" name="courseID" value="${exam.course.id}">
                                                                 <input type="hidden" name="fileCheck" value="true">
                                                                 <div class="mb-0" style="display: flex">
-                                                                    <button type="button" id = "cancel-file${exam.id}" onclick="hiddenForm('#file${exam.id}','#upload-file${exam.id}')" class="btn btn-danger" style="margin-right: 4px;min-width: 100px">Cancel</button>
+                                                                    <button type="button" id = "cancel-file${exam.id}" onclick="hiddenCancel('#file${exam.id}','#upload-file${exam.id}')" class="btn btn-danger" style="margin-right: 4px;min-width: 100px">Cancel</button>
                                                                     <button class="btn btn-success" type="submit" style="min-width: 100px;">Submit</button>
                                                                 </div>
                                                             </form>
@@ -476,7 +476,7 @@
                                                 </td>
                                                 <td>${document.documentLink}</td>
                                                 <td class="table-action">
-                                                    <div class="rightbar-overlay" id ="update-document${document.id}" style=" background-color: rgba(0,0,0,0.05); opacity: 1;">
+                                                    <div class="rightbar-overlay" id ="update-document${document.id}" onclick="hiddenForm('#update-document${document.id}')" style=" background-color: rgba(0,0,0,0.05); opacity: 1;">
                                                         <div class="course-upload col-md-4" style="position: fixed;transform: translate(50%, 0); color: #6c757d; background-color: #FFF;padding: 40px 0; border-radius: 4px;">
                                                             <form class="needs-validation col-md-6" novalidate style="transform: translate(50%, 0);" method="post" action="/admin-manager-file?action=updateDocument">
                                                                 <input type="hidden" name="id" value="${document.id}">
@@ -511,7 +511,7 @@
                                                                 </div>
                                                                 <div class="mb-0" style="display: flex">
                                                                     <button type="button" id = "update-cancel-course${document.id}"
-                                                                            onclick="hiddenForm('#update-document${document.id}')"
+                                                                            onclick="hiddenCancel('#update-document${document.id}')"
                                                                             class="btn btn-danger" style="margin-right: 4px;min-width: 100px">Cancel</button>
                                                                     <button class="btn btn-success" type="submit" style="min-width: 100px;">Submit</button>
                                                                 </div>
@@ -664,7 +664,7 @@
 
 
 <!-- =====================course============================= -->
-<div class="rightbar-overlay " id ="course" style=" background-color: rgba(0,0,0,0.5); opacity: 1;">
+<div class="rightbar-overlay " id ="course" onclick="hiddenForm('#course')" style=" background-color: rgba(0,0,0,0.5); opacity: 1;">
     <div class="course-upload col-md-4" style="position: fixed;transform: translate(100%, 100px); color: #6c757d; background-color: #FFF;padding: 40px 0; border-radius: 4px;">
         <form class="needs-validation col-md-6" novalidate style="transform: translate(50%, 0);" method="post" action="/admin-manager-file?action=insertCourse">
             <div class="mb-0">
@@ -708,7 +708,7 @@
 </div>
 
 <!-- =====================EXAM============================= -->
-<div class="rightbar-overlay " id ="exam" style=" background-color: rgba(0,0,0,0.5); opacity: 1;">
+<div class="rightbar-overlay " id ="exam" onclick="hiddenForm('#exam')" style=" background-color: rgba(0,0,0,0.5); opacity: 1;">
     <div class="course-upload col-md-4" style="position: fixed;transform: translate(100%, 200px); color: #6c757d; background-color: #FFF;padding: 40px 0; border-radius: 4px;">
         <form class="needs-validation col-md-6" novalidate style="transform: translate(50%, 0);" method="post" action="/admin-manager-file?action=insertExam">
             <div class="mb-0">
@@ -735,7 +735,7 @@
     </div>
 </div>
 <!-- =====================Document============================= -->
-<div class="rightbar-overlay " id ="document" style=" background-color: rgba(0,0,0,0.5); opacity: 1;">
+<div class="rightbar-overlay " id ="document" onclick="hiddenForm('#document')" style=" background-color: rgba(0,0,0,0.5); opacity: 1;">
     <div class="course-upload col-md-4" style="position: fixed;transform: translate(100%, 50%); color: #6c757d; background-color: #FFF;padding: 40px 0; border-radius: 4px;">
         <form class="needs-validation col-md-6" novalidate style="transform: translate(50%, 0);" method="post" action="/admin-manager-file?action=insertDocument">
             <div class="mb-0">
@@ -746,7 +746,7 @@
                 </div>
             </div>
             <div class="mb-0">
-                <label class="form-label" for="validationCustom07" style="margin-top: 16px;">Description</label>
+                <label class="form-label" for="validationCustom07" style="margin-top: 16px;">Document Link</label>
                 <input type="text" class="form-control" id="validationCustom07" placeholder="Document link" required name="documentLink">
                 <div class="valid-feedback">
                     Looks good!

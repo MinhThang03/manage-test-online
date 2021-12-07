@@ -248,7 +248,7 @@
                 <div class="video-image">
                     <img src="<c:url value = "/home/assets/images/picture/stuednt-video.jpg"/>" alt=""
                          class="img-fluid">
-                    <a href="https://www.youtube.com/embed/b6FdqRrrMlQ" target="_blank">
+                        <a href="https://www.youtube.com/watch?v=QuG6TSiSgaA" target="_blank">
                         <div class="video-icon">
                             <img src="<c:url value = "/home/assets/images/icon/play.png"/>" alt="">
                         </div>
